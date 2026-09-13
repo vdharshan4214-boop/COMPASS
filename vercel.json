@@ -8,30 +8,6 @@
     {
       "source": "/uploads/(.*)",
       "destination": "/api/index.py"
-    },
-    {
-      "source": "/",
-      "destination": "/frontend/index.html"
-    },
-    {
-      "source": "/login.html",
-      "destination": "/frontend/login.html"
-    },
-    {
-      "source": "/student.html",
-      "destination": "/frontend/student.html"
-    },
-    {
-      "source": "/admin.html",
-      "destination": "/frontend/admin.html"
-    },
-    {
-      "source": "/css/(.*)",
-      "destination": "/frontend/css/$1"
-    },
-    {
-      "source": "/js/(.*)",
-      "destination": "/frontend/js/$1"
     }
   ]
 }

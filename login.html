@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log in — Compass</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="landing-page">
+<div id="animatedBeamBg" class="animated-beam-bg"></div>
+
+<div class="auth-shell">
+  <div class="auth-card">
+    <a href="index.html" class="back-link">&larr; Back to Compass</a>
+    <h1>Welcome to Compass</h1>
+    <div class="sub">Sign in to report issues or manage the campus queue.</div>
+
+    <div class="tabs">
+      <div class="tab active" id="tabLogin" onclick="showTab('login')">Log in</div>
+      <div class="tab" id="tabRegister" onclick="showTab('register')">Create account</div>
+    </div>
+
+    <div id="msg" class="msg"></div>
+
+    <!-- LOGIN -->
+    <form id="loginForm">
+      <div class="field">
+        <label>Email</label>
+        <input type="email" id="loginEmail" required placeholder="you@college.edu">
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password" id="loginPassword" required placeholder="••••••••">
+      </div>
+      <button type="submit" class="btn btn-primary btn-block btn-hover-effect">Log in</button>
+    </form>
+
+    <!-- REGISTER -->
+    <form id="registerForm" style="display:none;">
+      <div class="role-toggle">
+        <button type="button" id="roleStudent" class="active" onclick="setRole('student')">Student / Faculty</button>
+        <button type="button" id="roleAdmin" onclick="setRole('admin')">Admin</button>
+      </div>
+      <div class="field">
+        <label>Full name</label>
+        <input type="text" id="regName" required placeholder="Priya Kumar">
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <input type="email" id="regEmail" required placeholder="you@college.edu">
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password" id="regPassword" required placeholder="At least 6 characters">
+      </div>
+      <button type="submit" class="btn btn-primary btn-block btn-hover-effect">Create account</button>
+    </form>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+<script>
+let selectedRole = "student";
+
+function setRole(role) {
+  selectedRole = role;
+  document.getElementById("roleStudent").classList.toggle("active", role === "student");
+  document.getElementById("roleAdmin").classList.toggle("active", role === "admin");
+}
+
+function showTab(which) {
+  document.getElementById("tabLogin").classList.toggle("active", which === "login");
+  document.getElementById("tabRegister").classList.toggle("active", which === "register");
+  document.getElementById("loginForm").style.display = which === "login" ? "block" : "none";
+  document.getElementById("registerForm").style.display = which === "register" ? "block" : "none";
+  document.getElementById("msg").style.display = "none";
+}
+
+function showMsg(text, type) {
+  const el = document.getElementById("msg");
+  el.textContent = text;
+  el.className = "msg " + type;
+}
+
+function routeAfterLogin(role) {
+  window.location.href = role === "admin" ? "admin.html" : "student.html";
+}
+
+document.getElementById("loginForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  try {
+    const data = await api("/api/auth/login", {
+      method: "POST",
+      body: {
+        email: document.getElementById("loginEmail").value,
+        password: document.getElementById("loginPassword").value,
+      },
+    });
+    saveSession(data);
+    routeAfterLogin(data.role);
+  } catch (err) {
+    showMsg(err.message, "error");
+  }
+});
+
+document.getElementById("registerForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  try {
+    const data = await api("/api/auth/register", {
+      method: "POST",
+      body: {
+        name: document.getElementById("regName").value,
+        email: document.getElementById("regEmail").value,
+        password: document.getElementById("regPassword").value,
+        role: selectedRole,
+      },
+    });
+    saveSession(data);
+    routeAfterLogin(data.role);
+  } catch (err) {
+    showMsg(err.message, "error");
+  }
+});
+
+// support ?tab=register&role=admin deep links from the landing page
+const params = new URLSearchParams(window.location.search);
+if (params.get("tab") === "register") showTab("register");
+if (params.get("role") === "admin") setRole("admin");
+
+// Animated Beam Background Generator
+function initAnimatedBeam() {
+  const container = document.getElementById("animatedBeamBg");
+  if (!container) return;
+
+  const prand = (n) => {
+    const x = Math.sin(n * 127.1 + 311.7) * 43758.5453;
+    return x - Math.floor(x);
+  };
+  const lerp = (min, max, t) => min + (max - min) * t;
+
+  const LANES = 64;
+  let html = '<div class="ab-glow"></div><div class="ab-lanes-container">';
+
+  for (let i = 0; i < LANES; i++) {
+    const laneIndex = i;
+    const hasBeam = prand(laneIndex + 7) < 0.3;
+    let beamHtml = '';
+
+    if (hasBeam) {
+      const beamIndex = laneIndex + 1;
+      const fast = prand(beamIndex + 91) < 0.3;
+      const duration = fast ? lerp(1.2, 3.2, prand(beamIndex)) : lerp(6, 14, prand(beamIndex));
+      const delay = lerp(0, 9, prand(beamIndex + 13));
+      const length = Math.round(lerp(24, 84, prand(beamIndex + 29)));
+      const width = Math.round(lerp(3, 7, prand(beamIndex + 53)));
+      const opacity = fast ? lerp(0.8, 1, prand(beamIndex + 71)) : lerp(0.35, 0.9, prand(beamIndex + 71));
+
+      const styleVars = `--duration:${duration.toFixed(2)}s;--delay:${delay.toFixed(2)}s;--length:${length}px;--opacity:${opacity.toFixed(2)};width:${width}px;transform:translateY(-20%);animation:meteor var(--duration) var(--delay) ease-in-out infinite backwards;`;
+
+      beamHtml = `
+        <div class="ab-beam" style="${styleVars}">
+          <div class="ab-streak-wrapper" style="height:var(--length);clip-path:polygon(54% 0, 54% 0, 60% 100%, 40% 100%);">
+            <div class="ab-streak-inner"></div>
+          </div>
+        </div>
+      `;
+    }
+
+    html += `
+      <div class="ab-lane">
+        <div class="ab-line">
+          ${beamHtml}
+        </div>
+      </div>
+    `;
+  }
+
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initAnimatedBeam);
+} else {
+  initAnimatedBeam();
+}
+</script>
+</body>
+</html>
+</html>

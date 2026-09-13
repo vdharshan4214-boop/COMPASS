@@ -1,0 +1,1110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compass Admin — Campus Complaint Management</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* DIRECT INLINE MODAL OVERRIDE */
+    .admin-modal-overlay,
+    #complaintDetailModal {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      background: rgba(15, 23, 42, 0.75) !important;
+      backdrop-filter: blur(6px) !important;
+      -webkit-backdrop-filter: blur(6px) !important;
+      z-index: 999999 !important;
+      display: none;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 20px !important;
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
+    }
+
+    .admin-modal-overlay.show,
+    #complaintDetailModal.show {
+      display: flex !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      visibility: visible !important;
+    }
+
+    .admin-modal-container {
+      background: var(--admin-card-bg, #ffffff) !important;
+      color: var(--admin-text-main, #1e293b) !important;
+      width: 100% !important;
+      max-width: 680px !important;
+      max-height: 88vh !important;
+      overflow-y: auto !important;
+      border-radius: 16px !important;
+      padding: 24px 28px !important;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4) !important;
+      border: 1px solid var(--admin-border, #e2e8f0) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 16px !important;
+    }
+  </style>
+</head>
+<body class="admin-body">
+<div class="admin-layout">
+
+  <!-- FIXED COLLAPSIBLE LEFT SIDEBAR -->
+  <aside class="admin-sidebar" id="adminSidebar">
+    <div class="admin-sidebar-header">
+      <a href="#" class="admin-brand-logo" id="brandLogo">
+        <span>Compass</span>
+      </a>
+      <button type="button" class="admin-sidebar-toggle" id="sidebarToggle" title="Toggle sidebar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+    </div>
+
+    <nav class="admin-sidebar-nav">
+      <!-- 3 MAIN NAV ITEMS ONLY -->
+      <button class="admin-nav-item active" data-panel="overview">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+        <span class="hide-on-collapse">Overview</span>
+      </button>
+
+      <button class="admin-nav-item" data-panel="all">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        <span class="hide-on-collapse">All Complaints</span>
+      </button>
+
+      <button class="admin-nav-item" data-panel="query">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="9" y1="10" x2="15" y2="10"/><line x1="12" y1="7" x2="12" y2="13"/></svg>
+        <span class="hide-on-collapse">Query (AI)</span>
+      </button>
+    </nav>
+
+    <div class="admin-sidebar-footer">
+      <button class="admin-nav-item logout-btn" onclick="logout()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        <span class="hide-on-collapse">Log out</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN WORKSPACE WRAPPER -->
+  <div class="admin-main-wrapper">
+
+    <!-- PERSISTENT TOP NAVIGATION BAR -->
+    <header class="admin-topbar">
+      <!-- Topbar Title -->
+      <div style="font-weight:700;font-size:1.1rem;color:var(--admin-text-main);display:flex;align-items:center;gap:8px;">
+        <span>Campus Operations</span>
+      </div>
+
+      <!-- Right Topbar Controls -->
+      <div class="admin-topbar-right">
+        <!-- Notification Bell Dropdown -->
+        <div class="admin-notif-container">
+          <button type="button" class="admin-notif-btn" id="notifBtn" title="Notifications">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span class="admin-notif-badge"></span>
+          </button>
+          <div class="admin-notif-panel" id="notifPanel">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+              <strong style="font-size:0.9rem;">Notifications &amp; Activity</strong>
+              <span class="status-badge resolved" style="font-size:0.7rem;">Live</span>
+            </div>
+            <div id="notifListContent" style="font-size:0.82rem;color:var(--admin-text-muted);display:flex;flex-direction:column;gap:8px;">
+              <div>&bull; High priority complaint reported in Boys Hostel</div>
+              <div>&bull; Weekly summary report scheduled</div>
+              <div>&bull; Automated resolution emails enabled</div>
+            </div>
+            <div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--admin-border);">
+              <button type="button" class="btn btn-primary btn-sm" style="width:100%;font-size:0.75rem;" onclick="sendWeeklyDigestNow()">Send Weekly Email Digest Now</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Profile Avatar & Dropdown -->
+        <div class="admin-profile-menu-container">
+          <div class="admin-profile-trigger" id="profileTrigger">
+            <div class="admin-avatar" id="topbarAvatar">AD</div>
+            <div class="admin-profile-meta">
+              <span class="admin-profile-name" id="topbarAdminName">Admin</span>
+              <span class="admin-profile-role">Administrator</span>
+            </div>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+
+          <div class="admin-dropdown-menu" id="profileDropdown">
+            <button type="button" class="admin-dropdown-item" onclick="switchPanel('profile')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              Profile &amp; Settings
+            </button>
+            <div class="admin-dropdown-item" onclick="toggleDarkMode()">
+              <span style="display:flex;align-items:center;gap:10px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                Dark Mode
+              </span>
+              <label class="switch" onclick="event.stopPropagation()">
+                <input type="checkbox" id="topbarDarkToggle" onchange="toggleDarkMode(this.checked)">
+                <span class="slider"></span>
+              </label>
+            </div>
+            <div class="admin-dropdown-divider"></div>
+            <button type="button" class="admin-dropdown-item" style="color:#ef4444;" onclick="logout()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+              Log out
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENT PANELS -->
+    <main class="admin-content-padding">
+
+      <!-- PAGE 1 — OVERVIEW DASHBOARD -->
+      <section class="admin-panel active" id="panel-overview">
+        <div class="admin-page-header">
+          <h1>Overview Dashboard</h1>
+          <p>Real-time analytics and resolution statistics across campus facilities.</p>
+        </div>
+
+        <!-- 4 STAT CARDS ROW -->
+        <!-- 4 STAT CARDS ROW (KpiCard Style) -->
+        <div class="admin-stats-grid">
+          <div class="admin-stat-card">
+            <div class="admin-stat-icon total">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <div class="admin-stat-data">
+              <div class="stat-num" id="statTotal">0</div>
+              <div class="stat-label">Total Reports</div>
+              <div class="stat-delta positive" id="deltaTotal">+12.4% vs last 30 days</div>
+            </div>
+            <svg class="sparkline-svg" viewBox="0 0 60 24"><path d="M0,18 Q15,10 30,14 T60,4" fill="none" stroke="#e8a03c" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+
+          <div class="admin-stat-card">
+            <div class="admin-stat-icon submitted">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="admin-stat-data">
+              <div class="stat-num" id="statSubmitted">0</div>
+              <div class="stat-label">Submitted</div>
+              <div class="stat-delta warning" id="deltaSubmitted">Needs Review</div>
+            </div>
+            <svg class="sparkline-svg" viewBox="0 0 60 24"><path d="M0,14 Q15,18 30,8 T60,12" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+
+          <div class="admin-stat-card">
+            <div class="admin-stat-icon progress">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <div class="admin-stat-data">
+              <div class="stat-num" id="statInProgress">0</div>
+              <div class="stat-label">In Progress</div>
+              <div class="stat-delta active" id="deltaProgress">Active Queue</div>
+            </div>
+            <svg class="sparkline-svg" viewBox="0 0 60 24"><path d="M0,20 Q15,12 30,6 T60,10" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+
+          <div class="admin-stat-card">
+            <div class="admin-stat-icon resolved">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <div class="admin-stat-data">
+              <div class="stat-num" id="statResolved">0</div>
+              <div class="stat-label">Resolved</div>
+              <div class="stat-delta success" id="deltaResolved">+94.2% rate</div>
+            </div>
+            <svg class="sparkline-svg" viewBox="0 0 60 24"><path d="M0,22 Q15,16 30,8 T60,2" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+
+        <!-- TWO COLUMN CHARTS ROW -->
+        <div class="admin-charts-grid">
+          <!-- BAR CHART: Complaints by Category -->
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h3 class="admin-card-title">Complaints by Category</h3>
+              <span style="font-size:0.8rem;color:var(--admin-text-muted);">Active Distribution</span>
+            </div>
+            <div class="chart-bar-container" id="categoryBars">
+              <!-- Dynamically populated bars -->
+            </div>
+          </div>
+
+          <!-- DONUT CHART: Status Distribution -->
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h3 class="admin-card-title">Status Distribution</h3>
+              <span style="font-size:0.8rem;color:var(--admin-text-muted);">Live Overview</span>
+            </div>
+            <div class="donut-chart-wrapper">
+              <div class="donut-svg-container" id="donutChartSvg">
+                <!-- SVG Donut Chart -->
+              </div>
+              <div class="donut-legend" id="donutLegend">
+                <!-- Legend items -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!-- NEEDS ATTENTION & BOTTOM ROW -->
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h3 class="admin-card-title">Needs Attention (Highest Priority Unresolved)</h3>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="switchPanel('all')">View All &rarr;</button>
+          </div>
+          <div class="needs-attention-list" id="needsAttentionList">
+            <!-- Top 3 unresolved complaints -->
+          </div>
+        </div>
+
+        <div class="admin-two-cols">
+          <div class="admin-card">
+            <h3 class="admin-card-title" style="margin-bottom:12px;">Most Reported Location</h3>
+            <div id="topLocationCard" style="font-size:0.95rem;color:var(--admin-text-muted);">
+              Loading location metrics...
+            </div>
+          </div>
+
+          <div class="admin-card">
+            <h3 class="admin-card-title" style="margin-bottom:12px;">Average Resolution Time</h3>
+            <div id="avgResolutionCard" style="font-size:0.95rem;color:var(--admin-text-muted);">
+              <div style="font-family:'Fraunces',serif;font-size:1.8rem;font-weight:700;color:var(--admin-teal);">1.8 Days</div>
+              <div>Average time from report submission to resolution approval across teams.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE 2 — ALL COMPLAINTS -->
+      <section class="admin-panel" id="panel-all">
+        <div class="admin-page-header">
+          <h1>All Complaints</h1>
+          <p>Manage, track, and resolve campus service requests across departments.</p>
+        </div>
+
+        <!-- PILL FILTER TABS -->
+        <div class="complaints-filter-tabs" id="filterTabsRow">
+          <button class="filter-tab active" data-tab="All">All</button>
+          <button class="filter-tab" data-tab="IT Team">IT</button>
+          <button class="filter-tab" data-tab="Electrical Team">Electrical</button>
+          <button class="filter-tab" data-tab="Maintenance Team">Maintenance</button>
+          <button class="filter-tab" data-tab="Hostel Team">Hostel</button>
+          <button class="filter-tab" data-tab="Safety Team">Safety</button>
+          <button class="filter-tab" data-tab="Facilities Team">Facilities</button>
+        </div>
+
+        <!-- SECONDARY TOOLBAR -->
+        <div class="complaints-toolbar">
+          <div class="complaint-search-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="cardSearchInput" placeholder="Filter by keyword, location, student name...">
+          </div>
+
+          <div style="display:flex;align-items:center;gap:10px;">
+            <label style="font-size:0.85rem;color:var(--admin-text-muted);">Sort by:</label>
+            <select class="complaint-sort-select" id="sortSelect" onchange="applyFiltersAndSort()">
+              <option value="priority_desc">Priority (High to Low)</option>
+              <option value="newest">Newest First</option>
+              <option value="oldest">Oldest First</option>
+              <option value="status">Status</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- CARD GRID -->
+        <div class="complaints-grid" id="allComplaintsGrid">
+          <!-- Cards dynamically rendered -->
+        </div>
+      </section>
+
+      <!-- PAGE 3 — QUERY (AI Assistant) -->
+      <section class="admin-panel" id="panel-query">
+        <div class="admin-page-header" style="text-align:center;">
+          <h1>Natural Language AI Query</h1>
+          <p>Ask Compass AI for real-time complaint breakdowns, locations, and patterns.</p>
+        </div>
+
+        <div class="query-centered-card">
+          <div class="query-input-group">
+            <input type="text" id="adminQueryInput" placeholder="e.g. What is the most reported issue in Block C this month?" value="what's most reported in Block C this month?">
+            <button type="button" class="btn btn-primary" onclick="runAdminQuery()">Ask</button>
+          </div>
+          <div id="adminQueryResult" class="draft-box" style="display:none;background:var(--admin-bg);border:1px solid var(--admin-border);padding:14px;border-radius:12px;font-size:0.9rem;white-space:pre-wrap;"></div>
+        </div>
+
+        <!-- CONVERSATION CHAT BUBBLES -->
+        <div class="query-chat-history" id="queryChatBubbles">
+          <!-- Dynamic conversation history -->
+        </div>
+      </section>
+
+      <!-- PAGE 4 — PROFILE & SETTINGS -->
+      <section class="admin-panel" id="panel-profile">
+        <div class="admin-page-header">
+          <h1>Profile &amp; Settings</h1>
+          <p>Manage your account, preferences, and display settings.</p>
+        </div>
+
+        <div class="settings-grid">
+          <!-- Profile Card -->
+          <div class="admin-card">
+            <h3 class="admin-card-title" style="margin-bottom:20px;">Admin Account</h3>
+            <div class="avatar-upload-box">
+              <div class="avatar-preview-wrapper" onclick="document.getElementById('avatarFileInput').click()">
+                <div class="avatar-placeholder" id="settingsAvatarPlaceholder">AD</div>
+                <div class="avatar-overlay">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                </div>
+              </div>
+              <input type="file" id="avatarFileInput" accept="image/*" style="display:none;" onchange="handleAvatarUpload(this)">
+              <div>
+                <strong style="display:block;font-size:0.95rem;">Profile Picture</strong>
+                <span style="font-size:0.8rem;color:var(--admin-text-muted);">Click avatar to upload new image</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Name</label>
+              <input type="text" id="settingsNameInput" value="Admin">
+            </div>
+
+            <div class="field">
+              <label>Email</label>
+              <input type="email" id="settingsEmailInput" value="admin@compass.edu">
+            </div>
+
+            <div class="field">
+              <label>Role</label>
+              <input type="text" value="System Administrator" disabled style="opacity:0.7;">
+            </div>
+
+            <button type="button" class="btn btn-primary" onclick="saveAdminSettings()">Save Profile</button>
+          </div>
+
+          <!-- Preferences Card -->
+          <div class="admin-card">
+            <h3 class="admin-card-title" style="margin-bottom:20px;">System Preferences</h3>
+            
+            <div class="toggle-switch-row">
+              <div>
+                <strong style="display:block;font-size:0.9rem;">Dark Mode</strong>
+                <span style="font-size:0.78rem;color:var(--admin-text-muted);">Switch between light and dark UI</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="settingsDarkToggle" onchange="toggleDarkMode(this.checked)">
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div class="toggle-switch-row">
+              <div>
+                <strong style="display:block;font-size:0.9rem;">Email Digest</strong>
+                <span style="font-size:0.78rem;color:var(--admin-text-muted);">Daily summary of pending reports</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" checked id="notifEmailToggle">
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div class="toggle-switch-row">
+              <div>
+                <strong style="display:block;font-size:0.9rem;">In-App Alert Badges</strong>
+                <span style="font-size:0.78rem;color:var(--admin-text-muted);">Real-time alerts for critical issues</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" checked id="notifInAppToggle">
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div id="settingsSaveMsg" class="msg ok" style="margin-top:16px;display:none;">Preferences updated successfully.</div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<!-- COMPLAINT DETAIL POPUP MODAL -->
+<div class="admin-modal-overlay" id="complaintDetailModal" onclick="if(event.target===this)closeComplaintModal()">
+  <div class="admin-modal-container">
+    <div class="admin-modal-header">
+      <div>
+        <h2 id="modalTitle">Complaint Details</h2>
+        <span style="font-size:0.78rem;color:var(--admin-text-muted);" id="modalSubTitle">Complaint #--</span>
+      </div>
+      <button type="button" class="admin-modal-close" onclick="closeComplaintModal()">&times;</button>
+    </div>
+    <div class="admin-modal-body" id="modalBodyContent">
+      <!-- Dynamic Complaint Details -->
+    </div>
+    <div class="admin-modal-footer" id="modalFooterActions">
+      <!-- Dynamic Action Buttons -->
+    </div>
+  </div>
+</div>
+
+<!-- FLOATING COMPASS AI LOGO FAB BUTTON -->
+<button type="button" class="compass-ai-fab" id="compassAiFab" title="Compass AI Assistant" onclick="toggleChatWidget()">
+  <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="2.5"/><path d="M20 7 L25 20 L20 33 L15 20 Z" fill="currentColor"/><circle cx="20" cy="20" r="2.5" fill="#fff"/></svg>
+</button>
+
+<!-- DOCKED POPUP COMPASS AI CHAT WIDGET -->
+<div id="compassChatWidget" class="chat-widget collapsed" aria-live="polite">
+  <div class="chat-widget-header">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <svg width="22" height="22" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="2"/><path d="M20 8 L24 20 L20 32 L16 20 Z" fill="currentColor"/><circle cx="20" cy="20" r="2.2" fill="#fff"/></svg>
+      <div>
+        <strong>Compass AI Assistant</strong>
+        <small style="display:block;font-size:0.72rem;color:var(--admin-gold);">Real-time dataset assistant</small>
+      </div>
+    </div>
+    <button type="button" class="chat-widget-minimize" onclick="toggleChatWidget()">&times;</button>
+  </div>
+  <div class="chat-widget-suggestions">
+    <button class="chat-suggestion" type="button" onclick="quickAiQuery('Is Block A rectified?')">Is Block A rectified?</button>
+    <button class="chat-suggestion" type="button" onclick="quickAiQuery('Status of electrical complaints?')">Status of electrical complaints?</button>
+  </div>
+  <div id="chatWindow" class="chat-window"></div>
+  <div class="chat-widget-input-row">
+    <input id="chatInput" type="text" placeholder="Ask about complaints..." maxlength="300" onkeydown="if(event.key==='Enter')sendChatMessage()">
+    <button type="button" class="btn btn-primary btn-sm" onclick="sendChatMessage()">Send</button>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+<script>
+// --- GLOBAL STATE & INITIALIZATION ---
+requireRole("admin");
+
+let allComplaintsData = [];
+let activeDepartmentFilter = "All";
+
+// SVG Category Icons Mapping (Strictly outline SVGs, no emojis)
+const CATEGORY_ICONS = {
+  "IT Team": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>`,
+  "Electrical Team": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
+  "Maintenance Team": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>`,
+  "Hostel Team": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg>`,
+  "Safety Team": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+  "Facilities Team": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="6" x2="9.01" y2="6"/><line x1="15" y1="6" x2="15.01" y2="6"/><line x1="9" y1="10" x2="9.01" y2="10"/><line x1="15" y1="10" x2="15.01" y2="10"/><line x1="9" y1="14" x2="9.01" y2="14"/><line x1="15" y1="14" x2="15.01" y2="14"/><line x1="9" y1="18" x2="15" y2="18"/></svg>`
+};
+
+const CATEGORY_COLORS = {
+  "IT Team": "#3b82f6",
+  "Electrical Team": "#f59e0b",
+  "Maintenance Team": "#06b6d4",
+  "Hostel Team": "#8b5cf6",
+  "Safety Team": "#ef4444",
+  "Facilities Team": "#64748b"
+};
+
+// Setup user details
+const adminName = getName() || "Admin";
+document.getElementById("topbarAdminName").textContent = adminName;
+const initials = adminName.split(" ").map(n => n[0]).join("").toUpperCase().slice(0, 2) || "AD";
+document.getElementById("topbarAvatar").textContent = initials;
+document.getElementById("settingsAvatarPlaceholder").textContent = initials;
+document.getElementById("settingsNameInput").value = adminName;
+document.getElementById("brandLogo").innerHTML = COMPASS_ICON + "<span>Compass</span>";
+
+// --- DARK MODE & THEME TOGGLE ---
+function toggleDarkMode(forceDark) {
+  const isDark = forceDark !== undefined ? forceDark : !document.body.classList.contains("dark-mode");
+  if (isDark) {
+    document.body.classList.add("dark-mode");
+    localStorage.setItem("compass_theme", "dark");
+  } else {
+    document.body.classList.remove("dark-mode");
+    localStorage.setItem("compass_theme", "light");
+  }
+  document.getElementById("topbarDarkToggle").checked = isDark;
+  document.getElementById("settingsDarkToggle").checked = isDark;
+}
+
+if (localStorage.getItem("compass_theme") === "dark") {
+  toggleDarkMode(true);
+}
+
+// --- SIDEBAR COLLAPSE & NAVIGATION ---
+const sidebar = document.getElementById("adminSidebar");
+document.getElementById("sidebarToggle").addEventListener("click", () => {
+  sidebar.classList.toggle("collapsed");
+});
+
+function switchPanel(panelId) {
+  document.querySelectorAll(".admin-nav-item").forEach(item => {
+    item.classList.toggle("active", item.dataset.panel === panelId);
+  });
+  document.querySelectorAll(".admin-panel").forEach(panel => {
+    panel.classList.toggle("active", panel.id === "panel-" + panelId);
+  });
+  if (panelId === "overview") loadOverview();
+  if (panelId === "all") loadQueue();
+  // Close dropdown menu if open
+  document.getElementById("profileDropdown").classList.remove("show");
+  document.getElementById("notifPanel").classList.remove("show");
+}
+
+document.querySelectorAll(".admin-nav-item[data-panel]").forEach(btn => {
+  btn.addEventListener("click", () => switchPanel(btn.dataset.panel));
+});
+
+// Topbar dropdown toggles
+document.getElementById("profileTrigger").addEventListener("click", (e) => {
+  e.stopPropagation();
+  document.getElementById("profileDropdown").classList.toggle("show");
+  document.getElementById("notifPanel").classList.remove("show");
+});
+
+document.getElementById("notifBtn").addEventListener("click", (e) => {
+  e.stopPropagation();
+  document.getElementById("notifPanel").classList.toggle("show");
+  document.getElementById("profileDropdown").classList.remove("show");
+});
+
+document.addEventListener("click", () => {
+  document.getElementById("profileDropdown").classList.remove("show");
+  document.getElementById("notifPanel").classList.remove("show");
+});
+
+// Search inputs jump filter
+document.getElementById("globalSearchInput").addEventListener("input", (e) => {
+  const q = e.target.value;
+  document.getElementById("cardSearchInput").value = q;
+  switchPanel("all");
+  applyFiltersAndSort();
+});
+
+document.getElementById("cardSearchInput").addEventListener("input", () => {
+  applyFiltersAndSort();
+});
+
+// Filter Tabs
+document.querySelectorAll(".filter-tab").forEach(tab => {
+  tab.addEventListener("click", () => {
+    document.querySelectorAll(".filter-tab").forEach(t => t.classList.remove("active"));
+    tab.classList.add("active");
+    activeDepartmentFilter = tab.dataset.tab;
+    applyFiltersAndSort();
+  });
+});
+
+// Infer department fallback logic
+function inferDepartment(c) {
+  const text = (c.description || "").toLowerCase();
+  const category = (c.category || "").toLowerCase();
+  if (["wifi", "internet", "network", "router", "lan", "server", "connection"].some(token => text.includes(token) || category.includes(token))) return "IT Team";
+  if (["water", "leak", "drain", "toilet", "tap", "pipe", "flood", "bathroom", "washroom", "sewer"].some(token => text.includes(token) || category.includes(token))) return "Maintenance Team";
+  if (["power", "electricity", "fan", "light", "socket", "switch", "short", "spark", "ac", "circuit"].some(token => text.includes(token) || category.includes(token))) return "Electrical Team";
+  if (["hostel", "room", "mess", "cleaning", "laundry", "noise", "pest", "furniture"].some(token => text.includes(token) || category.includes(token))) return "Hostel Team";
+  if (["security", "gate", "safety", "fire", "cctv", "exit", "unsafe", "emergency", "staircase"].some(token => text.includes(token) || category.includes(token))) return "Safety Team";
+  return "Facilities Team";
+}
+
+function escapeHtml(s) {
+  const div = document.createElement("div");
+  div.textContent = s || "";
+  return div.innerHTML;
+}
+
+// Priority circular badge helper
+function getPriorityBadge(score) {
+  let cls = "low";
+  if (score >= 75) cls = "critical";
+  else if (score >= 50) cls = "high";
+  else if (score >= 25) cls = "medium";
+  return `<div class="priority-score-badge ${cls}" title="Priority Score: ${score}">${score}</div>`;
+}
+
+// --- RENDER COMPLAINTS CARD GRID ---
+function renderCards(list) {
+  const container = document.getElementById("allComplaintsGrid");
+  if (!list.length) {
+    container.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--admin-text-muted);">No complaints match the selected filter.</div>`;
+    return;
+  }
+
+function getCategoryIcon(c) {
+  const cat = (c.category || "").toLowerCase();
+  const text = (c.description || "").toLowerCase();
+
+  if (["safety", "security", "ragging", "beating", "assault", "attack", "fire", "emergency", "unsafe"].some(t => cat.includes(t) || text.includes(t))) {
+    return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`;
+  }
+  if (["it", "wifi", "internet", "network", "router", "lan", "connection", "server"].some(t => cat.includes(t) || text.includes(t))) {
+    return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>`;
+  }
+  if (["electrical", "power", "electricity", "fan", "light", "socket", "switch", "short", "spark", "ac"].some(t => cat.includes(t) || text.includes(t))) {
+    return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`;
+  }
+  if (["maintenance", "plumbing", "water", "leak", "pipe", "toilet", "tap", "drain", "bathroom", "washroom"].some(t => cat.includes(t) || text.includes(t))) {
+    return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>`;
+  }
+  if (["hostel", "mess", "cleaning", "laundry", "bed", "furniture", "pest"].some(t => cat.includes(t) || text.includes(t))) {
+    return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg>`;
+  }
+  return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="6" x2="9.01" y2="6"/><line x1="15" y1="6" x2="15.01" y2="6"/><line x1="9" y1="10" x2="9.01" y2="10"/><line x1="15" y1="10" x2="15.01" y2="10"/><line x1="9" y1="14" x2="9.01" y2="14"/><line x1="15" y1="14" x2="15.01" y2="14"/><line x1="9" y1="18" x2="15" y2="18"/></svg>`;
+}
+
+// --- RENDER COMPLAINTS CARD GRID ---
+function renderCards(list) {
+  const container = document.getElementById("allComplaintsGrid");
+  if (!list.length) {
+    container.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--admin-text-muted);">No complaints match the selected filter.</div>`;
+    return;
+  }
+
+  container.innerHTML = list.map((c, idx) => {
+    const dept = c.department || inferDepartment(c);
+    const icon = getCategoryIcon(c);
+    const studentConf = c.student_confidence_score || 80.0;
+    const photoUrl = c.photo_path ? (c.photo_path.startsWith("http") ? c.photo_path : ("http://localhost:8000/" + c.photo_path.replace(/^\//, ""))) : null;
+    const studentDisplayName = c.anonymous ? "Anonymous Student" : (c.student_name || "Demo Student");
+    
+    return `
+      <div class="complaint-card clickable-card" id="c-${c.id}" onclick="openComplaintModal('${c.id}', ${idx})">
+        <div>
+          <div class="complaint-card-top">
+            <div class="category-icon-badge">${icon}</div>
+            <div class="complaint-card-body">
+              <h3 class="complaint-card-title">${escapeHtml(c.title || c.description)}</h3>
+              <p style="font-size:0.84rem;color:var(--admin-text-muted);margin:2px 0 6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${escapeHtml(c.description)}</p>
+              <div class="complaint-card-meta">
+                ${escapeHtml(c.location)} &bull; ${escapeHtml(studentDisplayName)}<br>
+                Reported ${timeAgo(c.created_at)} &bull; Open ${c.days_open}d
+              </div>
+            </div>
+
+            ${getPriorityBadge(c.priority_score)}
+          </div>
+
+          ${photoUrl ? `
+            <div style="margin:8px 0;border-radius:10px;overflow:hidden;max-height:150px;border:1px solid var(--admin-border);background:#000;">
+              <img src="${photoUrl}" alt="Attached photo" style="width:100%;height:140px;object-fit:cover;display:block;">
+            </div>
+          ` : ""}
+
+          <div class="complaint-card-tags">
+            <span class="status-badge ${c.status}">${statusLabel(c.status)}</span>
+            <span class="confidence-badge" title="Student Confidence Score">Confidence: ${studentConf}%</span>
+            <span class="filter-tab" style="padding:3px 10px;font-size:0.75rem;">${escapeHtml(dept)}</span>
+          </div>
+        </div>
+
+        <div class="complaint-actions-row" onclick="event.stopPropagation()">
+          ${c.status !== "resolved" ? `<button type="button" class="btn btn-primary btn-sm" onclick="openComplaintModal('${c.id}', ${idx})">Approve &amp; resolve</button>` : ""}
+          <button type="button" class="btn btn-danger btn-sm" onclick="deleteComplaint('${c.id}')">Delete</button>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+// --- POPUP MODAL DIALOG FOR COMPLAINT DETAILS ---
+let currentModalComplaintId = null;
+
+function openComplaintModal(id, idx) {
+  const targetId = String(id);
+  let c = allComplaintsData.find(item => String(item.id) === targetId || String(item._id) === targetId);
+  if (!c && idx !== undefined && allComplaintsData[idx]) {
+    c = allComplaintsData[idx];
+  }
+  if (!c && allComplaintsData.length > 0) {
+    c = allComplaintsData[0];
+  }
+  if (!c) {
+    console.warn("Complaint record not found for ID:", id, allComplaintsData);
+    return;
+  }
+  currentModalComplaintId = c.id;
+
+  document.getElementById("modalTitle").textContent = c.description || c.title || "Complaint Details";
+  document.getElementById("modalSubTitle").textContent = `Complaint #${c.id} • ${c.location || 'Campus'}`;
+
+  const dept = c.department || inferDepartment(c);
+  const studentConf = c.student_confidence_score || 80.0;
+  const reportedTime = c.created_at ? new Date(c.created_at).toLocaleString() : "Recently";
+  const photoUrl = c.photo_path ? (c.photo_path.startsWith("http") ? c.photo_path : ("http://localhost:8000/" + c.photo_path.replace(/^\//, ""))) : null;
+
+  const bodyHtml = `
+    <div class="modal-detail-grid">
+      <div class="modal-detail-item">
+        <label>Student Name</label>
+        <span>${escapeHtml(c.student_name || "Demo Student")}</span>
+      </div>
+      <div class="modal-detail-item">
+        <label>Student Email</label>
+        <span>${escapeHtml(c.student_email || "student@compass.edu")}</span>
+      </div>
+      <div class="modal-detail-item">
+        <label>Student Confidence Score</label>
+        <span class="confidence-badge" style="font-size:0.85rem;">Confidence: ${studentConf}%</span>
+      </div>
+      <div class="modal-detail-item">
+        <label>Priority Score</label>
+        <span style="color:var(--admin-gold);font-weight:700;">${c.priority_score || 0} / 100</span>
+      </div>
+      <div class="modal-detail-item">
+        <label>Location</label>
+        <span>${escapeHtml(c.location || "N/A")}</span>
+      </div>
+      <div class="modal-detail-item">
+        <label>Department / Category</label>
+        <span>${escapeHtml(dept)} (${escapeHtml(c.category || 'general')})</span>
+      </div>
+      <div class="modal-detail-item">
+        <label>Status</label>
+        <span class="status-badge ${c.status}">${statusLabel(c.status)}</span>
+      </div>
+      <div class="modal-detail-item">
+        <label>Reported On</label>
+        <span style="font-size:0.8rem;">${reportedTime}</span>
+      </div>
+    </div>
+
+    ${photoUrl ? `
+      <div>
+        <strong style="display:block;margin-bottom:6px;font-size:0.9rem;">Attached Student Photo</strong>
+        <div style="border-radius:12px;overflow:hidden;border:1px solid var(--admin-border);background:#0f172a;text-align:center;padding:6px;">
+          <img src="${photoUrl}" alt="Attached Evidence Photo" style="max-width:100%;max-height:260px;object-fit:contain;display:inline-block;border-radius:8px;">
+        </div>
+      </div>
+    ` : ""}
+
+    <div>
+      <strong style="display:block;margin-bottom:6px;font-size:0.9rem;">Full Complaint Description</strong>
+      <div style="background:var(--admin-bg);padding:14px;border-radius:10px;border:1px solid var(--admin-border);font-size:0.9rem;line-height:1.5;">
+        ${escapeHtml(c.description)}
+      </div>
+    </div>
+
+    <div>
+      <strong style="display:block;margin-bottom:6px;font-size:0.9rem;">Resolution Note / Communication</strong>
+      ${c.status === "resolved" ? `
+        <div class="draft-box" style="padding:14px;border-radius:10px;font-size:0.88rem;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.3);">
+          <strong>Resolved by Admin:</strong><br>${escapeHtml(c.draft_message || "Resolution approved and sent to student via email.")}
+        </div>
+      ` : `
+        <textarea class="draft-box" id="modalDraftMessage" rows="3" style="width:100%;border-radius:10px;font-size:0.88rem;" placeholder="Type resolution summary or click Draft Resolution...">${escapeHtml(c.draft_message || "")}</textarea>
+        <button type="button" class="btn btn-secondary btn-sm" style="margin-top:6px;" onclick="generateModalDraft('${c.id}')">Generate AI Resolution Draft</button>
+      `}
+    </div>
+  `;
+  document.getElementById("modalBodyContent").innerHTML = bodyHtml;
+
+  const footerHtml = `
+    <div>
+      <button type="button" class="btn btn-danger btn-sm" onclick="modalDeleteComplaint('${c.id}')">Delete Complaint</button>
+    </div>
+    <div style="display:flex;gap:8px;">
+      ${c.status !== "resolved" ? `
+        <button type="button" class="btn btn-secondary btn-sm" onclick="modalDisapprove('${c.id}')">Mark in Progress</button>
+        <button type="button" class="btn btn-primary btn-sm" onclick="modalApproveResolve('${c.id}')">Approve &amp; Resolve</button>
+      ` : `
+        <span style="font-size:0.8rem;color:#10b981;font-weight:600;display:flex;align-items:center;gap:4px;">Resolved</span>
+      `}
+      <button type="button" class="btn btn-secondary btn-sm" onclick="closeComplaintModal()">Close</button>
+    </div>
+  `;
+  document.getElementById("modalFooterActions").innerHTML = footerHtml;
+
+  const modal = document.getElementById("complaintDetailModal");
+  if (modal) {
+    modal.style.display = "flex";
+    modal.style.opacity = "1";
+    modal.style.visibility = "visible";
+    modal.style.pointerEvents = "auto";
+    modal.classList.add("show");
+  }
+}
+
+function closeComplaintModal() {
+  const modal = document.getElementById("complaintDetailModal");
+  if (modal) {
+    modal.classList.remove("show");
+    modal.style.display = "none";
+    modal.style.opacity = "0";
+    modal.style.visibility = "hidden";
+    modal.style.pointerEvents = "none";
+  }
+}
+
+function resolveComplaint(id) {
+  openComplaintModal(id);
+}
+
+async function generateModalDraft(id) {
+  const data = await api(`/api/complaints/${id}/draft`, { method: "POST" });
+  const textarea = document.getElementById("modalDraftMessage");
+  if (textarea) textarea.value = data.draft_message;
+}
+
+async function modalApproveResolve(id) {
+  const textarea = document.getElementById("modalDraftMessage");
+  const message = textarea ? textarea.value.trim() : "";
+  await api(`/api/complaints/${id}/resolve`, { method: "POST", body: { approved: true, message: message || null } });
+  closeComplaintModal();
+  await loadQueue();
+  await loadOverview();
+}
+
+async function modalDisapprove(id) {
+  await api(`/api/complaints/${id}/start`, { method: "POST" });
+  closeComplaintModal();
+  await loadQueue();
+  await loadOverview();
+}
+
+async function modalDeleteComplaint(id) {
+  if (!confirm(`Are you sure you want to permanently delete complaint #${id}?`)) return;
+  await api(`/api/complaints/${id}`, { method: "DELETE" });
+  closeComplaintModal();
+  await loadQueue();
+  await loadOverview();
+}
+
+async function deleteComplaint(id) {
+  if (!confirm(`Are you sure you want to delete complaint #${id}?`)) return;
+  await api(`/api/complaints/${id}`, { method: "DELETE" });
+  await loadQueue();
+  await loadOverview();
+}
+
+async function sendWeeklyDigestNow() {
+  await api("/api/admin/summary/send-now", { method: "POST" });
+  alert("Weekly summary email digest sent to all administrators!");
+}
+
+function toggleChatWidget() {
+  const widget = document.getElementById("compassChatWidget");
+  if (widget) widget.classList.toggle("collapsed");
+}
+
+function quickAiQuery(q) {
+  const input = document.getElementById("chatInput");
+  if (input) {
+    input.value = q;
+    sendChatMessage();
+  }
+}
+
+// Apply Search & Sort
+function applyFiltersAndSort() {
+  const query = (document.getElementById("cardSearchInput").value || "").toLowerCase();
+  const sortMode = document.getElementById("sortSelect").value;
+
+  let filtered = allComplaintsData.filter(c => {
+    const dept = c.department || inferDepartment(c);
+    if (activeDepartmentFilter !== "All" && dept !== activeDepartmentFilter) return false;
+    if (!query) return true;
+    const haystack = [c.description, c.location, c.student_name, c.category, dept].join(" ").toLowerCase();
+    return haystack.includes(query);
+  });
+
+  // Sort
+  if (sortMode === "priority_desc") {
+    filtered.sort((a, b) => b.priority_score - a.priority_score);
+  } else if (sortMode === "newest") {
+    filtered.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+  } else if (sortMode === "oldest") {
+    filtered.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+  } else if (sortMode === "status") {
+    const rank = { submitted: 1, in_progress: 2, resolved: 3 };
+    filtered.sort((a, b) => (rank[a.status] || 4) - (rank[b.status] || 4));
+  }
+
+  renderCards(filtered);
+}
+
+// Fetch complaints dataset
+async function loadQueue() {
+  const complaints = await api("/api/complaints");
+  allComplaintsData = (complaints || []).map(c => ({ ...c, department: c.department || inferDepartment(c) }));
+  applyFiltersAndSort();
+}
+
+// Actions
+async function startComplaint(id) {
+  await api(`/api/complaints/${id}/start`, { method: "POST" });
+  loadQueue();
+}
+
+async function draftMessage(id) {
+  const data = await api(`/api/complaints/${id}/draft`, { method: "POST" });
+  const box = document.getElementById(`draft-${id}`);
+  if (box) {
+    box.style.display = "block";
+    box.value = data.draft_message;
+  }
+}
+
+async function resolveComplaint(id) {
+  const box = document.getElementById(`draft-${id}`);
+  let message = box && box.style.display !== "none" ? box.value : null;
+  if (!message) {
+    const data = await api(`/api/complaints/${id}/draft`, { method: "POST" });
+    message = data.draft_message;
+  }
+  const confirmed = confirm("Send resolution message and mark as resolved?\n\n" + message);
+  if (!confirmed) return;
+  await api(`/api/complaints/${id}/resolve`, { method: "POST", body: { approved: true, message } });
+  loadQueue();
+  loadOverview();
+}
+
+// --- OVERVIEW DASHBOARD CHARTS & KPIS ---
+async function loadOverview() {
+  const data = await api("/api/admin/summary");
+  if (!data) return;
+
+  document.getElementById("statTotal").textContent = data.total_complaints || 0;
+  document.getElementById("statSubmitted").textContent = data.by_status.submitted || 0;
+  document.getElementById("statInProgress").textContent = data.by_status.in_progress || 0;
+  document.getElementById("statResolved").textContent = data.by_status.resolved || 0;
+
+  // Render BarList for Categories (matches BarList component style)
+  const categories = Object.entries(data.by_category || {});
+  const maxVal = Math.max(...categories.map(([_, n]) => n), 1);
+  document.getElementById("categoryBars").innerHTML = categories.length ? categories.map(([cat, count]) => {
+    const color = "#5a6e85"; // Tremor slate-blue pill color from screenshot
+    const pct = Math.max(Math.round((count / maxVal) * 100), 6);
+    return `
+      <div class="chart-bar-row" onclick="switchPanel('all')">
+        <div class="chart-bar-label">${escapeHtml(cat)}</div>
+        <div class="chart-bar-track">
+          <div class="chart-bar-fill" style="width:${pct}%;background:${color};"></div>
+        </div>
+        <div class="chart-bar-val">${count}</div>
+      </div>
+    `;
+  }).join("") : `<div style="color:var(--admin-text-muted);padding:12px;">No category data recorded.</div>`;
+
+  // Render SVG Donut Chart with Right Legend
+  const sub = data.by_status.submitted || 0;
+  const prog = data.by_status.in_progress || 0;
+  const res = data.by_status.resolved || 0;
+  const total = sub + prog + res || 1;
+
+  const subPct = (sub / total) * 100;
+  const progPct = (prog / total) * 100;
+  const resPct = (res / total) * 100;
+
+  const donutSvg = `
+    <div style="position:relative;width:124px;height:124px;">
+      <svg viewBox="0 0 36 36" class="donut-svg" style="width:100%;height:100%;overflow:visible;">
+        <circle cx="18" cy="18" r="15.915" fill="none" stroke="var(--admin-border, #e2dcd0)" stroke-width="4.2"/>
+        <circle cx="18" cy="18" r="15.915" fill="none" stroke="#f59e0b" stroke-width="4.2" stroke-dasharray="${subPct} ${100 - subPct}" stroke-dashoffset="25"/>
+        <circle cx="18" cy="18" r="15.915" fill="none" stroke="#3b82f6" stroke-width="4.2" stroke-dasharray="${progPct} ${100 - progPct}" stroke-dashoffset="${25 - subPct}"/>
+        <circle cx="18" cy="18" r="15.915" fill="none" stroke="#10b981" stroke-width="4.2" stroke-dasharray="${resPct} ${100 - resPct}" stroke-dashoffset="${25 - subPct - progPct}"/>
+      </svg>
+    </div>
+  `;
+  document.getElementById("donutChartSvg").innerHTML = donutSvg;
+
+  document.getElementById("donutLegend").innerHTML = `
+    <div class="legend-item"><span class="legend-dot" style="background:#f59e0b;"></span> Submitted (${sub})</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#3b82f6;"></span> In Progress (${prog})</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#10b981;"></span> Resolved (${res})</div>
+  `;
+
+
+
+  // Render Needs Attention List (Top 3 highest priority unresolved complaints)
+  const unresolved = allComplaintsData.filter(c => c.status !== "resolved").sort((a, b) => b.priority_score - a.priority_score).slice(0, 3);
+  document.getElementById("needsAttentionList").innerHTML = unresolved.length ? unresolved.map(c => `
+    <div class="attention-item" onclick="openComplaintModal('${c.id}')">
+      <div class="attention-info">
+        ${getPriorityBadge(c.priority_score)}
+        <div>
+          <div class="attention-title">${escapeHtml(c.description)}</div>
+          <div class="attention-meta">${escapeHtml(c.location)} &bull; reported ${timeAgo(c.created_at)}</div>
+        </div>
+      </div>
+      <span style="font-weight:600;font-size:0.85rem;color:var(--admin-gold);">View &rarr;</span>
+    </div>
+  `).join("") : `<div style="color:var(--admin-text-muted);padding:12px;">All complaints resolved! No pending high priority tickets.</div>`;
+
+  // Render Most Reported Location
+  document.getElementById("topLocationCard").innerHTML = data.most_reported_location
+    ? `<div style="font-family:'Fraunces',serif;font-size:1.6rem;font-weight:700;color:var(--admin-text-main);">${escapeHtml(data.most_reported_location)}</div><div>Average priority score across reports is ${data.avg_priority}.</div>`
+    : `<div style="color:var(--admin-text-muted);">No location data recorded yet.</div>`;
+}
+
+// --- QUERY & CHATBOT ---
+async function runAdminQuery() {
+  const input = document.getElementById("adminQueryInput");
+  const result = document.getElementById("adminQueryResult");
+  if (!input.value.trim()) return;
+
+  const data = await api("/api/admin/query", { method: "POST", body: { query: input.value } });
+  result.style.display = "block";
+  result.textContent = `${data.answer}\n\nMatching records found: ${data.count}`;
+
+  // Add bubble to conversation history
+  const historyBox = document.getElementById("queryChatBubbles");
+  const bubbleUser = document.createElement("div");
+  bubbleUser.className = "chat-bubble chat-user";
+  bubbleUser.style.alignSelf = "flex-end";
+  bubbleUser.textContent = input.value;
+
+  const bubbleAI = document.createElement("div");
+  bubbleAI.className = "chat-bubble chat-assistant";
+  bubbleAI.style.alignSelf = "flex-start";
+  bubbleAI.textContent = data.answer;
+
+  historyBox.appendChild(bubbleUser);
+  historyBox.appendChild(bubbleAI);
+}
+
+// Profile Save
+function saveAdminSettings() {
+  const newName = document.getElementById("settingsNameInput").value.trim();
+  if (newName) {
+    localStorage.setItem("compass_name", newName);
+    document.getElementById("topbarAdminName").textContent = newName;
+  }
+  const msg = document.getElementById("settingsSaveMsg");
+  msg.style.display = "block";
+  setTimeout(() => msg.style.display = "none", 3000);
+}
+
+function handleAvatarUpload(input) {
+  if (input.files && input.files[0]) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById("topbarAvatar").innerHTML = `<img src="${e.target.result}" alt="Avatar">`;
+      document.getElementById("settingsAvatarPlaceholder").innerHTML = `<img src="${e.target.result}" alt="Avatar">`;
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+// Initial Load
+loadQueue();
+loadOverview();
+
+// Realtime multi-user auto-refresh (polls every 4 seconds)
+setInterval(() => {
+  if (!document.hidden) {
+    loadQueue();
+    loadOverview();
+  }
+}, 4000);
+</script>
+
+</body>
+</html>
