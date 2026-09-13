@@ -33,7 +33,10 @@ from vision_utils import classify_photo
 from rag.vector_store import upsert_documents
 
 BASE_DIR = os.path.dirname(__file__)
-UPLOAD_DIR = os.path.join(BASE_DIR, "uploads")
+if os.getenv("VERCEL"):
+    UPLOAD_DIR = "/tmp/uploads"
+else:
+    UPLOAD_DIR = os.path.join(BASE_DIR, "uploads")
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 FRONTEND_DIR = os.path.join(os.path.dirname(BASE_DIR), "frontend")
 
@@ -116,19 +119,41 @@ def update_streak(user: dict, db):
     )
 
 
-def serialize_complaint(c: dict, include_student: bool = False, student: Optional[dict] = None):
+def format_iso_utc(dt):
+
+    if dt is None:
+        return None
+    if isinstance(dt, datetime.datetime):
+        s = dt.isoformat()
+        if not s.endswith("Z") and "+" not in s:
+            s += "Z"
+        return s
+    s = str(dt)
+    if not s.endswith("Z") and "+" not in s:
+        s += "Z"
+    return s
+
+
+def serialize_complaint(c: dict, include_student: bool = False, student: Optional[dict] = None) -> dict:
+    db = get_db()
+    if student is None and c.get("student_id"):
+        student = db["users"].find_one({"_id": c.get("student_id")})
+
     created_at = c.get("created_at")
     resolved_at = c.get("resolved_at")
-    student_conf = 75.0
+    student_conf = 0.0
     if student:
-        student_conf = float(student.get("confidence_score", 75.0))
+        student_conf = float(student.get("confidence_score", 0.0))
+    desc = c.get("description") or ""
+    title = c.get("title") or (desc[:50] + ("..." if len(desc) > 50 else ""))
     out = {
         "id": c.get("id") or c.get("_id"),
-        "description": c.get("description"),
+        "title": title,
+        "description": desc,
         "location": c.get("location"),
         "category": c.get("category"),
         "category_source": c.get("category_source") or "text",
-        "department": c.get("department") or infer_department(c.get("category"), c.get("description")),
+        "department": c.get("department") or infer_department(c.get("category"), desc),
         "status": c.get("status"),
         "urgency": round(float(c.get("urgency") or 0), 2),
         "frequency": c.get("frequency") or 1,
@@ -138,8 +163,8 @@ def serialize_complaint(c: dict, include_student: bool = False, student: Optiona
         "anonymous": bool(c.get("anonymous")),
         "draft_message": c.get("draft_message"),
         "admin_approved": bool(c.get("admin_approved")),
-        "created_at": created_at.isoformat() if isinstance(created_at, datetime.datetime) else created_at,
-        "resolved_at": resolved_at.isoformat() if isinstance(resolved_at, datetime.datetime) else resolved_at,
+        "created_at": format_iso_utc(created_at),
+        "resolved_at": format_iso_utc(resolved_at),
         "student_confidence_score": round(student_conf, 1),
     }
     if include_student:
@@ -173,8 +198,9 @@ def serialize_notification(n: dict):
         "complaint_id": n.get("complaint_id"),
         "message": n.get("message"),
         "read": bool(n.get("read")),
-        "created_at": created_at.isoformat() if isinstance(created_at, datetime.datetime) else created_at,
+        "created_at": format_iso_utc(created_at),
     }
+
 
 
 class RegisterIn(BaseModel):
@@ -237,6 +263,7 @@ def register(data: RegisterIn, db=Depends(get_db)):
         "email": data.email.lower(),
         "password_hash": hash_password(data.password),
         "role": data.role,
+        "confidence_score": 0.0,
         "streak_count": 0,
         "last_active_date": None,
     }
@@ -268,6 +295,7 @@ def create_complaint(
     request: Request,
     description: str = Form(...),
     location: str = Form(...),
+    title: Optional[str] = Form(None),
     anonymous: bool = Form(False),
     photo: Optional[UploadFile] = File(None),
     user: dict = Depends(get_current_user),
@@ -278,6 +306,10 @@ def create_complaint(
 
     description = validate_report_text(description, "Complaint description", min_length=10, max_length=500)
     location = validate_report_text(location, "Location", min_length=2, max_length=120)
+    if title and title.strip():
+        clean_title = validate_report_text(title, "Complaint title", min_length=3, max_length=120)
+    else:
+        clean_title = description[:50] + ("..." if len(description) > 50 else "")
 
     photo_path = None
     if photo is not None:
@@ -317,7 +349,22 @@ def create_complaint(
         if dup:
             new_freq = (dup.get("frequency") or 1) + 1
             new_score = compute_priority(dup["urgency"], new_freq, dup.get("days_open") or 0)
-            complaints.update_one({"_id": dup["_id"]}, {"$set": {"frequency": new_freq, "priority_score": new_score, "department": dup.get("department") or department}})
+            co_subs = list(dup.get("co_submitters") or [])
+            if user["_id"] not in co_subs and user["_id"] != dup.get("student_id"):
+                co_subs.append(user["_id"])
+            complaints.update_one(
+                {"_id": dup["_id"]},
+                {
+                    "$set": {
+                        "frequency": new_freq,
+                        "priority_score": new_score,
+                        "department": dup.get("department") or department,
+                        "co_submitters": co_subs,
+                    }
+                },
+            )
+            # Award +3 points to co-submitter for merging duplicate
+            db["users"].update_one({"_id": user["_id"]}, {"$inc": {"confidence_score": 3.0}})
             dup = complaints.find_one({"_id": dup["_id"]})
             return {"merged_into": dup["id"], "message": "Matched an existing open complaint; merged as a duplicate.", "complaint": serialize_complaint(dup)}
 
@@ -326,7 +373,9 @@ def create_complaint(
         "_id": complaint_id,
         "id": complaint_id,
         "student_id": user["_id"],
+        "co_submitters": [],
         "anonymous": bool(anonymous),
+        "title": clean_title,
         "description": description,
         "location": location,
         "photo_path": photo_path,
@@ -337,6 +386,7 @@ def create_complaint(
         "frequency": 1,
         "days_open": 0,
         "status": "submitted",
+
         "draft_message": None,
         "admin_approved": False,
         "created_at": datetime.datetime.utcnow(),
@@ -345,6 +395,8 @@ def create_complaint(
         "priority_score": compute_priority(urgency, 1, 0),
     }
     complaints.insert_one(complaint)
+    # Award +3 points to student for submitting report
+    db["users"].update_one({"_id": user["_id"]}, {"$inc": {"confidence_score": 3.0}})
     try:
         upsert_documents("complaints", [{"id": str(complaint_id), "text": description, "category": category, "location": location}])
     except Exception:
@@ -356,14 +408,98 @@ def create_complaint(
 def my_complaints(user: dict = Depends(get_current_user), db=Depends(get_db)):
     require_role(user, "student")
     refresh_days_open(db)
-    complaints = db["complaints"].find({"student_id": user["_id"]}).sort("created_at", -1)
-    return [serialize_complaint(c) for c in complaints]
+    uid = user["_id"]
+    uids = [uid]
+    if isinstance(uid, int):
+        uids.append(str(uid))
+    elif isinstance(uid, str) and uid.isdigit():
+        uids.append(int(uid))
+    if user.get("id") and user.get("id") not in uids:
+        uids.append(user.get("id"))
+    all_complaints = list(db["complaints"].find().sort("created_at", -1))
+    mine = []
+    for c in all_complaints:
+        st_id = c.get("student_id")
+        co_subs = c.get("co_submitters") or []
+        if st_id in uids or any(u in uids for u in co_subs):
+            mine.append(serialize_complaint(c))
+    return mine
+
 
 
 @app.get("/api/streak")
 def streak(user: dict = Depends(get_current_user)):
     require_role(user, "student")
-    return {"streak_count": user.get("streak_count") or 0, "last_active_date": str(user.get("last_active_date"))}
+    conf_score = round(float(user.get("confidence_score", 0.0)), 1)
+    return {
+        "streak_count": user.get("streak_count") or 0,
+        "confidence_score": conf_score,
+        "last_active_date": str(user.get("last_active_date")),
+    }
+
+
+class BonusConfidenceIn(BaseModel):
+    bonus: float = 10.0
+
+
+@app.post("/api/profile/bonus-confidence")
+def add_bonus_confidence(data: BonusConfidenceIn, user: dict = Depends(get_current_user), db=Depends(get_db)):
+    require_role(user, "student")
+    current_conf = float(user.get("confidence_score", 0.0))
+    new_conf = min(200.0, current_conf + float(data.bonus))
+    db["users"].update_one({"_id": user["_id"]}, {"$set": {"confidence_score": new_conf}})
+    return {"confidence_score": round(new_conf, 1), "message": f"+{data.bonus} Confidence Score awarded!"}
+
+
+@app.get("/api/leaderboard")
+def leaderboard(user: dict = Depends(get_current_user), db=Depends(get_db)):
+    students = list(db["users"].find({"role": "student"}))
+    complaints = list(db["complaints"].find())
+
+    counts: dict = {}
+    for c in complaints:
+        sid = c.get("student_id")
+        counts[sid] = counts.get(sid, 0) + 1
+        for co_id in (c.get("co_submitters") or []):
+            counts[co_id] = counts.get(co_id, 0) + 1
+
+    rows = []
+    for s in students:
+        sid = s.get("_id")
+        conf_score = round(float(s.get("confidence_score", 0.0)), 1)
+        r_count = counts.get(sid, 0)
+        if conf_score >= 130:
+            badge = "Champion"
+        elif conf_score >= 80:
+            badge = "Sentinel"
+        elif conf_score >= 40:
+            badge = "Guardian"
+        elif conf_score >= 10:
+            badge = "Scout"
+        else:
+            badge = "Rookie"
+        rows.append({
+            "id": sid,
+            "name": s.get("name", "Student"),
+            "reports": r_count,
+            "confidence_score": conf_score,
+            "badge": badge,
+            "avatar_url": s.get("avatar_url") or s.get("avatar") or s.get("profile_pic"),
+        })
+
+    # Primary sort by confidence_score, secondary by reports count
+    rows.sort(key=lambda r: (r["confidence_score"], r["reports"]), reverse=True)
+
+    my_id = user["_id"]
+    my_rank = next((i + 1 for i, r in enumerate(rows) if r["id"] == my_id), None)
+    my_conf = round(float(user.get("confidence_score", 0.0)), 1)
+
+    return {
+        "leaderboard": rows[:10],
+        "my_reports": counts.get(my_id, 0),
+        "my_confidence_score": my_conf,
+        "my_rank": my_rank,
+    }
 
 
 @app.get("/api/complaints")
@@ -424,8 +560,8 @@ def resolve(complaint_id: int, data: ResolveIn, user: dict = Depends(get_current
 
     # Increase student confidence score automatically on resolution
     if student:
-        current_conf = float(student.get("confidence_score", 75.0))
-        new_conf = min(100.0, current_conf + 5.0)
+        current_conf = float(student.get("confidence_score", 0.0))
+        new_conf = min(200.0, current_conf + 5.0)
         db["users"].update_one({"_id": student["_id"]}, {"$set": {"confidence_score": new_conf}})
         student["confidence_score"] = new_conf
 
@@ -609,17 +745,32 @@ def submit_feedback(complaint_id: int, data: FeedbackIn, user: dict = Depends(ge
 
 @app.get("/api/community/feed")
 def community_feed(user: dict = Depends(get_current_user), db=Depends(get_db)):
-    """Anonymized recent-activity feed — never exposes student identity, regardless of role."""
+    """Anonymized recent-activity feed — returns real submitted complaints."""
     complaints = list(db["complaints"].find().sort("created_at", -1))
     feed = []
-    for c in complaints[:25]:
+    for c in complaints:
         created_at = c.get("created_at")
+        resolved_at = c.get("resolved_at")
+        student = db["users"].find_one({"_id": c.get("student_id")}) if not c.get("anonymous") else None
+        student_name = "Anonymous" if c.get("anonymous") else (student.get("name", "Student") if student else "Student")
         feed.append({
+            "id": c.get("id") or c.get("_id"),
+            "title": c.get("title") or (c.get("description", "")[:50] + ("..." if len(c.get("description", "")) > 50 else "")),
+            "description": c.get("description") or "",
+            "location": c.get("location") or "Campus",
             "category": c.get("category") or "other",
-            "location": c.get("location") or "unknown",
+            "category_source": c.get("category_source") or "text",
+            "department": c.get("department") or infer_department(c.get("category"), c.get("description")),
             "status": c.get("status"),
+            "urgency": round(float(c.get("urgency") or 0), 2),
             "frequency": c.get("frequency") or 1,
-            "created_at": created_at.isoformat() if isinstance(created_at, datetime.datetime) else created_at,
+            "days_open": c.get("days_open") or 0,
+            "priority_score": round(float(c.get("priority_score") or 0), 1),
+            "photo_path": c.get("photo_path"),
+            "anonymous": bool(c.get("anonymous")),
+            "student_name": student_name,
+            "created_at": format_iso_utc(created_at),
+            "resolved_at": format_iso_utc(resolved_at),
         })
     return feed
 
