@@ -1,0 +1,14 @@
+.git
+.pytest_cache
+backend/ml/datasets/
+backend/tests/
+backend/ml/generate_synthetic_data.py
+backend/ml/train_models.py
+backend/ml/train_real_world_model.py
+backend/ml/train_forecast_model.py
+backend/verify_chatbot.py
+backend/emails_sent.log
+backend/uploads/*
+!backend/uploads/.gitkeep
+*.png
+*.csv
