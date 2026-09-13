@@ -67,6 +67,10 @@ CATEGORY_PATTERNS = {
         "Fire extinguisher missing in {location} block",
         "Poor lighting and unsafe path near {location}",
         "Security concern reported near {location}",
+        "Students are ragging and beating a junior in {location}",
+        "Physical assault and bullying incident reported in {location}",
+        "Students fighting and harassing others in {location} washroom",
+        "Ragging incident near {location} hostel block",
     ],
     "other": [
         "Library book request issue from {location}",

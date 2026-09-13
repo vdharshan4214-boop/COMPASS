@@ -25,6 +25,7 @@ class Complaint(Base):
     anonymous = Column(Boolean, default=False)
 
     description = Column(String, nullable=False)
+    title = Column(String, nullable=True)
     location = Column(String, nullable=False)
     photo_path = Column(String, nullable=True)
 

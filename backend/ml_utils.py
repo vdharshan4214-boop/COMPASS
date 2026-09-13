@@ -26,7 +26,18 @@ _dedup_vectorizer = joblib.load(os.path.join(MODEL_DIR, "dedup_vectorizer.joblib
 
 URGENT_WORDS = [
     "fire", "spark", "sparking", "shock", "flood", "burst", "unsafe",
-    "emergency", "exposed", "no security", "blocked exit", "gas leak"
+    "emergency", "exposed", "no security", "blocked exit", "gas leak",
+    "ragging", "beating", "beat", "fight", "fighting", "assault", "assaulting",
+    "bully", "bullying", "harass", "harassment", "attack", "blood", "threat",
+    "weapon", "knife", "injury", "hazing", "abuse", "violence"
+]
+
+SAFETY_OVERRIDE_TOKENS = [
+    "ragging", "rag", "beating", "beat", "fight", "fighting", "assault",
+    "assaulting", "bully", "bullying", "harass", "harassment", "attack",
+    "blood", "threat", "weapon", "knife", "injury", "hazing", "abuse",
+    "abusing", "violence", "security", "gate", "safety", "fire", "cctv",
+    "exit", "unsafe", "emergency", "staircase", "guard"
 ]
 
 DUPLICATE_THRESHOLD = 0.4
@@ -43,6 +54,8 @@ ALLOWED_CATEGORIES = set(TEAM_DEPARTMENTS)
 
 def infer_department(category: str | None, description: str = "") -> str:
     text = (description or "").lower()
+    if any(token in text for token in ["ragging", "rag", "beating", "beat", "fight", "fighting", "assault", "assaulting", "bully", "bullying", "harass", "harassment", "attack", "blood", "threat", "weapon", "knife", "injury", "hazing", "abuse", "violence", "security", "safety", "fire"]):
+        return "Safety Team"
     if any(token in text for token in ["wifi", "internet", "network", "router", "lan", "server", "connection"]):
         return "IT Team"
     if any(token in text for token in ["water", "leak", "drain", "toilet", "tap", "pipe", "flood", "bathroom", "washroom", "sewer"]):
@@ -86,6 +99,8 @@ def _generate_with_gemini(prompt: str) -> str | None:
 
 def _fallback_category_from_text(text: str) -> str:
     text_l = (text or "").lower()
+    if any(token in text_l for token in ["ragging", "rag", "beating", "beat", "fight", "fighting", "assault", "assaulting", "bully", "bullying", "harass", "harassment", "attack", "blood", "threat", "weapon", "knife", "injury", "hazing", "abuse", "violence"]):
+        return "safety"
     if any(token in text_l for token in ["wifi", "internet", "network", "router", "lan", "server", "connection", "signal"]):
         return "wifi"
     if any(token in text_l for token in ["water", "leak", "drain", "toilet", "tap", "pipe", "flood", "bathroom", "washroom", "sewer"]):
@@ -103,14 +118,21 @@ def classify_category(text: str) -> str:
     if not text or not str(text).strip():
         return "other"
 
+    text_l = str(text).lower()
+    if any(token in text_l for token in ["ragging", "rag", "beating", "beat", "fight", "fighting", "assault", "assaulting", "bully", "bullying", "harass", "harassment", "attack", "blood", "threat", "weapon", "knife", "injury", "hazing", "abuse", "violence"]):
+        return "safety"
+
     prediction = str(_category_model.predict([text])[0]).strip().lower()
-    if prediction in ALLOWED_CATEGORIES:
+    if prediction in ALLOWED_CATEGORIES and prediction != "other":
         return prediction
     return _fallback_category_from_text(text)
 
 
 def compute_urgency(text: str) -> float:
-    text_l = text.lower()
+    text_l = (text or "").lower()
+    CRITICAL_SAFETY = ["ragging", "beating", "assault", "attack", "weapon", "knife", "blood", "fire", "gas leak", "violence"]
+    if any(w in text_l for w in CRITICAL_SAFETY):
+        return 1.0
     score = 0.15
     for w in URGENT_WORDS:
         if w in text_l:
@@ -120,7 +142,10 @@ def compute_urgency(text: str) -> float:
 
 def compute_priority(urgency: float, frequency: int, days_open: int) -> float:
     x = np.array([[urgency, frequency, days_open]])
-    return float(np.clip(_priority_model.predict(x)[0], 0, 100))
+    score = float(_priority_model.predict(x)[0])
+    if urgency >= 0.9:
+        score = max(score, 78.5 + (urgency - 0.9) * 20.0)
+    return float(np.clip(score, 0, 100))
 
 
 def _location_match(loc_a: str, loc_b: str) -> float:
@@ -135,31 +160,24 @@ def _location_match(loc_a: str, loc_b: str) -> float:
 
 def find_duplicate(new_text: str, new_category: str, new_location: str, open_complaints: list):
     """Duplicate detection is a hybrid semantic vector search + location-match heuristic."""
-    candidates = [c for c in open_complaints if c[2] == new_category]
+    if not open_complaints:
+        return None
+
+    new_text_clean = (new_text or "").strip().lower()
+    new_loc_clean = (new_location or "").strip().lower()
+    for cid, text, cat, loc in open_complaints:
+        if text and loc and text.strip().lower() == new_text_clean and loc.strip().lower() == new_loc_clean:
+            return cid
+
+    candidates = [c for c in open_complaints if c[2] == new_category or c[2] == "other" or new_category == "other"]
     if not candidates:
         return None
+
 
     campus_context = retrieve_campus_context(new_location, new_text)
     campus_boost = 0.0
     if campus_context:
         campus_boost = min(campus_context[0]["score"] / 10.0, 0.35)
-
-    try:
-        docs = [{"id": str(cid), "text": text, "location": loc, "category": cat} for cid, text, cat, loc in candidates]
-        if docs:
-            upsert_documents("complaints", docs)
-            hits = search_collection(new_text, collection_name="complaints", k=max(3, len(docs)))
-            for hit in hits:
-                candidate_id = hit.get("id")
-                if candidate_id is None:
-                    continue
-                for cid, _, _, _ in candidates:
-                    if str(cid) == str(candidate_id):
-                        score = float(hit.get("score") or 0.0)
-                        if score >= 0.55:
-                            return cid
-    except Exception:
-        pass
 
     texts = [c[1] for c in candidates]
     vecs = _dedup_vectorizer.transform(texts + [new_text])
@@ -169,12 +187,13 @@ def find_duplicate(new_text: str, new_category: str, new_location: str, open_com
     for (cid, _, _, loc), text_sim in zip(candidates, text_sims):
         loc_sim = _location_match(new_location, loc)
         context_match = 1.0 if campus_context and any(item["name"].lower() in (loc or "").lower() for item in campus_context) else 0.0
-        score = (0.45 * text_sim) + (0.35 * loc_sim) + (0.20 * context_match) + campus_boost
+        score = (0.50 * text_sim) + (0.35 * loc_sim) + (0.15 * context_match) + campus_boost
         if score > best_score:
             best_score, best_id = score, cid
     if best_score >= DUPLICATE_THRESHOLD:
         return best_id
     return None
+
 
 
 def draft_resolution_message(student_name: str, category: str, description: str) -> str:

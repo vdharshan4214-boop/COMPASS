@@ -1,785 +1,687 @@
 text,category
-Laundry service delay at Engineering Block,hostel
-Laundry service delay at Block B,hostel
-Notice board is outdated at Block A,other
-Light is not working in Boys Hostel,electrical
-Router issue near Block D with no internet access,wifi
-Furniture damaged in Sports Complex hostel room,hostel
-Internet connection is unstable in Block A,wifi
-Router issue near Student Center with no internet access,wifi
-No water supply in Hostel 2 hostel block,plumbing
-Canal or drainage complaint around Engineering Block,other
-General maintenance request for Boys Hostel,other
-Internet connection is unstable in Sports Complex,wifi
-Pest problem found in Main Building room,hostel
-General maintenance request for Block C,other
-No water supply in Business Block hostel block,plumbing
-Security guard missing at Block A gate,safety
-Furniture arrangement problem in Lecture Hall 2,other
-Main switch issue reported at Auditorium,electrical
-Main switch issue reported at Sports Complex,electrical
-Unable to connect to campus internet in Canteen,wifi
-Hostel room cleanliness issue in Girls Hostel,hostel
-CCTV not working at Canteen,safety
-Water leakage in Block A washroom,plumbing
-Water leakage in Workshop washroom,plumbing
-Security concern reported near Auditorium,safety
-Water leakage in Block B washroom,plumbing
-Short circuit smell near Boys Hostel,electrical
-General maintenance request for Business Block,other
-Fire extinguisher missing in Girls Hostel block,safety
-General maintenance request for Girls Hostel,other
-Water leakage in Girls Hostel washroom,plumbing
-Room maintenance issue reported in Sports Complex,hostel
-Furniture arrangement problem in Administrative Block,other
-Pest problem found in Computer Lab room,hostel
-Washroom flooding in Reading Room area,plumbing
-Library book request issue from Parking Area,other
-Router issue near Business Block with no internet access,wifi
-Poor lighting and unsafe path near Lecture Hall 1,safety
-Security concern reported near Block C,safety
-Campus signage missing near Reading Room,other
-General service request from Hostel 2,other
-General service request from Workshop,other
-Internet connection is unstable in Workshop,wifi
-Fan stopped working in Hostel 2 room,electrical
-Notice board is outdated at Administrative Block,other
-No network connectivity in Block B hostel room,wifi
-Socket is damaged near Block D,electrical
-Water is leaking from the ceiling in Student Center,plumbing
-AC is not cooling in Boys Hostel,electrical
-Washroom flooding in Laboratory area,plumbing
-Electrical spark seen near Reading Room,electrical
-Light is not working in Library,electrical
-Furniture arrangement problem in Medical Center,other
-Noise disturbance in Block D hostel at night,hostel
-Furniture arrangement problem in Lecture Hall 2,other
-WiFi is not working in Block C,wifi
-Poor lighting and unsafe path near Block A,safety
-Router issue near Block A with no internet access,wifi
-Fire extinguisher missing in Hostel 1 block,safety
-Main switch issue reported at Block D,electrical
-Poor lighting and unsafe path near Administrative Block,safety
-Laundry service delay at Reading Room,hostel
-Pest problem found in Administrative Block room,hostel
-No network connectivity in Reading Room hostel room,wifi
-Furniture arrangement problem in Lecture Hall 1,other
-Fan stopped working in Girls Hostel room,electrical
-Slow internet speed in Administrative Block computer lab,wifi
-Poor lighting and unsafe path near Library,safety
-Emergency exit blocked near Administrative Block,safety
-General maintenance request for Parking Area,other
-Toilet is not flushing in Reading Room,plumbing
-Main switch issue reported at Business Block,electrical
-No water supply in Parking Area hostel block,plumbing
-Emergency exit blocked near Sports Complex,safety
-Power outage in Hostel 2,electrical
-Slow internet speed in Student Center computer lab,wifi
-WiFi signal is weak near Hostel 1,wifi
-Short circuit smell near Medical Center,electrical
-Security guard missing at Auditorium gate,safety
-Mess food quality problem at Computer Lab,hostel
-Laundry service delay at Girls Hostel,hostel
-Socket is damaged near Block D,electrical
-Fan stopped working in Parking Area room,electrical
-Unsafe wiring exposed near Boys Hostel,safety
-Tap is broken in Boys Hostel corridor,plumbing
-Canal or drainage complaint around Library,other
-Fan stopped working in Lecture Hall 1 room,electrical
-General maintenance request for Parking Area,other
-Broken staircase railing near Science Block,safety
-Power outage in Main Building,electrical
-Campus signage missing near Auditorium,other
-Short circuit smell near Laboratory,electrical
-CCTV not working at Student Center,safety
-Security concern reported near Auditorium,safety
-Notice board is outdated at Medical Center,other
-Laundry service delay at Engineering Block,hostel
-Security concern reported near Sports Complex,safety
-Furniture arrangement problem in Lecture Hall 2,other
-Unable to connect to campus internet in Reading Room,wifi
-General maintenance request for Parking Area,other
-Light is not working in Library,electrical
-Bathroom drain is blocked in Reading Room,plumbing
-Laundry service delay at Reading Room,hostel
-Broken staircase railing near Main Building,safety
-Unsafe wiring exposed near Canteen,safety
-Broken staircase railing near Business Block,safety
-Unsafe wiring exposed near Hostel 2,safety
-Library book request issue from Lecture Hall 2,other
-Broken staircase railing near Administrative Block,safety
-Hostel gate closes too early at Block C,hostel
-Short circuit smell near Auditorium,electrical
-Tap is broken in Laboratory corridor,plumbing
-Short circuit smell near Lecture Hall 2,electrical
-Unsafe wiring exposed near Girls Hostel,safety
-Tap is broken in Parking Area corridor,plumbing
-Parking issue near Student Center,other
-Laundry service delay at Medical Center,hostel
-Unsafe wiring exposed near Block C,safety
-Laundry service delay at Hostel 1,hostel
-Socket is damaged near Lecture Hall 2,electrical
-Hostel gate closes too early at Science Block,hostel
-Security guard missing at Computer Lab gate,safety
-General service request from Block B,other
-Water leakage in Hostel 2 washroom,plumbing
-Internet connection is unstable in Block B,wifi
-Security concern reported near Engineering Block,safety
-Main switch issue reported at Block D,electrical
-General service request from Parking Area,other
-Room maintenance issue reported in Auditorium,hostel
-Furniture damaged in Auditorium hostel room,hostel
-No water supply in Hostel 1 hostel block,plumbing
-Broken staircase railing near Girls Hostel,safety
-Canal or drainage complaint around Laboratory,other
-Fan stopped working in Canteen room,electrical
-Slow internet speed in Engineering Block computer lab,wifi
-General service request from Block A,other
-Toilet is not flushing in Computer Lab,plumbing
-Electrical spark seen near Canteen,electrical
-Emergency exit blocked near Computer Lab,safety
-Unable to connect to campus internet in Main Building,wifi
-Power outage in Library,electrical
 Water leakage in Block C washroom,plumbing
-Furniture arrangement problem in Medical Center,other
-No network connectivity in Hostel 1 hostel room,wifi
-Main switch issue reported at Block C,electrical
-General maintenance request for Business Block,other
-Short circuit smell near Block D,electrical
-Emergency exit blocked near Parking Area,safety
-Toilet is not flushing in Reading Room,plumbing
-Power outage in Parking Area,electrical
-Power outage in Laboratory,electrical
-Water leakage in Student Center washroom,plumbing
-Pipe burst near Student Center building,plumbing
-Water leakage in Workshop washroom,plumbing
-Slow internet speed in Hostel 1 computer lab,wifi
-Unable to connect to campus internet in Block D,wifi
-Tap is broken in Workshop corridor,plumbing
-Electrical spark seen near Parking Area,electrical
+Laundry service delay at Hostel 1,hostel
 Pipe burst near Workshop building,plumbing
-Canal or drainage complaint around Student Center,other
-CCTV not working at Science Block,safety
-Router issue near Hostel 1 with no internet access,wifi
-Internet connection is unstable in Boys Hostel,wifi
-Security guard missing at Workshop gate,safety
-Security guard missing at Workshop gate,safety
-Security concern reported near Sports Complex,safety
-Tap is broken in Engineering Block corridor,plumbing
-AC is not cooling in Hostel 2,electrical
-Canal or drainage complaint around Student Center,other
-Library book request issue from Lecture Hall 1,other
-Parking issue near Reading Room,other
-Broken staircase railing near Boys Hostel,safety
-Bathroom drain is blocked in Student Center,plumbing
-Parking issue near Block C,other
-Laundry service delay at Block C,hostel
-Tap is broken in Hostel 2 corridor,plumbing
-Furniture damaged in Boys Hostel hostel room,hostel
-Library book request issue from Block D,other
-Library book request issue from Reading Room,other
-Parking issue near Medical Center,other
-Noise disturbance in Workshop hostel at night,hostel
-Parking issue near Laboratory,other
-Tap is broken in Business Block corridor,plumbing
-Pipe burst near Science Block building,plumbing
-Parking issue near Student Center,other
-Washroom flooding in Business Block area,plumbing
+Laundry service delay at Reading Room,hostel
+General maintenance request for Girls Hostel,other
+Emergency exit blocked near Reading Room,safety
+Physical assault and bullying incident reported in Block B,safety
+Washroom flooding in Auditorium area,plumbing
+Physical assault and bullying incident reported in Workshop,safety
+Room maintenance issue reported in Hostel 1,hostel
+No network connectivity in Hostel 1 hostel room,wifi
+No network connectivity in Block B hostel room,wifi
+Light is not working in Library,electrical
+Fan stopped working in Lecture Hall 1 room,electrical
+Noise disturbance in Block C hostel at night,hostel
+Internet connection is unstable in Science Block,wifi
+Furniture arrangement problem in Science Block,other
 Water is leaking from the ceiling in Block A,plumbing
-Hostel room cleanliness issue in Lecture Hall 2,hostel
-Security guard missing at Reading Room gate,safety
+Bathroom drain is blocked in Administrative Block,plumbing
+Campus signage missing near Student Center,other
+Water leakage in Workshop washroom,plumbing
+Electrical spark seen near Reading Room,electrical
+Notice board is outdated at Parking Area,other
+No water supply in Block D hostel block,plumbing
+Hostel gate closes too early at Library,hostel
+Slow internet speed in Lecture Hall 2 computer lab,wifi
+Short circuit smell near Lecture Hall 2,electrical
+Slow internet speed in Medical Center computer lab,wifi
+Emergency exit blocked near Laboratory,safety
+No network connectivity in Library hostel room,wifi
+Students are ragging and beating a junior in Main Building,safety
+Hostel room cleanliness issue in Sports Complex,hostel
+Electrical spark seen near Lecture Hall 2,electrical
+Security concern reported near Student Center,safety
+Short circuit smell near Auditorium,electrical
+Router issue near Sports Complex with no internet access,wifi
+Furniture damaged in Auditorium hostel room,hostel
+Main switch issue reported at Hostel 2,electrical
+AC is not cooling in Computer Lab,electrical
+Furniture damaged in Reading Room hostel room,hostel
+Hostel room cleanliness issue in Block B,hostel
+No water supply in Hostel 1 hostel block,plumbing
+Campus signage missing near Student Center,other
+Students fighting and harassing others in Computer Lab washroom,safety
+Slow internet speed in Student Center computer lab,wifi
+Fan stopped working in Block C room,electrical
+AC is not cooling in Hostel 2,electrical
+Fan stopped working in Hostel 2 room,electrical
+Room maintenance issue reported in Sports Complex,hostel
+Canal or drainage complaint around Main Building,other
+Router issue near Block D with no internet access,wifi
+Slow internet speed in Engineering Block computer lab,wifi
+Fan stopped working in Parking Area room,electrical
+Pipe burst near Reading Room building,plumbing
+Router issue near Hostel 1 with no internet access,wifi
+Notice board is outdated at Block C,other
+Internet connection is unstable in Business Block,wifi
+Security guard missing at Workshop gate,safety
+General service request from Business Block,other
+Poor lighting and unsafe path near Medical Center,safety
+Light is not working in Hostel 1,electrical
+The campus WiFi keeps disconnecting in Auditorium,wifi
+Main switch issue reported at Parking Area,electrical
+Bathroom drain is blocked in Engineering Block,plumbing
+Library book request issue from Block C,other
+Water leakage in Block A washroom,plumbing
+Router issue near Girls Hostel with no internet access,wifi
+Canal or drainage complaint around Hostel 2,other
+Internet connection is unstable in Block A,wifi
+Furniture arrangement problem in Block C,other
+Poor lighting and unsafe path near Administrative Block,safety
+Main switch issue reported at Computer Lab,electrical
+Emergency exit blocked near Girls Hostel,safety
+Pipe burst near Science Block building,plumbing
+Students fighting and harassing others in Lecture Hall 2 washroom,safety
+Slow internet speed in Main Building computer lab,wifi
+Internet connection is unstable in Main Building,wifi
+Physical assault and bullying incident reported in Lecture Hall 2,safety
+Fan stopped working in Canteen room,electrical
+Students are ragging and beating a junior in Reading Room,safety
+Parking issue near Student Center,other
+Unsafe wiring exposed near Lecture Hall 2,safety
+Hostel gate closes too early at Administrative Block,hostel
+Light is not working in Boys Hostel,electrical
+Internet connection is unstable in Sports Complex,wifi
+Main switch issue reported at Block D,electrical
+Hostel gate closes too early at Science Block,hostel
+Security guard missing at Auditorium gate,safety
+Router issue near Student Center with no internet access,wifi
+Security concern reported near Canteen,safety
+Fire extinguisher missing in Sports Complex block,safety
+No water supply in Parking Area hostel block,plumbing
+Water leakage in Parking Area washroom,plumbing
+Short circuit smell near Science Block,electrical
+Tap is broken in Hostel 2 corridor,plumbing
+Mess food quality problem at Lecture Hall 1,hostel
+The campus WiFi keeps disconnecting in Block B,wifi
+Unsafe wiring exposed near Canteen,safety
+Noise disturbance in Reading Room hostel at night,hostel
+No water supply in Block C hostel block,plumbing
+Fire extinguisher missing in Laboratory block,safety
+Pest problem found in Parking Area room,hostel
+WiFi is not working in Hostel 1,wifi
+Short circuit smell near Administrative Block,electrical
+Unable to connect to campus internet in Canteen,wifi
+Slow internet speed in Reading Room computer lab,wifi
+Furniture arrangement problem in Student Center,other
+Main switch issue reported at Block A,electrical
+No water supply in Engineering Block hostel block,plumbing
+Library book request issue from Library,other
+Internet connection is unstable in Medical Center,wifi
+Hostel gate closes too early at Computer Lab,hostel
+WiFi signal is weak near Lecture Hall 1,wifi
+Pipe burst near Auditorium building,plumbing
+Water leakage in Hostel 1 washroom,plumbing
+Canal or drainage complaint around Main Building,other
+Unable to connect to campus internet in Lecture Hall 2,wifi
+Security guard missing at Laboratory gate,safety
+Noise disturbance in Workshop hostel at night,hostel
+Unsafe wiring exposed near Auditorium,safety
+WiFi signal is weak near Hostel 1,wifi
+No water supply in Sports Complex hostel block,plumbing
+Tap is broken in Parking Area corridor,plumbing
+Washroom flooding in Laboratory area,plumbing
+Canal or drainage complaint around Hostel 1,other
+Slow internet speed in Library computer lab,wifi
+General maintenance request for Block C,other
+Unsafe wiring exposed near Hostel 1,safety
+No water supply in Auditorium hostel block,plumbing
+Router issue near Block C with no internet access,wifi
+Hostel gate closes too early at Reading Room,hostel
+CCTV not working at Science Block,safety
+Fire extinguisher missing in Girls Hostel block,safety
+Internet connection is unstable in Block A,wifi
+Parking issue near Reading Room,other
+Router issue near Library with no internet access,wifi
+Hostel room cleanliness issue in Hostel 2,hostel
+Hostel room cleanliness issue in Lecture Hall 1,hostel
+Internet connection is unstable in Workshop,wifi
+Internet connection is unstable in Workshop,wifi
+Short circuit smell near Lecture Hall 2,electrical
+General service request from Auditorium,other
+Tap is broken in Laboratory corridor,plumbing
+Students are ragging and beating a junior in Engineering Block,safety
+Tap is broken in Business Block corridor,plumbing
+Library book request issue from Reading Room,other
+General service request from Workshop,other
+Library book request issue from Girls Hostel,other
+Internet connection is unstable in Block C,wifi
+Toilet is not flushing in Laboratory,plumbing
+Socket is damaged near Boys Hostel,electrical
+Short circuit smell near Boys Hostel,electrical
+Bathroom drain is blocked in Reading Room,plumbing
+Furniture damaged in Boys Hostel hostel room,hostel
+Furniture damaged in Business Block hostel room,hostel
+General service request from Auditorium,other
+Emergency exit blocked near Administrative Block,safety
+Water is leaking from the ceiling in Engineering Block,plumbing
+Socket is damaged near Sports Complex,electrical
+Canal or drainage complaint around Science Block,other
+Unsafe wiring exposed near Block C,safety
+Fan stopped working in Girls Hostel room,electrical
+Students are ragging and beating a junior in Laboratory,safety
+Library book request issue from Block C,other
+Laundry service delay at Block A,hostel
+No network connectivity in Block D hostel room,wifi
+Socket is damaged near Block D,electrical
+Main switch issue reported at Auditorium,electrical
+Power outage in Library,electrical
+AC is not cooling in Block C,electrical
+Physical assault and bullying incident reported in Student Center,safety
+CCTV not working at Lecture Hall 1,safety
+Short circuit smell near Business Block,electrical
+No water supply in Engineering Block hostel block,plumbing
+Unable to connect to campus internet in Computer Lab,wifi
+Slow internet speed in Auditorium computer lab,wifi
+Main switch issue reported at Computer Lab,electrical
+Canal or drainage complaint around Workshop,other
+Laundry service delay at Engineering Block,hostel
+Fire extinguisher missing in Block D block,safety
+Laundry service delay at Reading Room,hostel
+Tap is broken in Hostel 2 corridor,plumbing
+Physical assault and bullying incident reported in Main Building,safety
+Poor lighting and unsafe path near Administrative Block,safety
+Furniture arrangement problem in Block D,other
+Socket is damaged near Block C,electrical
+Fan stopped working in Reading Room room,electrical
+Fan stopped working in Block C room,electrical
+Students fighting and harassing others in Engineering Block washroom,safety
+Mess food quality problem at Auditorium,hostel
+Tap is broken in Workshop corridor,plumbing
+Short circuit smell near Boys Hostel,electrical
+WiFi is not working in Science Block,wifi
+Router issue near Business Block with no internet access,wifi
+Parking issue near Lecture Hall 2,other
+Socket is damaged near Block D,electrical
+Hostel room cleanliness issue in Reading Room,hostel
+Router issue near Business Block with no internet access,wifi
+Notice board is outdated at Block C,other
+Hostel gate closes too early at Medical Center,hostel
+Mess food quality problem at Hostel 1,hostel
+Students are ragging and beating a junior in Block C,safety
+CCTV not working at Medical Center,safety
+Furniture arrangement problem in Computer Lab,other
+Parking issue near Boys Hostel,other
 Fan stopped working in Block C room,electrical
 Router issue near Main Building with no internet access,wifi
-General service request from Sports Complex,other
-Internet connection is unstable in Science Block,wifi
-Fan stopped working in Business Block room,electrical
-Unable to connect to campus internet in Hostel 1,wifi
-Unable to connect to campus internet in Medical Center,wifi
-CCTV not working at Girls Hostel,safety
-Toilet is not flushing in Laboratory,plumbing
-Noise disturbance in Engineering Block hostel at night,hostel
-WiFi signal is weak near Parking Area,wifi
-Mess food quality problem at Parking Area,hostel
-Laundry service delay at Student Center,hostel
-Socket is damaged near Girls Hostel,electrical
-Noise disturbance in Hostel 2 hostel at night,hostel
-CCTV not working at Computer Lab,safety
-WiFi is not working in Hostel 1,wifi
-No network connectivity in Library hostel room,wifi
-Security concern reported near Laboratory,safety
-Router issue near Business Block with no internet access,wifi
-Furniture damaged in Computer Lab hostel room,hostel
-Light is not working in Auditorium,electrical
-The campus WiFi keeps disconnecting in Auditorium,wifi
-Internet connection is unstable in Medical Center,wifi
-Power outage in Auditorium,electrical
-Main switch issue reported at Computer Lab,electrical
-Emergency exit blocked near Administrative Block,safety
-Light is not working in Workshop,electrical
-Tap is broken in Main Building corridor,plumbing
-CCTV not working at Block B,safety
-Internet connection is unstable in Lecture Hall 2,wifi
-Poor lighting and unsafe path near Main Building,safety
-No water supply in Block D hostel block,plumbing
-General maintenance request for Lecture Hall 2,other
-Poor lighting and unsafe path near Library,safety
-Short circuit smell near Boys Hostel,electrical
-Emergency exit blocked near Lecture Hall 1,safety
-Water is leaking from the ceiling in Engineering Block,plumbing
-Hostel room cleanliness issue in Main Building,hostel
-Internet connection is unstable in Main Building,wifi
-The campus WiFi keeps disconnecting in Block B,wifi
-Router issue near Girls Hostel with no internet access,wifi
-Router issue near Library with no internet access,wifi
-Washroom flooding in Medical Center area,plumbing
-Broken staircase railing near Workshop,safety
-Poor lighting and unsafe path near Auditorium,safety
-Internet connection is unstable in Workshop,wifi
-Internet connection is unstable in Workshop,wifi
-Main switch issue reported at Canteen,electrical
-Broken staircase railing near Reading Room,safety
-Unable to connect to campus internet in Canteen,wifi
-Canal or drainage complaint around Engineering Block,other
-WiFi is not working in Lecture Hall 2,wifi
-Mess food quality problem at Boys Hostel,hostel
-Library book request issue from Block C,other
-AC is not cooling in Workshop,electrical
-Notice board is outdated at Science Block,other
-Pest problem found in Main Building room,hostel
-WiFi is not working in Science Block,wifi
-Unsafe wiring exposed near Main Building,safety
-Library book request issue from Girls Hostel,other
-Unable to connect to campus internet in Lecture Hall 2,wifi
-Poor lighting and unsafe path near Business Block,safety
-Toilet is not flushing in Hostel 1,plumbing
-Hostel room cleanliness issue in Sports Complex,hostel
-Fire extinguisher missing in Student Center block,safety
-Notice board is outdated at Main Building,other
-Slow internet speed in Main Building computer lab,wifi
-Toilet is not flushing in Girls Hostel,plumbing
-Noise disturbance in Block C hostel at night,hostel
-No network connectivity in Block D hostel room,wifi
-Water leakage in Parking Area washroom,plumbing
+Unsafe wiring exposed near Business Block,safety
+Toilet is not flushing in Reading Room,plumbing
+Laundry service delay at Lecture Hall 2,hostel
+No network connectivity in Reading Room hostel room,wifi
+Security concern reported near Block B,safety
+Parking issue near Laboratory,other
 Pipe burst near Girls Hostel building,plumbing
-Toilet is not flushing in Hostel 1,plumbing
-Toilet is not flushing in Business Block,plumbing
-Main switch issue reported at Auditorium,electrical
-Security guard missing at Laboratory gate,safety
-Power outage in Medical Center,electrical
-Hostel gate closes too early at Medical Center,hostel
-Socket is damaged near Block C,electrical
-Unable to connect to campus internet in Reading Room,wifi
-Short circuit smell near Business Block,electrical
-Fire extinguisher missing in Girls Hostel block,safety
-Light is not working in Hostel 1,electrical
-Unsafe wiring exposed near Lecture Hall 2,safety
-Pest problem found in Parking Area room,hostel
-Unable to connect to campus internet in Computer Lab,wifi
-Bathroom drain is blocked in Student Center,plumbing
-Fire extinguisher missing in Engineering Block block,safety
-Internet connection is unstable in Block B,wifi
-Room maintenance issue reported in Engineering Block,hostel
-Pipe burst near Laboratory building,plumbing
-The campus WiFi keeps disconnecting in Main Building,wifi
-Notice board is outdated at Reading Room,other
-No water supply in Block C hostel block,plumbing
-WiFi signal is weak near Lecture Hall 1,wifi
-Tap is broken in Hostel 2 corridor,plumbing
-No water supply in Engineering Block hostel block,plumbing
-Furniture damaged in Lecture Hall 1 hostel room,hostel
-Main switch issue reported at Block D,electrical
-Furniture damaged in Sports Complex hostel room,hostel
-Canal or drainage complaint around Block B,other
-Socket is damaged near Sports Complex,electrical
-Mess food quality problem at Hostel 1,hostel
-Unsafe wiring exposed near Laboratory,safety
-Power outage in Lecture Hall 1,electrical
-Internet connection is unstable in Block C,wifi
-Slow internet speed in Workshop computer lab,wifi
-Room maintenance issue reported in Sports Complex,hostel
-Parking issue near Parking Area,other
-Internet connection is unstable in Block A,wifi
-No water supply in Auditorium hostel block,plumbing
-Tap is broken in Parking Area corridor,plumbing
-Furniture arrangement problem in Science Block,other
-Slow internet speed in Library computer lab,wifi
-Parking issue near Boys Hostel,other
-Poor lighting and unsafe path near Laboratory,safety
-Emergency exit blocked near Lecture Hall 2,safety
-Router issue near Sports Complex with no internet access,wifi
-No water supply in Engineering Block hostel block,plumbing
-Security concern reported near Administrative Block,safety
-WiFi is not working in Lecture Hall 2,wifi
-Parking issue near Library,other
-Short circuit smell near Boys Hostel,electrical
+Hostel room cleanliness issue in Main Building,hostel
+AC is not cooling in Computer Lab,electrical
 Water leakage in Business Block washroom,plumbing
-Campus signage missing near Student Center,other
-Pest problem found in Engineering Block room,hostel
-Short circuit smell near Parking Area,electrical
-Noise disturbance in Library hostel at night,hostel
-Socket is damaged near Hostel 2,electrical
-Router issue near Block C with no internet access,wifi
-Emergency exit blocked near Administrative Block,safety
-Main switch issue reported at Block A,electrical
-Tap is broken in Engineering Block corridor,plumbing
-Light is not working in Student Center,electrical
+Laundry service delay at Engineering Block,hostel
+AC is not cooling in Girls Hostel,electrical
+Furniture damaged in Auditorium hostel room,hostel
+Hostel room cleanliness issue in Girls Hostel,hostel
+Unable to connect to campus internet in Canteen,wifi
+Electrical spark seen near Medical Center,electrical
+Furniture arrangement problem in Hostel 2,other
+WiFi is not working in Lecture Hall 2,wifi
+General service request from Block C,other
+Toilet is not flushing in Hostel 1,plumbing
+Students are ragging and beating a junior in Canteen,safety
+Notice board is outdated at Science Block,other
 No water supply in Canteen hostel block,plumbing
-Unable to connect to campus internet in Main Building,wifi
-Fire extinguisher missing in Block C block,safety
 No network connectivity in Parking Area hostel room,wifi
-Notice board is outdated at Lecture Hall 1,other
-Noise disturbance in Laboratory hostel at night,hostel
-Bathroom drain is blocked in Canteen,plumbing
-Water leakage in Hostel 1 washroom,plumbing
-Pest problem found in Hostel 1 room,hostel
-AC is not cooling in Auditorium,electrical
-Noise disturbance in Reading Room hostel at night,hostel
-Canal or drainage complaint around Girls Hostel,other
-Socket is damaged near Business Block,electrical
-Notice board is outdated at Boys Hostel,other
-Pipe burst near Auditorium building,plumbing
-Parking issue near Business Block,other
-Main switch issue reported at Main Building,electrical
-No water supply in Computer Lab hostel block,plumbing
-General service request from Administrative Block,other
-Toilet is not flushing in Block B,plumbing
-Noise disturbance in Hostel 2 hostel at night,hostel
-Canal or drainage complaint around Administrative Block,other
-Unsafe wiring exposed near Sports Complex,safety
-Fire extinguisher missing in Main Building block,safety
-Library book request issue from Student Center,other
-Water leakage in Sports Complex washroom,plumbing
-Poor lighting and unsafe path near Block D,safety
-Short circuit smell near Hostel 1,electrical
-Pest problem found in Block C room,hostel
-No water supply in Business Block hostel block,plumbing
-Mess food quality problem at Lecture Hall 1,hostel
-WiFi is not working in Student Center,wifi
+Internet connection is unstable in Boys Hostel,wifi
+Slow internet speed in Hostel 1 computer lab,wifi
+General service request from Hostel 1,other
+Students fighting and harassing others in Lecture Hall 1 washroom,safety
+Ragging incident near Laboratory hostel block,safety
+Light is not working in Medical Center,electrical
+General service request from Block B,other
 Socket is damaged near Student Center,electrical
-Hostel gate closes too early at Library,hostel
-Library book request issue from Library,other
-Washroom flooding in Auditorium area,plumbing
+Library book request issue from Block C,other
+Security guard missing at Canteen gate,safety
+Slow internet speed in Workshop computer lab,wifi
 Bathroom drain is blocked in Student Center,plumbing
+General maintenance request for Girls Hostel,other
+General service request from Canteen,other
+The campus WiFi keeps disconnecting in Reading Room,wifi
+General maintenance request for Lecture Hall 2,other
+Furniture arrangement problem in Lecture Hall 1,other
+Water leakage in Sports Complex washroom,plumbing
+General service request from Lecture Hall 2,other
+Room maintenance issue reported in Workshop,hostel
+Internet connection is unstable in Block B,wifi
+Short circuit smell near Lecture Hall 2,electrical
+Main switch issue reported at Block C,electrical
+Water leakage in Girls Hostel washroom,plumbing
+Laundry service delay at Canteen,hostel
+AC is not cooling in Boys Hostel,electrical
+Notice board is outdated at Administrative Block,other
+Hostel gate closes too early at Boys Hostel,hostel
+Router issue near Lecture Hall 1 with no internet access,wifi
+Water leakage in Sports Complex washroom,plumbing
+Security concern reported near Administrative Block,safety
+Water leakage in Block B washroom,plumbing
+Unsafe wiring exposed near Laboratory,safety
+Mess food quality problem at Block C,hostel
+Mess food quality problem at Computer Lab,hostel
+Tap is broken in Main Building corridor,plumbing
+General maintenance request for Computer Lab,other
+Short circuit smell near Auditorium,electrical
+Emergency exit blocked near Hostel 1,safety
+Socket is damaged near Student Center,electrical
+Security concern reported near Student Center,safety
+CCTV not working at Auditorium,safety
+Broken staircase railing near Student Center,safety
+Socket is damaged near Girls Hostel,electrical
+Furniture damaged in Computer Lab hostel room,hostel
+WiFi is not working in Student Center,wifi
+General service request from Block C,other
+Canal or drainage complaint around Canteen,other
+CCTV not working at Block B,safety
 Pipe burst near Lecture Hall 2 building,plumbing
-No water supply in Workshop hostel block,plumbing
-Light is not working in Science Block,electrical
+Ragging incident near Computer Lab hostel block,safety
+Hostel gate closes too early at Lecture Hall 1,hostel
 Slow internet speed in Computer Lab computer lab,wifi
 WiFi signal is weak near Lecture Hall 2,wifi
-Pest problem found in Sports Complex room,hostel
-Security concern reported near Auditorium,safety
-Short circuit smell near Lecture Hall 2,electrical
+Hostel gate closes too early at Lecture Hall 1,hostel
+Power outage in Hostel 2,electrical
+Hostel room cleanliness issue in Block B,hostel
 Toilet is not flushing in Lecture Hall 1,plumbing
 No network connectivity in Hostel 2 hostel room,wifi
 Router issue near Main Building with no internet access,wifi
-Room maintenance issue reported in Block B,hostel
-Unable to connect to campus internet in Main Building,wifi
-Fire extinguisher missing in Block C block,safety
+Students fighting and harassing others in Engineering Block washroom,safety
+Power outage in Lecture Hall 1,electrical
+Hostel room cleanliness issue in Science Block,hostel
 Slow internet speed in Auditorium computer lab,wifi
-Fire extinguisher missing in Sports Complex block,safety
-Socket is damaged near Computer Lab,electrical
-Broken staircase railing near Main Building,safety
-Fan stopped working in Hostel 2 room,electrical
-Hostel room cleanliness issue in Block B,hostel
-The campus WiFi keeps disconnecting in Administrative Block,wifi
+Furniture damaged in Block A hostel room,hostel
+No water supply in Block C hostel block,plumbing
 Pest problem found in Lecture Hall 1 room,hostel
-Emergency exit blocked near Workshop,safety
-Campus signage missing near Student Center,other
-Short circuit smell near Auditorium,electrical
+Main switch issue reported at Block D,electrical
+Room maintenance issue reported in Sports Complex,hostel
+Main switch issue reported at Canteen,electrical
+Library book request issue from Sports Complex,other
 WiFi signal is weak near Library,wifi
-Internet connection is unstable in Engineering Block,wifi
-Toilet is not flushing in Lecture Hall 2,plumbing
-Unable to connect to campus internet in Workshop,wifi
-AC is not cooling in Block C,electrical
-Pest problem found in Computer Lab room,hostel
-Notice board is outdated at Hostel 2,other
-Bathroom drain is blocked in Engineering Block,plumbing
+Library book request issue from Workshop,other
+Security concern reported near Administrative Block,safety
+Socket is damaged near Business Block,electrical
+Socket is damaged near Auditorium,electrical
 WiFi signal is weak near Canteen,wifi
 Water is leaking from the ceiling in Hostel 2,plumbing
-Poor lighting and unsafe path near Sports Complex,safety
-Washroom flooding in Library area,plumbing
-Unsafe wiring exposed near Student Center,safety
+Noise disturbance in Main Building hostel at night,hostel
+Socket is damaged near Lecture Hall 2,electrical
+Notice board is outdated at Lecture Hall 1,other
 WiFi signal is weak near Sports Complex,wifi
-Laundry service delay at Hostel 1,hostel
-Pest problem found in Lecture Hall 1 room,hostel
-Main switch issue reported at Laboratory,electrical
+Hostel gate closes too early at Boys Hostel,hostel
+Laundry service delay at Lecture Hall 1,hostel
 Unable to connect to campus internet in Girls Hostel,wifi
-Water is leaking from the ceiling in Boys Hostel,plumbing
-General service request from Hostel 1,other
+Short circuit smell near Hostel 1,electrical
 Router issue near Administrative Block with no internet access,wifi
-Socket is damaged near Science Block,electrical
-Light is not working in Medical Center,electrical
-Water leakage in Student Center washroom,plumbing
-Emergency exit blocked near Hostel 1,safety
-General service request from Girls Hostel,other
-Noise disturbance in Science Block hostel at night,hostel
-WiFi is not working in Engineering Block,wifi
-Emergency exit blocked near Boys Hostel,safety
-Unable to connect to campus internet in Science Block,wifi
-Poor lighting and unsafe path near Computer Lab,safety
+General service request from Sports Complex,other
+Campus signage missing near Business Block,other
+Students are ragging and beating a junior in Medical Center,safety
+Pest problem found in Engineering Block room,hostel
+Notice board is outdated at Auditorium,other
+Pipe burst near Laboratory building,plumbing
+Fan stopped working in Hostel 2 room,electrical
+Students fighting and harassing others in Parking Area washroom,safety
 Slow internet speed in Block C computer lab,wifi
-Slow internet speed in Computer Lab computer lab,wifi
-Slow internet speed in Block D computer lab,wifi
-Main switch issue reported at Computer Lab,electrical
+Canal or drainage complaint around Business Block,other
+General maintenance request for Reading Room,other
 No water supply in Administrative Block hostel block,plumbing
-Hostel room cleanliness issue in Business Block,hostel
-Canal or drainage complaint around Reading Room,other
-Room maintenance issue reported in Workshop,hostel
-Power outage in Block B,electrical
-Internet connection is unstable in Engineering Block,wifi
 Socket is damaged near Science Block,electrical
-Laundry service delay at Canteen,hostel
-Main switch issue reported at Business Block,electrical
-Furniture damaged in Parking Area hostel room,hostel
+AC is not cooling in Boys Hostel,electrical
+Canal or drainage complaint around Block C,other
+Notice board is outdated at Auditorium,other
 Washroom flooding in Block B area,plumbing
-No water supply in Block C hostel block,plumbing
 Bathroom drain is blocked in Sports Complex,plumbing
-Pest problem found in Lecture Hall 2 room,hostel
-AC is not cooling in Computer Lab,electrical
-Internet connection is unstable in Hostel 1,wifi
-Short circuit smell near Block A,electrical
-Poor lighting and unsafe path near Administrative Block,safety
-General service request from Lecture Hall 2,other
+Short circuit smell near Boys Hostel,electrical
+Broken staircase railing near Workshop,safety
+Tap is broken in Engineering Block corridor,plumbing
+Security concern reported near Canteen,safety
+Pest problem found in Computer Lab room,hostel
 Slow internet speed in Business Block computer lab,wifi
-Pipe burst near Sports Complex building,plumbing
-Emergency exit blocked near Computer Lab,safety
-Socket is damaged near Block C,electrical
-AC is not cooling in Lecture Hall 2,electrical
-Mess food quality problem at Science Block,hostel
+General service request from Sports Complex,other
 No network connectivity in Block D hostel room,wifi
 Water is leaking from the ceiling in Medical Center,plumbing
 WiFi is not working in Hostel 1,wifi
-WiFi is not working in Medical Center,wifi
-Canal or drainage complaint around Medical Center,other
-Power outage in Hostel 1,electrical
-Campus signage missing near Reading Room,other
-Fan stopped working in Parking Area room,electrical
+Light is not working in Workshop,electrical
+CCTV not working at Student Center,safety
+Short circuit smell near Parking Area,electrical
+Emergency exit blocked near Administrative Block,safety
 Toilet is not flushing in Parking Area,plumbing
-Washroom flooding in Computer Lab area,plumbing
-Library book request issue from Block A,other
-Hostel room cleanliness issue in Reading Room,hostel
-Short circuit smell near Student Center,electrical
-General service request from Sports Complex,other
-General maintenance request for Science Block,other
-Security concern reported near Business Block,safety
-Broken staircase railing near Girls Hostel,safety
-Washroom flooding in Block C area,plumbing
-Electrical spark seen near Lecture Hall 2,electrical
-Canal or drainage complaint around Canteen,other
-Fan stopped working in Block C room,electrical
-Main switch issue reported at Hostel 2,electrical
-No network connectivity in Block C hostel room,wifi
-WiFi signal is weak near Laboratory,wifi
-No network connectivity in Lecture Hall 2 hostel room,wifi
-Main switch issue reported at Girls Hostel,electrical
-Tap is broken in Hostel 1 corridor,plumbing
-Short circuit smell near Lecture Hall 1,electrical
-Emergency exit blocked near Workshop,safety
-Main switch issue reported at Parking Area,electrical
-Mess food quality problem at Laboratory,hostel
-No network connectivity in Block C hostel room,wifi
-Fan stopped working in Girls Hostel room,electrical
-No water supply in Computer Lab hostel block,plumbing
-Mess food quality problem at Hostel 1,hostel
+Main switch issue reported at Main Building,electrical
+CCTV not working at Reading Room,safety
+Laundry service delay at Block D,hostel
+Electrical spark seen near Parking Area,electrical
 Power outage in Laboratory,electrical
-Washroom flooding in Auditorium area,plumbing
+Main switch issue reported at Business Block,electrical
+Parking issue near Student Center,other
+General maintenance request for Workshop,other
+Washroom flooding in Block C area,plumbing
+Laundry service delay at Block B,hostel
+No network connectivity in Block C hostel room,wifi
+Campus signage missing near Main Building,other
+No network connectivity in Lecture Hall 2 hostel room,wifi
+Furniture arrangement problem in Sports Complex,other
+Room maintenance issue reported in Block B,hostel
+Poor lighting and unsafe path near Administrative Block,safety
+No network connectivity in Block C hostel room,wifi
+No water supply in Computer Lab hostel block,plumbing
+Notice board is outdated at Boys Hostel,other
+Main switch issue reported at Business Block,electrical
 Router issue near Library with no internet access,wifi
 No network connectivity in Reading Room hostel room,wifi
 Toilet is not flushing in Science Block,plumbing
-Internet connection is unstable in Lecture Hall 1,wifi
-Unsafe wiring exposed near Reading Room,safety
-No network connectivity in Lecture Hall 1 hostel room,wifi
-Tap is broken in Boys Hostel corridor,plumbing
-Notice board is outdated at Block B,other
-Hostel gate closes too early at Auditorium,hostel
-Mess food quality problem at Computer Lab,hostel
-Fire extinguisher missing in Block D block,safety
-WiFi is not working in Hostel 1,wifi
-Room maintenance issue reported in Workshop,hostel
-Furniture damaged in Business Block hostel room,hostel
-Water leakage in Student Center washroom,plumbing
 Socket is damaged near Hostel 2,electrical
+Power outage in Laboratory,electrical
+No network connectivity in Lecture Hall 1 hostel room,wifi
+Campus signage missing near Reading Room,other
+Mess food quality problem at Auditorium,hostel
+General service request from Block B,other
+Library book request issue from Computer Lab,other
+Light is not working in Science Block,electrical
+WiFi is not working in Hostel 1,wifi
+Students are ragging and beating a junior in Block D,safety
+Library book request issue from Student Center,other
 No water supply in Block A hostel block,plumbing
 The campus WiFi keeps disconnecting in Medical Center,wifi
-General service request from Block B,other
-Unsafe wiring exposed near Student Center,safety
-Water leakage in Sports Complex washroom,plumbing
-Fire extinguisher missing in Engineering Block block,safety
-Pest problem found in Workshop room,hostel
-Fire extinguisher missing in Business Block block,safety
-Short circuit smell near Science Block,electrical
-Router issue near Canteen with no internet access,wifi
-Mess food quality problem at Auditorium,hostel
-Furniture damaged in Block A hostel room,hostel
-Security concern reported near Administrative Block,safety
-Hostel room cleanliness issue in Science Block,hostel
-Parking issue near Lecture Hall 1,other
-Laundry service delay at Block D,hostel
-Security guard missing at Hostel 2 gate,safety
-AC is not cooling in Science Block,electrical
-Toilet is not flushing in Engineering Block,plumbing
-Water leakage in Sports Complex washroom,plumbing
+Room maintenance issue reported in Engineering Block,hostel
+Furniture damaged in Lecture Hall 1 hostel room,hostel
+Room maintenance issue reported in Auditorium,hostel
+Pest problem found in Lecture Hall 1 room,hostel
+Parking issue near Main Building,other
+Poor lighting and unsafe path near Science Block,safety
+Power outage in Auditorium,electrical
+Hostel room cleanliness issue in Lecture Hall 2,hostel
+Power outage in Hostel 1,electrical
+Physical assault and bullying incident reported in Reading Room,safety
+Pipe burst near Sports Complex building,plumbing
 Laundry service delay at Block A,hostel
-Library book request issue from Block D,other
+No water supply in Business Block hostel block,plumbing
+Unable to connect to campus internet in Reading Room,wifi
+Tap is broken in Parking Area corridor,plumbing
+Water leakage in Workshop washroom,plumbing
 No network connectivity in Auditorium hostel room,wifi
-Notice board is outdated at Block C,other
-Bathroom drain is blocked in Administrative Block,plumbing
-Socket is damaged near Laboratory,electrical
-General maintenance request for Computer Lab,other
-AC is not cooling in Computer Lab,electrical
-Broken staircase railing near Laboratory,safety
-Mess food quality problem at Computer Lab,hostel
-Router issue near Student Center with no internet access,wifi
-Slow internet speed in Reading Room computer lab,wifi
-Socket is damaged near Student Center,electrical
-Parking issue near Parking Area,other
-Hostel room cleanliness issue in Girls Hostel,hostel
-Socket is damaged near Auditorium,electrical
-Main switch issue reported at Block D,electrical
-Fire extinguisher missing in Hostel 1 block,safety
-Security concern reported near Block B,safety
-Notice board is outdated at Laboratory,other
-Poor lighting and unsafe path near Girls Hostel,safety
-Library book request issue from Block C,other
-General service request from Canteen,other
-Router issue near Lecture Hall 1 with no internet access,wifi
-Slow internet speed in Medical Center computer lab,wifi
-No water supply in Sports Complex hostel block,plumbing
-General maintenance request for Block C,other
-Hostel room cleanliness issue in Hostel 2,hostel
-Poor lighting and unsafe path near Computer Lab,safety
-Room maintenance issue reported in Hostel 1,hostel
+Internet connection is unstable in Hostel 1,wifi
 WiFi is not working in Science Block,wifi
-Fire extinguisher missing in Block C block,safety
-General maintenance request for Reading Room,other
-Notice board is outdated at Main Building,other
-Hostel gate closes too early at Administrative Block,hostel
-Furniture damaged in Auditorium hostel room,hostel
-Hostel room cleanliness issue in Lecture Hall 1,hostel
-Slow internet speed in Lecture Hall 2 computer lab,wifi
-Short circuit smell near Lecture Hall 2,electrical
-Unable to connect to campus internet in Medical Center,wifi
-Mess food quality problem at Block B,hostel
-Fan stopped working in Block C room,electrical
-Parking issue near Canteen,other
-Parking issue near Engineering Block,other
-Unsafe wiring exposed near Reading Room,safety
-Parking issue near Lecture Hall 2,other
-Electrical spark seen near Medical Center,electrical
-Water leakage in Girls Hostel washroom,plumbing
-Unsafe wiring exposed near Library,safety
-Emergency exit blocked near Administrative Block,safety
-Security guard missing at Block C gate,safety
-Water leakage in Sports Complex washroom,plumbing
-Security concern reported near Hostel 1,safety
+Parking issue near Lecture Hall 1,other
+Canal or drainage complaint around Engineering Block,other
+Unable to connect to campus internet in Main Building,wifi
+Students fighting and harassing others in Main Building washroom,safety
+Furniture arrangement problem in Lecture Hall 2,other
+Physical assault and bullying incident reported in Boys Hostel,safety
+Library book request issue from Hostel 2,other
+Washroom flooding in Reading Room area,plumbing
+Physical assault and bullying incident reported in Auditorium,safety
+Mess food quality problem at Computer Lab,hostel
+Parking issue near Reading Room,other
+Fire extinguisher missing in Student Center block,safety
+Power outage in Parking Area,electrical
 Canal or drainage complaint around Medical Center,other
-General service request from Sports Complex,other
-Laundry service delay at Lecture Hall 1,hostel
-Broken staircase railing near Auditorium,safety
-Laundry service delay at Block A,hostel
-Internet connection is unstable in Library,wifi
-Hostel gate closes too early at Boys Hostel,hostel
-Furniture damaged in Engineering Block hostel room,hostel
+Unsafe wiring exposed near Block C,safety
+Furniture arrangement problem in Lecture Hall 2,other
+Canal or drainage complaint around Block D,other
 Unsafe wiring exposed near Student Center,safety
-Room maintenance issue reported in Hostel 1,hostel
-Washroom flooding in Library area,plumbing
+Water leakage in Student Center washroom,plumbing
+Light is not working in Auditorium,electrical
+Short circuit smell near Student Center,electrical
+Toilet is not flushing in Lecture Hall 2,plumbing
+Physical assault and bullying incident reported in Girls Hostel,safety
+Tap is broken in Engineering Block corridor,plumbing
+Power outage in Main Building,electrical
+Pipe burst near Student Center building,plumbing
+General service request from Parking Area,other
+Toilet is not flushing in Lecture Hall 2,plumbing
+Short circuit smell near Lecture Hall 1,electrical
+Washroom flooding in Medical Center area,plumbing
+General maintenance request for Business Block,other
+Toilet is not flushing in Engineering Block,plumbing
+Security concern reported near Hostel 1,safety
+Internet connection is unstable in Lecture Hall 1,wifi
+Slow internet speed in Administrative Block computer lab,wifi
+Parking issue near Student Center,other
+Mess food quality problem at Hostel 1,hostel
+Unable to connect to campus internet in Science Block,wifi
+Tap is broken in Boys Hostel corridor,plumbing
+Light is not working in Library,electrical
+Mess food quality problem at Parking Area,hostel
+Main switch issue reported at Sports Complex,electrical
+Laundry service delay at Student Center,hostel
+Library book request issue from Lecture Hall 2,other
+Unable to connect to campus internet in Medical Center,wifi
+Toilet is not flushing in Girls Hostel,plumbing
+Campus signage missing near Girls Hostel,other
+Campus signage missing near Block D,other
+Emergency exit blocked near Lecture Hall 1,safety
+Hostel room cleanliness issue in Business Block,hostel
+General service request from Administrative Block,other
+No water supply in Business Block hostel block,plumbing
+Internet connection is unstable in Block B,wifi
+Light is not working in Student Center,electrical
+Physical assault and bullying incident reported in Auditorium,safety
+Short circuit smell near Block A,electrical
+Pest problem found in Reading Room room,hostel
+Security guard missing at Boys Hostel gate,safety
+Students fighting and harassing others in Block C washroom,safety
+Short circuit smell near Laboratory,electrical
+Internet connection is unstable in Engineering Block,wifi
 Hostel gate closes too early at Hostel 2,hostel
-Hostel room cleanliness issue in Block B,hostel
+General service request from Business Block,other
+Library book request issue from Block A,other
+Short circuit smell near Medical Center,electrical
+WiFi is not working in Block D,wifi
+Ragging incident near Reading Room hostel block,safety
+Water leakage in Girls Hostel washroom,plumbing
+Socket is damaged near Science Block,electrical
+Laundry service delay at Block C,hostel
+Noise disturbance in Science Block hostel at night,hostel
+Laundry service delay at Girls Hostel,hostel
+Parking issue near Medical Center,other
+Mess food quality problem at Computer Lab,hostel
+WiFi is not working in Block C,wifi
+Unable to connect to campus internet in Medical Center,wifi
+General service request from Computer Lab,other
+Students fighting and harassing others in Workshop washroom,safety
+Laundry service delay at Student Center,hostel
+Unsafe wiring exposed near Boys Hostel,safety
+Washroom flooding in Auditorium area,plumbing
+Unable to connect to campus internet in Main Building,wifi
+Noise disturbance in Hostel 2 hostel at night,hostel
+Physical assault and bullying incident reported in Parking Area,safety
+Poor lighting and unsafe path near Girls Hostel,safety
+WiFi signal is weak near Laboratory,wifi
+Broken staircase railing near Main Building,safety
+General service request from Canteen,other
+The campus WiFi keeps disconnecting in Administrative Block,wifi
+Canal or drainage complaint around Sports Complex,other
+Hostel gate closes too early at Auditorium,hostel
+AC is not cooling in Workshop,electrical
+Canal or drainage complaint around Library,other
+Tap is broken in Laboratory corridor,plumbing
+Main switch issue reported at Laboratory,electrical
+Washroom flooding in Library area,plumbing
+WiFi signal is weak near Parking Area,wifi
+WiFi is not working in Medical Center,wifi
+General service request from Business Block,other
+AC is not cooling in Auditorium,electrical
+Unable to connect to campus internet in Reading Room,wifi
+Socket is damaged near Computer Lab,electrical
+Washroom flooding in Computer Lab area,plumbing
+Pest problem found in Hostel 1 room,hostel
+Noise disturbance in Laboratory hostel at night,hostel
+Washroom flooding in Library area,plumbing
+Noise disturbance in Block C hostel at night,hostel
+Mess food quality problem at Boys Hostel,hostel
 Pipe burst near Parking Area building,plumbing
 Electrical spark seen near Lecture Hall 2,electrical
 Router issue near Hostel 1 with no internet access,wifi
-Unsafe wiring exposed near Student Center,safety
+Main switch issue reported at Block D,electrical
 Main switch issue reported at Medical Center,electrical
-Fire extinguisher missing in Girls Hostel block,safety
-Security guard missing at Boys Hostel gate,safety
-Fire extinguisher missing in Reading Room block,safety
-Security concern reported near Block C,safety
+Physical assault and bullying incident reported in Laboratory,safety
+Ragging incident near Computer Lab hostel block,safety
+Mess food quality problem at Boys Hostel,hostel
 Main switch issue reported at Lecture Hall 1,electrical
-Hostel gate closes too early at Lecture Hall 1,hostel
 Power outage in Engineering Block,electrical
-Electrical spark seen near Sports Complex,electrical
+Furniture arrangement problem in Lecture Hall 1,other
 No water supply in Hostel 2 hostel block,plumbing
 Water leakage in Sports Complex washroom,plumbing
-Hostel gate closes too early at Lecture Hall 1,hostel
-General maintenance request for Main Building,other
-General service request from Block B,other
+Students fighting and harassing others in Science Block washroom,safety
+Poor lighting and unsafe path near Laboratory,safety
 Water is leaking from the ceiling in Reading Room,plumbing
-Noise disturbance in Reading Room hostel at night,hostel
-Room maintenance issue reported in Block D,hostel
-Unsafe wiring exposed near Hostel 2,safety
+Security concern reported near Reading Room,safety
+Fan stopped working in Business Block room,electrical
+Parking issue near Block C,other
 Pipe burst near Business Block building,plumbing
 Washroom flooding in Sports Complex area,plumbing
 WiFi signal is weak near Boys Hostel,wifi
-Furniture arrangement problem in Administrative Block,other
+No water supply in Hostel 2 hostel block,plumbing
 Water is leaking from the ceiling in Library,plumbing
 Pipe burst near Workshop building,plumbing
-Furniture arrangement problem in Girls Hostel,other
-Unsafe wiring exposed near Block B,safety
-CCTV not working at Lecture Hall 1,safety
-Hostel gate closes too early at Computer Lab,hostel
+Unsafe wiring exposed near Canteen,safety
+Hostel room cleanliness issue in Lecture Hall 2,hostel
 Tap is broken in Medical Center corridor,plumbing
-Emergency exit blocked near Main Building,safety
+Physical assault and bullying incident reported in Workshop,safety
 Internet connection is unstable in Lecture Hall 2,wifi
-Canal or drainage complaint around Business Block,other
-Mess food quality problem at Parking Area,hostel
-Security guard missing at Auditorium gate,safety
-Tap is broken in Hostel 1 corridor,plumbing
-No network connectivity in Canteen hostel room,wifi
-Toilet is not flushing in Medical Center,plumbing
+Mess food quality problem at Science Block,hostel
+Parking issue near Block D,other
+Notice board is outdated at Block A,other
+Canal or drainage complaint around Lecture Hall 2,other
 Noise disturbance in Block C hostel at night,hostel
 The campus WiFi keeps disconnecting in Hostel 2,wifi
 AC is not cooling in Parking Area,electrical
-Campus signage missing near Lecture Hall 1,other
-Canal or drainage complaint around Science Block,other
-Campus signage missing near Girls Hostel,other
-Water leakage in Library washroom,plumbing
-No water supply in Engineering Block hostel block,plumbing
-General maintenance request for Canteen,other
-Main switch issue reported at Hostel 2,electrical
-Canal or drainage complaint around Library,other
-Hostel room cleanliness issue in Girls Hostel,hostel
-Parking issue near Hostel 1,other
-Mess food quality problem at Auditorium,hostel
-AC is not cooling in Auditorium,electrical
-General maintenance request for Computer Lab,other
-Library book request issue from Girls Hostel,other
-Emergency exit blocked near Sports Complex,safety
-Unable to connect to campus internet in Administrative Block,wifi
-Mess food quality problem at Parking Area,hostel
-Tap is broken in Sports Complex corridor,plumbing
-Furniture damaged in Boys Hostel hostel room,hostel
-Short circuit smell near Medical Center,electrical
-Canal or drainage complaint around Workshop,other
-Water is leaking from the ceiling in Student Center,plumbing
-AC is not cooling in Business Block,electrical
-General service request from Laboratory,other
-Router issue near Workshop with no internet access,wifi
-Poor lighting and unsafe path near Block D,safety
-Light is not working in Student Center,electrical
-Mess food quality problem at Block C,hostel
-Light is not working in Student Center,electrical
-General service request from Main Building,other
-Furniture damaged in Auditorium hostel room,hostel
-Broken staircase railing near Student Center,safety
-WiFi is not working in Reading Room,wifi
-Parking issue near Block A,other
-Hostel gate closes too early at Hostel 2,hostel
+Fan stopped working in Parking Area room,electrical
+Students are ragging and beating a junior in Block D,safety
 Security concern reported near Block B,safety
-Noise disturbance in Main Building hostel at night,hostel
-Emergency exit blocked near Student Center,safety
-Laundry service delay at Lecture Hall 2,hostel
+General maintenance request for Boys Hostel,other
+No water supply in Engineering Block hostel block,plumbing
+Poor lighting and unsafe path near Sports Complex,safety
+Main switch issue reported at Hostel 2,electrical
+Security concern reported near Lecture Hall 1,safety
+Hostel room cleanliness issue in Girls Hostel,hostel
+Fire extinguisher missing in Engineering Block block,safety
+Canal or drainage complaint around Engineering Block,other
+Noise disturbance in Engineering Block hostel at night,hostel
+Pest problem found in Block C room,hostel
+Unable to connect to campus internet in Administrative Block,wifi
+General service request from Hostel 2,other
+Parking issue near Girls Hostel,other
+Mess food quality problem at Parking Area,hostel
+Short circuit smell near Medical Center,electrical
+Noise disturbance in Block D hostel at night,hostel
+Water is leaking from the ceiling in Student Center,plumbing
+Campus signage missing near Block B,other
+Furniture damaged in Parking Area hostel room,hostel
+Router issue near Workshop with no internet access,wifi
+Notice board is outdated at Sports Complex,other
+General service request from Block A,other
+Hostel room cleanliness issue in Girls Hostel,hostel
+Light is not working in Student Center,electrical
+Main switch issue reported at Hostel 2,electrical
+Students fighting and harassing others in Business Block washroom,safety
+WiFi is not working in Reading Room,wifi
+Unsafe wiring exposed near Sports Complex,safety
+Hostel gate closes too early at Hostel 2,hostel
+Unsafe wiring exposed near Lecture Hall 2,safety
+Students fighting and harassing others in Parking Area washroom,safety
 Hostel room cleanliness issue in Lecture Hall 1,hostel
 WiFi is not working in Block D,wifi
 Washroom flooding in Lecture Hall 2 area,plumbing
 Bathroom drain is blocked in Student Center,plumbing
-General service request from Engineering Block,other
-Security concern reported near Auditorium,safety
+Students are ragging and beating a junior in Block B,safety
+CCTV not working at Block B,safety
 Power outage in Lecture Hall 2,electrical
 WiFi is not working in Lecture Hall 1,wifi
-Security concern reported near Auditorium,safety
+Physical assault and bullying incident reported in Auditorium,safety
 Bathroom drain is blocked in Engineering Block,plumbing
-General service request from Block C,other
-Furniture arrangement problem in Student Center,other
-Furniture arrangement problem in Administrative Block,other
+Students are ragging and beating a junior in Sports Complex,safety
+Notice board is outdated at Hostel 2,other
 Tap is broken in Hostel 2 corridor,plumbing
-Furniture arrangement problem in Hostel 1,other
-Fire extinguisher missing in Computer Lab block,safety
-Canal or drainage complaint around Lecture Hall 2,other
+Furniture damaged in Science Block hostel room,hostel
+Pest problem found in Computer Lab room,hostel
+Ragging incident near Auditorium hostel block,safety
 AC is not cooling in Hostel 1,electrical
-Broken staircase railing near Business Block,safety
+Students are ragging and beating a junior in Computer Lab,safety
 Slow internet speed in Science Block computer lab,wifi
 Pipe burst near Student Center building,plumbing
-Unsafe wiring exposed near Workshop,safety
+Noise disturbance in Hostel 2 hostel at night,hostel
 Water is leaking from the ceiling in Engineering Block,plumbing
 Short circuit smell near Business Block,electrical
 Electrical spark seen near Library,electrical
 Router issue near Engineering Block with no internet access,wifi
 Bathroom drain is blocked in Workshop,plumbing
 No network connectivity in Workshop hostel room,wifi
-Notice board is outdated at Workshop,other
-Hostel room cleanliness issue in Girls Hostel,hostel
-Fire extinguisher missing in Main Building block,safety
+General service request from Engineering Block,other
+Pest problem found in Workshop room,hostel
 WiFi signal is weak near Hostel 2,wifi
 Room maintenance issue reported in Business Block,hostel
-Router issue near Lecture Hall 1 with no internet access,wifi
+General maintenance request for Parking Area,other
 Unable to connect to campus internet in Administrative Block,wifi
 No water supply in Hostel 2 hostel block,plumbing
 Toilet is not flushing in Canteen,plumbing
-Slow internet speed in Main Building computer lab,wifi
-CCTV not working at Student Center,safety
+Furniture arrangement problem in Hostel 1,other
 Light is not working in Library,electrical
-Mess food quality problem at Boys Hostel,hostel
-Canal or drainage complaint around Administrative Block,other
-Canal or drainage complaint around Student Center,other
+Room maintenance issue reported in Workshop,hostel
+Security guard missing at Sports Complex gate,safety
 Water leakage in Block D washroom,plumbing
-General maintenance request for Lecture Hall 2,other
+Tap is broken in Medical Center corridor,plumbing
 Router issue near Engineering Block with no internet access,wifi
-Parking issue near Boys Hostel,other
+Emergency exit blocked near Business Block,safety
 AC is not cooling in Student Center,electrical
-Security concern reported near Canteen,safety
+Mess food quality problem at Block B,hostel
 Tap is broken in Block A corridor,plumbing
-Electrical spark seen near Laboratory,electrical
+Emergency exit blocked near Sports Complex,safety
 Hostel gate closes too early at Main Building,hostel
 Main switch issue reported at Girls Hostel,electrical
 Noise disturbance in Block C hostel at night,hostel
-Laundry service delay at Engineering Block,hostel
 Short circuit smell near Boys Hostel,electrical
-General service request from Lecture Hall 2,other
+Emergency exit blocked near Administrative Block,safety
 WiFi is not working in Science Block,wifi
-Emergency exit blocked near Library,safety
+Room maintenance issue reported in Hostel 1,hostel
 Bathroom drain is blocked in Block B,plumbing
 Internet connection is unstable in Block B,wifi
-Furniture arrangement problem in Main Building,other
+General service request from Hostel 1,other
 Power outage in Business Block,electrical
-Security guard missing at Engineering Block gate,safety
+General maintenance request for Block D,other
 Water is leaking from the ceiling in Canteen,plumbing
-Security guard missing at Laboratory gate,safety
+Fire extinguisher missing in Block C block,safety
 Water is leaking from the ceiling in Computer Lab,plumbing
-Emergency exit blocked near Business Block,safety
-Security concern reported near Canteen,safety
+Physical assault and bullying incident reported in Parking Area,safety
 Room maintenance issue reported in Computer Lab,hostel
-Hostel gate closes too early at Boys Hostel,hostel
-Pest problem found in Reading Room room,hostel
-No network connectivity in Student Center hostel room,wifi
+Notice board is outdated at Administrative Block,other
 Short circuit smell near Hostel 1,electrical
 Socket is damaged near Girls Hostel,electrical
 Power outage in Student Center,electrical
 Short circuit smell near Hostel 2,electrical
 Power outage in Block C,electrical
 Socket is damaged near Library,electrical
-Notice board is outdated at Auditorium,other
-Poor lighting and unsafe path near Girls Hostel,safety
-Furniture arrangement problem in Block C,other
 Slow internet speed in Reading Room computer lab,wifi
 Washroom flooding in Hostel 2 area,plumbing
 Short circuit smell near Block C,electrical
 Water is leaking from the ceiling in Medical Center,plumbing
-Slow internet speed in Block C computer lab,wifi
-Library book request issue from Sports Complex,other
+Parking issue near Lecture Hall 2,other
+CCTV not working at Reading Room,safety
 WiFi is not working in Engineering Block,wifi
 Unable to connect to campus internet in Block C,wifi
 Furniture damaged in Engineering Block hostel room,hostel
 WiFi signal is weak near Lecture Hall 2,wifi
-Hostel room cleanliness issue in Engineering Block,hostel
 Water is leaking from the ceiling in Block C,plumbing
 Main switch issue reported at Business Block,electrical
 No network connectivity in Student Center hostel room,wifi
 Slow internet speed in Laboratory computer lab,wifi
-Mess food quality problem at Main Building,hostel
-Unsafe wiring exposed near Block C,safety
-Unsafe wiring exposed near Hostel 1,safety
+General maintenance request for Business Block,other
+Noise disturbance in Library hostel at night,hostel
 Internet connection is unstable in Engineering Block,wifi
 Water is leaking from the ceiling in Block C,plumbing
 Short circuit smell near Business Block,electrical
 Slow internet speed in Reading Room computer lab,wifi
-Security concern reported near Business Block,safety
-Toilet is not flushing in Auditorium,plumbing
-Mess food quality problem at Laboratory,hostel
+Parking issue near Parking Area,other
 Light is not working in Boys Hostel,electrical
-Room maintenance issue reported in Girls Hostel,hostel
+Furniture arrangement problem in Girls Hostel,other
 WiFi signal is weak near Sports Complex,wifi
-Fire extinguisher missing in Block A block,safety
+CCTV not working at Girls Hostel,safety
 Electrical spark seen near Engineering Block,electrical
-General service request from Business Block,other
+Notice board is outdated at Reading Room,other
 Fan stopped working in Laboratory room,electrical
 WiFi signal is weak near Block B,wifi
 Main switch issue reported at Block C,electrical
@@ -787,87 +689,76 @@ Router issue near Science Block with no internet access,wifi
 Light is not working in Hostel 1,electrical
 Electrical spark seen near Block D,electrical
 Unable to connect to campus internet in Medical Center,wifi
-Fan stopped working in Workshop room,electrical
-Furniture damaged in Medical Center hostel room,hostel
-Canal or drainage complaint around Computer Lab,other
+General maintenance request for Hostel 1,other
+General maintenance request for Hostel 1,other
 Tap is broken in Reading Room corridor,plumbing
-Fire extinguisher missing in Student Center block,safety
 WiFi is not working in Engineering Block,wifi
-General service request from Auditorium,other
+Fire extinguisher missing in Medical Center block,safety
 Main switch issue reported at Medical Center,electrical
-Fire extinguisher missing in Block C block,safety
+Poor lighting and unsafe path near Computer Lab,safety
 Slow internet speed in Main Building computer lab,wifi
 Internet connection is unstable in Lecture Hall 1,wifi
 Hostel gate closes too early at Lecture Hall 2,hostel
-Security guard missing at Girls Hostel gate,safety
+Fire extinguisher missing in Girls Hostel block,safety
 Toilet is not flushing in Laboratory,plumbing
 Electrical spark seen near Science Block,electrical
-Parking issue near Boys Hostel,other
-Fire extinguisher missing in Hostel 1 block,safety
+Hostel gate closes too early at Business Block,hostel
+Security guard missing at Laboratory gate,safety
 WiFi signal is weak near Canteen,wifi
 Noise disturbance in Computer Lab hostel at night,hostel
-Internet connection is unstable in Computer Lab,wifi
+General maintenance request for Main Building,other
 Electrical spark seen near Library,electrical
-Poor lighting and unsafe path near Sports Complex,safety
 Furniture damaged in Block A hostel room,hostel
-Poor lighting and unsafe path near Block D,safety
-Light is not working in Auditorium,electrical
+Emergency exit blocked near Hostel 1,safety
+Canal or drainage complaint around Girls Hostel,other
 The campus WiFi keeps disconnecting in Medical Center,wifi
-Parking issue near Lecture Hall 2,other
 Hostel gate closes too early at Block D,hostel
-Fire extinguisher missing in Main Building block,safety
 Mess food quality problem at Sports Complex,hostel
 Tap is broken in Reading Room corridor,plumbing
-Security guard missing at Block B gate,safety
 Bathroom drain is blocked in Sports Complex,plumbing
 Room maintenance issue reported in Block C,hostel
-CCTV not working at Reading Room,safety
 Pest problem found in Parking Area room,hostel
-Furniture arrangement problem in Hostel 2,other
-Main switch issue reported at Student Center,electrical
+General service request from Sports Complex,other
 Furniture damaged in Canteen hostel room,hostel
 Mess food quality problem at Hostel 2,hostel
 Power outage in Lecture Hall 2,electrical
 Main switch issue reported at Auditorium,electrical
 Hostel gate closes too early at Hostel 2,hostel
-General service request from Block C,other
-Furniture arrangement problem in Lecture Hall 2,other
+Broken staircase railing near Boys Hostel,safety
 Internet connection is unstable in Laboratory,wifi
-Socket is damaged near Business Block,electrical
+Furniture arrangement problem in Medical Center,other
 The campus WiFi keeps disconnecting in Workshop,wifi
 Tap is broken in Engineering Block corridor,plumbing
 Pipe burst near Hostel 2 building,plumbing
 Pest problem found in Block D room,hostel
 Power outage in Administrative Block,electrical
-Security concern reported near Business Block,safety
-Security guard missing at Sports Complex gate,safety
+Students fighting and harassing others in Computer Lab washroom,safety
+Students fighting and harassing others in Block C washroom,safety
 Internet connection is unstable in Block B,wifi
-General service request from Hostel 1,other
+Library book request issue from Hostel 1,other
 Water leakage in Block C washroom,plumbing
-Unsafe wiring exposed near Block B,safety
 Poor lighting and unsafe path near Parking Area,safety
 Socket is damaged near Lecture Hall 1,electrical
 Furniture damaged in Block A hostel room,hostel
-CCTV not working at Science Block,safety
+Unsafe wiring exposed near Student Center,safety
 No network connectivity in Student Center hostel room,wifi
 Tap is broken in Science Block corridor,plumbing
 AC is not cooling in Administrative Block,electrical
 WiFi signal is weak near Science Block,wifi
 Mess food quality problem at Science Block,hostel
-The campus WiFi keeps disconnecting in Computer Lab,wifi
-Canal or drainage complaint around Computer Lab,other
-Hostel room cleanliness issue in Block C,hostel
+Canal or drainage complaint around Laboratory,other
+Poor lighting and unsafe path near Lecture Hall 1,safety
+General maintenance request for Science Block,other
 AC is not cooling in Boys Hostel,electrical
 Hostel gate closes too early at Block D,hostel
-Security guard missing at Hostel 1 gate,safety
+Emergency exit blocked near Workshop,safety
 Unable to connect to campus internet in Lecture Hall 1,wifi
-Laundry service delay at Administrative Block,hostel
-Canal or drainage complaint around Auditorium,other
+Parking issue near Block A,other
+Students are ragging and beating a junior in Engineering Block,safety
 Hostel gate closes too early at Block A,hostel
 No water supply in Parking Area hostel block,plumbing
 Pipe burst near Lecture Hall 1 building,plumbing
 Pipe burst near Student Center building,plumbing
-Campus signage missing near Sports Complex,other
 Power outage in Student Center,electrical
 Bathroom drain is blocked in Administrative Block,plumbing
 Socket is damaged near Block D,electrical
@@ -875,51 +766,45 @@ Tap is broken in Computer Lab corridor,plumbing
 WiFi is not working in Block C,wifi
 Water is leaking from the ceiling in Auditorium,plumbing
 Pipe burst near Student Center building,plumbing
-Parking issue near Business Block,other
+Ragging incident near Engineering Block hostel block,safety
 Router issue near Block B with no internet access,wifi
 Toilet is not flushing in Computer Lab,plumbing
 Slow internet speed in Workshop computer lab,wifi
-Campus signage missing near Sports Complex,other
+Unsafe wiring exposed near Science Block,safety
 Main switch issue reported at Auditorium,electrical
 Slow internet speed in Hostel 1 computer lab,wifi
 Toilet is not flushing in Hostel 1,plumbing
 Main switch issue reported at Reading Room,electrical
 Short circuit smell near Business Block,electrical
-Emergency exit blocked near Girls Hostel,safety
 Main switch issue reported at Block C,electrical
 Laundry service delay at Administrative Block,hostel
-Security guard missing at Computer Lab gate,safety
 Mess food quality problem at Engineering Block,hostel
-Campus signage missing near Boys Hostel,other
-Canal or drainage complaint around Hostel 2,other
-CCTV not working at Reading Room,safety
+Campus signage missing near Auditorium,other
+CCTV not working at Block C,safety
+CCTV not working at Canteen,safety
 Hostel gate closes too early at Science Block,hostel
-General maintenance request for Girls Hostel,other
-General maintenance request for Lecture Hall 1,other
-Emergency exit blocked near Girls Hostel,safety
+Fire extinguisher missing in Business Block block,safety
+Water leakage in Canteen washroom,plumbing
 Tap is broken in Workshop corridor,plumbing
-Poor lighting and unsafe path near Administrative Block,safety
+Emergency exit blocked near Workshop,safety
 The campus WiFi keeps disconnecting in Business Block,wifi
-Parking issue near Administrative Block,other
-Security guard missing at Parking Area gate,safety
-No water supply in Main Building hostel block,plumbing
+Students are ragging and beating a junior in Lecture Hall 2,safety
+Unsafe wiring exposed near Student Center,safety
+General maintenance request for Parking Area,other
 Room maintenance issue reported in Block C,hostel
 Electrical spark seen near Laboratory,electrical
-Security guard missing at Boys Hostel gate,safety
+General maintenance request for Computer Lab,other
 Internet connection is unstable in Block C,wifi
-Notice board is outdated at Auditorium,other
+Students are ragging and beating a junior in Science Block,safety
 Internet connection is unstable in Block D,wifi
-Unsafe wiring exposed near Science Block,safety
 Toilet is not flushing in Laboratory,plumbing
 Washroom flooding in Engineering Block area,plumbing
 Power outage in Canteen,electrical
 AC is not cooling in Block B,electrical
-CCTV not working at Block D,safety
 WiFi is not working in Workshop,wifi
-Library book request issue from Computer Lab,other
 Short circuit smell near Block A,electrical
-Light is not working in Laboratory,electrical
-Room maintenance issue reported in Girls Hostel,hostel
+Parking issue near Administrative Block,other
+Broken staircase railing near Block A,safety
 Pest problem found in Lecture Hall 2 room,hostel
 Main switch issue reported at Sports Complex,electrical
 Bathroom drain is blocked in Hostel 1,plumbing
@@ -927,63 +812,49 @@ Pipe burst near Lecture Hall 1 building,plumbing
 Router issue near Hostel 2 with no internet access,wifi
 Hostel gate closes too early at Lecture Hall 1,hostel
 Laundry service delay at Science Block,hostel
-Tap is broken in Parking Area corridor,plumbing
+Canal or drainage complaint around Administrative Block,other
 Router issue near Business Block with no internet access,wifi
-Canal or drainage complaint around Workshop,other
-Security concern reported near Computer Lab,safety
+Fire extinguisher missing in Block D block,safety
 Tap is broken in Business Block corridor,plumbing
-Security guard missing at Sports Complex gate,safety
-Unsafe wiring exposed near Lecture Hall 2,safety
+Fire extinguisher missing in Student Center block,safety
 Bathroom drain is blocked in Library,plumbing
 Short circuit smell near Lecture Hall 1,electrical
-Unsafe wiring exposed near Sports Complex,safety
+Library book request issue from Parking Area,other
 Fan stopped working in Computer Lab room,electrical
-Poor lighting and unsafe path near Block C,safety
 No network connectivity in Sports Complex hostel room,wifi
-Furniture arrangement problem in Sports Complex,other
 Bathroom drain is blocked in Lecture Hall 2,plumbing
-Library book request issue from Block B,other
-Canal or drainage complaint around Reading Room,other
 Socket is damaged near Computer Lab,electrical
 The campus WiFi keeps disconnecting in Hostel 2,wifi
-Library book request issue from Lecture Hall 2,other
-Furniture arrangement problem in Sports Complex,other
-General service request from Administrative Block,other
-CCTV not working at Hostel 1,safety
-Poor lighting and unsafe path near Science Block,safety
-CCTV not working at Science Block,safety
+Router issue near Engineering Block with no internet access,wifi
+Unsafe wiring exposed near Main Building,safety
+Unsafe wiring exposed near Reading Room,safety
 Noise disturbance in Library hostel at night,hostel
 Tap is broken in Block C corridor,plumbing
-Furniture damaged in Library hostel room,hostel
+Canal or drainage complaint around Reading Room,other
 Laundry service delay at Workshop,hostel
 Unable to connect to campus internet in Block C,wifi
-Security concern reported near Administrative Block,safety
-Furniture arrangement problem in Library,other
+Students fighting and harassing others in Boys Hostel washroom,safety
 Router issue near Main Building with no internet access,wifi
 Hostel gate closes too early at Engineering Block,hostel
 Bathroom drain is blocked in Boys Hostel,plumbing
 Water leakage in Science Block washroom,plumbing
-Canal or drainage complaint around Administrative Block,other
-Security concern reported near Auditorium,safety
+Unsafe wiring exposed near Hostel 2,safety
+Emergency exit blocked near Main Building,safety
 Tap is broken in Lecture Hall 2 corridor,plumbing
 Noise disturbance in Hostel 2 hostel at night,hostel
 Power outage in Computer Lab,electrical
 Main switch issue reported at Block D,electrical
-Unsafe wiring exposed near Block C,safety
-General maintenance request for Canteen,other
-General service request from Canteen,other
 Furniture damaged in Auditorium hostel room,hostel
 Power outage in Main Building,electrical
 The campus WiFi keeps disconnecting in Engineering Block,wifi
-General maintenance request for Hostel 1,other
 Hostel gate closes too early at Parking Area,hostel
 WiFi signal is weak near Block B,wifi
-Canal or drainage complaint around Lecture Hall 1,other
-Security concern reported near Block D,safety
-Laundry service delay at Block D,hostel
-Canal or drainage complaint around Main Building,other
+Students are ragging and beating a junior in Hostel 1,safety
+Library book request issue from Computer Lab,other
+Campus signage missing near Science Block,other
+Students fighting and harassing others in Boys Hostel washroom,safety
 Power outage in Canteen,electrical
-Fire extinguisher missing in Block D block,safety
+CCTV not working at Canteen,safety
 No water supply in Auditorium hostel block,plumbing
 Main switch issue reported at Girls Hostel,electrical
 WiFi is not working in Lecture Hall 1,wifi
@@ -991,91 +862,220 @@ Unable to connect to campus internet in Workshop,wifi
 Water is leaking from the ceiling in Lecture Hall 2,plumbing
 Room maintenance issue reported in Student Center,hostel
 Water is leaking from the ceiling in Laboratory,plumbing
-General maintenance request for Reading Room,other
-Canal or drainage complaint around Engineering Block,other
+Laundry service delay at Sports Complex,hostel
 Noise disturbance in Medical Center hostel at night,hostel
 Router issue near Lecture Hall 1 with no internet access,wifi
-Tap is broken in Engineering Block corridor,plumbing
+General service request from Block B,other
 Bathroom drain is blocked in Medical Center,plumbing
 Furniture damaged in Lecture Hall 1 hostel room,hostel
-Fire extinguisher missing in Student Center block,safety
+Ragging incident near Sports Complex hostel block,safety
 Room maintenance issue reported in Block C,hostel
 The campus WiFi keeps disconnecting in Science Block,wifi
 WiFi signal is weak near Business Block,wifi
 Washroom flooding in Main Building area,plumbing
 Laundry service delay at Library,hostel
 Pest problem found in Lecture Hall 2 room,hostel
-Notice board is outdated at Hostel 2,other
 No water supply in Block D hostel block,plumbing
 Noise disturbance in Hostel 1 hostel at night,hostel
-Emergency exit blocked near Student Center,safety
+Fire extinguisher missing in Block A block,safety
 Toilet is not flushing in Reading Room,plumbing
 Water leakage in Engineering Block washroom,plumbing
 Fan stopped working in Girls Hostel room,electrical
-CCTV not working at Canteen,safety
-Bathroom drain is blocked in Hostel 1,plumbing
-Pest problem found in Laboratory room,hostel
-Light is not working in Lecture Hall 2,electrical
-Canal or drainage complaint around Auditorium,other
-Library book request issue from Workshop,other
-Slow internet speed in Computer Lab computer lab,wifi
-Broken staircase railing near Student Center,safety
-Notice board is outdated at Block C,other
-Pipe burst near Main Building building,plumbing
-WiFi is not working in Block D,wifi
-Hostel gate closes too early at Reading Room,hostel
-Tap is broken in Laboratory corridor,plumbing
-Noise disturbance in Main Building hostel at night,hostel
-Poor lighting and unsafe path near Main Building,safety
-Security guard missing at Sports Complex gate,safety
-Toilet is not flushing in Lecture Hall 2,plumbing
-Furniture damaged in Science Block hostel room,hostel
-Hostel gate closes too early at Business Block,hostel
-Laundry service delay at Student Center,hostel
-Furniture arrangement problem in Lecture Hall 1,other
-Hostel room cleanliness issue in Main Building,hostel
-Parking issue near Library,other
-General service request from Student Center,other
-Mess food quality problem at Auditorium,hostel
-Furniture damaged in Computer Lab hostel room,hostel
-Fan stopped working in Parking Area room,electrical
-Noise disturbance in Block B hostel at night,hostel
-Hostel room cleanliness issue in Lecture Hall 2,hostel
-AC is not cooling in Boys Hostel,electrical
-Socket is damaged near Boys Hostel,electrical
-Parking issue near Girls Hostel,other
-Hostel room cleanliness issue in Boys Hostel,hostel
-CCTV not working at Engineering Block,safety
-Hostel room cleanliness issue in Lecture Hall 2,hostel
-Canal or drainage complaint around Sports Complex,other
-Tap is broken in Parking Area corridor,plumbing
-Library book request issue from Main Building,other
-Fire extinguisher missing in Computer Lab block,safety
-General maintenance request for Workshop,other
-Noise disturbance in Block C hostel at night,hostel
-AC is not cooling in Girls Hostel,electrical
-Tap is broken in Medical Center corridor,plumbing
-Slow internet speed in Auditorium computer lab,wifi
-Canal or drainage complaint around Business Block,other
-Parking issue near Block D,other
-Poor lighting and unsafe path near Library,safety
-Fan stopped working in Reading Room room,electrical
-Emergency exit blocked near Business Block,safety
-No water supply in Hostel 2 hostel block,plumbing
 Fire extinguisher missing in Hostel 1 block,safety
-Furniture damaged in Reading Room hostel room,hostel
-Campus signage missing near Block B,other
-Router issue near Engineering Block with no internet access,wifi
-Main switch issue reported at Hostel 2,electrical
-Water is leaking from the ceiling in Block A,plumbing
-The campus WiFi keeps disconnecting in Reading Room,wifi
-Short circuit smell near Administrative Block,electrical
-Water leakage in Canteen washroom,plumbing
-Emergency exit blocked near Girls Hostel,safety
-General service request from Business Block,other
-Pipe burst near Reading Room building,plumbing
+Bathroom drain is blocked in Hostel 1,plumbing
 Notice board is outdated at Main Building,other
-Internet connection is unstable in Business Block,wifi
+Light is not working in Lecture Hall 2,electrical
+Tap is broken in Parking Area corridor,plumbing
+Slow internet speed in Computer Lab computer lab,wifi
+Broken staircase railing near Workshop,safety
+Library book request issue from Girls Hostel,other
+Unable to connect to campus internet in Workshop,wifi
+Toilet is not flushing in Business Block,plumbing
+Internet connection is unstable in Library,wifi
+Physical assault and bullying incident reported in Block B,safety
+General service request from Laboratory,other
+Water is leaking from the ceiling in Block A,plumbing
+Ragging incident near Block C hostel block,safety
+Power outage in Block B,electrical
+Electrical spark seen near Laboratory,electrical
+Room maintenance issue reported in Girls Hostel,hostel
+Canal or drainage complaint around Business Block,other
+Furniture damaged in Library hostel room,hostel
+Router issue near Canteen with no internet access,wifi
+Pipe burst near Main Building building,plumbing
+General maintenance request for Canteen,other
+Notice board is outdated at Student Center,other
+Students fighting and harassing others in Library washroom,safety
+Pest problem found in Lecture Hall 2 room,hostel
+Washroom flooding in Business Block area,plumbing
+Canal or drainage complaint around Computer Lab,other
+Water is leaking from the ceiling in Boys Hostel,plumbing
+Fan stopped working in Workshop room,electrical
+General service request from Block C,other
+Noise disturbance in Main Building hostel at night,hostel
+Canal or drainage complaint around Student Center,other
+Physical assault and bullying incident reported in Auditorium,safety
+Notice board is outdated at Block B,other
+Emergency exit blocked near Parking Area,safety
+Water leakage in Student Center washroom,plumbing
+Tap is broken in Sports Complex corridor,plumbing
+Parking issue near Library,other
+Hostel room cleanliness issue in Lecture Hall 2,hostel
+Bathroom drain is blocked in Student Center,plumbing
+Bathroom drain is blocked in Canteen,plumbing
+Water leakage in Sports Complex washroom,plumbing
+Fan stopped working in Parking Area room,electrical
+Pest problem found in Sports Complex room,hostel
+Tap is broken in Hostel 1 corridor,plumbing
+Hostel room cleanliness issue in Block C,hostel
+Canal or drainage complaint around Lecture Hall 1,other
+Furniture damaged in Auditorium hostel room,hostel
+Parking issue near Block C,other
+Canal or drainage complaint around Auditorium,other
+CCTV not working at Block C,safety
+Security concern reported near Computer Lab,safety
+Furniture damaged in Sports Complex hostel room,hostel
+AC is not cooling in Science Block,electrical
+Furniture damaged in Computer Lab hostel room,hostel
+Water leakage in Sports Complex washroom,plumbing
+Pest problem found in Administrative Block room,hostel
+Library book request issue from Sports Complex,other
+Main switch issue reported at Girls Hostel,electrical
+Slow internet speed in Block D computer lab,wifi
+Furniture arrangement problem in Sports Complex,other
+AC is not cooling in Business Block,electrical
+Light is not working in Auditorium,electrical
+Socket is damaged near Business Block,electrical
+Furniture damaged in Sports Complex hostel room,hostel
+Parking issue near Student Center,other
+Laundry service delay at Hostel 1,hostel
+Toilet is not flushing in Reading Room,plumbing
 AC is not cooling in Boys Hostel,electrical
-Laundry service delay at Sports Complex,hostel
-Campus signage missing near Block D,other
+Unable to connect to campus internet in Main Building,wifi
+Furniture arrangement problem in Administrative Block,other
+The campus WiFi keeps disconnecting in Computer Lab,wifi
+Students fighting and harassing others in Reading Room washroom,safety
+Poor lighting and unsafe path near Girls Hostel,safety
+Broken staircase railing near Auditorium,safety
+Parking issue near Business Block,other
+Main switch issue reported at Student Center,electrical
+General maintenance request for Canteen,other
+Laundry service delay at Medical Center,hostel
+Parking issue near Engineering Block,other
+Electrical spark seen near Canteen,electrical
+AC is not cooling in Lecture Hall 2,electrical
+Water leakage in Library washroom,plumbing
+Hostel gate closes too early at Block C,hostel
+AC is not cooling in Auditorium,electrical
+WiFi is not working in Lecture Hall 2,wifi
+Socket is damaged near Hostel 2,electrical
+Water leakage in Hostel 2 washroom,plumbing
+Main switch issue reported at Auditorium,electrical
+Internet connection is unstable in Workshop,wifi
+Toilet is not flushing in Medical Center,plumbing
+Canal or drainage complaint around Auditorium,other
+Hostel room cleanliness issue in Engineering Block,hostel
+Campus signage missing near Sports Complex,other
+Laundry service delay at Administrative Block,hostel
+Slow internet speed in Block C computer lab,wifi
+Tap is broken in Engineering Block corridor,plumbing
+Laundry service delay at Block D,hostel
+Fire extinguisher missing in Main Building block,safety
+Internet connection is unstable in Engineering Block,wifi
+Electrical spark seen near Sports Complex,electrical
+Unsafe wiring exposed near Library,safety
+Security guard missing at Sports Complex gate,safety
+Noise disturbance in Reading Room hostel at night,hostel
+Parking issue near Parking Area,other
+Notice board is outdated at Medical Center,other
+Light is not working in Laboratory,electrical
+WiFi is not working in Engineering Block,wifi
+Power outage in Medical Center,electrical
+Parking issue near Hostel 1,other
+No network connectivity in Canteen hostel room,wifi
+Security guard missing at Parking Area gate,safety
+No water supply in Hostel 2 hostel block,plumbing
+Campus signage missing near Boys Hostel,other
+Mess food quality problem at Main Building,hostel
+Students are ragging and beating a junior in Block C,safety
+Furniture arrangement problem in Medical Center,other
+Students are ragging and beating a junior in Workshop,safety
+Library book request issue from Block D,other
+Canal or drainage complaint around Workshop,other
+Toilet is not flushing in Computer Lab,plumbing
+Fan stopped working in Girls Hostel room,electrical
+Noise disturbance in Block B hostel at night,hostel
+Slow internet speed in Computer Lab computer lab,wifi
+Hostel room cleanliness issue in Main Building,hostel
+Furniture damaged in Boys Hostel hostel room,hostel
+Security concern reported near Sports Complex,safety
+Parking issue near Boys Hostel,other
+Furniture arrangement problem in Block A,other
+Security guard missing at Hostel 1 gate,safety
+Toilet is not flushing in Auditorium,plumbing
+Furniture damaged in Medical Center hostel room,hostel
+Light is not working in Student Center,electrical
+Canal or drainage complaint around Computer Lab,other
+Unable to connect to campus internet in Hostel 1,wifi
+Laundry service delay at Engineering Block,hostel
+Bathroom drain is blocked in Student Center,plumbing
+Socket is damaged near Block C,electrical
+Router issue near Student Center with no internet access,wifi
+Students fighting and harassing others in Business Block washroom,safety
+General service request from Block B,other
+Room maintenance issue reported in Block D,hostel
+Parking issue near Business Block,other
+Mess food quality problem at Laboratory,hostel
+Hostel room cleanliness issue in Girls Hostel,hostel
+Ragging incident near Block B hostel block,safety
+Water leakage in Student Center washroom,plumbing
+Mess food quality problem at Parking Area,hostel
+Pest problem found in Laboratory room,hostel
+No water supply in Computer Lab hostel block,plumbing
+Tap is broken in Parking Area corridor,plumbing
+Canal or drainage complaint around Computer Lab,other
+Furniture arrangement problem in Library,other
+Mess food quality problem at Laboratory,hostel
+Water is leaking from the ceiling in Student Center,plumbing
+Internet connection is unstable in Computer Lab,wifi
+Canal or drainage complaint around Administrative Block,other
+No network connectivity in Student Center hostel room,wifi
+Notice board is outdated at Main Building,other
+Fire extinguisher missing in Engineering Block block,safety
+Parking issue near Library,other
+Main switch issue reported at Block D,electrical
+Toilet is not flushing in Hostel 1,plumbing
+Security guard missing at Auditorium gate,safety
+Pest problem found in Main Building room,hostel
+CCTV not working at Science Block,safety
+Physical assault and bullying incident reported in Computer Lab,safety
+Toilet is not flushing in Block B,plumbing
+No water supply in Main Building hostel block,plumbing
+Tap is broken in Boys Hostel corridor,plumbing
+Room maintenance issue reported in Girls Hostel,hostel
+Furniture arrangement problem in Library,other
+Parking issue near Girls Hostel,other
+CCTV not working at Reading Room,safety
+Internet connection is unstable in Lecture Hall 2,wifi
+Mess food quality problem at Auditorium,hostel
+Ragging incident near Hostel 1 hostel block,safety
+Short circuit smell near Block D,electrical
+Router issue near Block A with no internet access,wifi
+Fire extinguisher missing in Girls Hostel block,safety
+The campus WiFi keeps disconnecting in Main Building,wifi
+Notice board is outdated at Hostel 2,other
+Fire extinguisher missing in Block C block,safety
+Emergency exit blocked near Boys Hostel,safety
+Hostel room cleanliness issue in Boys Hostel,hostel
+Tap is broken in Hostel 1 corridor,plumbing
+Physical assault and bullying incident reported in Main Building,safety
+No water supply in Workshop hostel block,plumbing
+Slow internet speed in Main Building computer lab,wifi
+Pest problem found in Main Building room,hostel
+Furniture arrangement problem in Lecture Hall 2,other
+Campus signage missing near Reading Room,other
+Furniture damaged in Engineering Block hostel room,hostel
+Router issue near Lecture Hall 1 with no internet access,wifi
+Unable to connect to campus internet in Block D,wifi
+Poor lighting and unsafe path near Hostel 2,safety
+Socket is damaged near Laboratory,electrical

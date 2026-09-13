@@ -161,10 +161,15 @@
                 <span style="font-size:0.82rem;color:var(--muted);" id="streakLevelSubtitle">Keep reporting & verifying to level up your streak!</span>
               </div>
             </div>
-            <div style="text-align:right;">
+            <div style="text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
               <div style="font-family:'Fraunces',serif;font-size:1.6rem;font-weight:700;color:var(--ink);" id="streakDaysCount">0 Days</div>
               <span style="font-size:0.78rem;color:var(--brass);font-weight:600;" id="streakLevelPerk">Standard Priority</span>
+              <button type="button" class="btn" onclick="triggerTestScratchCard(2)" style="background:linear-gradient(135deg, #f59e0b, #d97706);border:none;color:#ffffff;font-weight:600;font-size:0.78rem;padding:6px 14px;border-radius:8px;box-shadow:0 3px 10px rgba(245,158,11,0.35);display:inline-flex;align-items:center;gap:6px;cursor:pointer;transition:transform 0.15s ease;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" title="Test Level Up Scratch Card Animation">
+                <i data-lucide="ticket" style="width:15px;height:15px;"></i>
+                <span>🎁 Level Up (Scratch Card)</span>
+              </button>
             </div>
+
           </div>
 
           <!-- Progress Bar to Next Level -->
@@ -180,23 +185,23 @@
 
           <!-- Level Tier Badges Strip -->
           <div style="display:flex;justify-content:space-between;gap:8px;margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);font-size:0.75rem;text-align:center;">
-            <div id="tier1" class="streak-tier-badge active" style="flex:1;padding:6px;border-radius:6px;background:rgba(245,158,11,0.1);color:var(--ink);">
+            <div id="tier1" onclick="triggerTestScratchCard(1)" class="streak-tier-badge active" style="flex:1;padding:6px;border-radius:6px;background:rgba(245,158,11,0.1);color:var(--ink);cursor:pointer;" title="Click to test Level 1 Rookie Scratch Card">
               <i data-lucide="shield" style="width:14px;height:14px;display:block;margin:0 auto 2px;"></i>
               <strong>Lvl 1</strong><br><span style="font-size:0.7rem;color:var(--muted);">Rookie</span>
             </div>
-            <div id="tier2" class="streak-tier-badge" style="flex:1;padding:6px;border-radius:6px;opacity:0.5;background:var(--card-bg);color:var(--ink);">
+            <div id="tier2" onclick="triggerTestScratchCard(2)" class="streak-tier-badge" style="flex:1;padding:6px;border-radius:6px;opacity:0.5;background:var(--card-bg);color:var(--ink);cursor:pointer;" title="Click to test Level 2 Scout Scratch Card">
               <i data-lucide="zap" style="width:14px;height:14px;display:block;margin:0 auto 2px;"></i>
               <strong>Lvl 2</strong><br><span style="font-size:0.7rem;color:var(--muted);">Scout</span>
             </div>
-            <div id="tier3" class="streak-tier-badge" style="flex:1;padding:6px;border-radius:6px;opacity:0.5;background:var(--card-bg);color:var(--ink);">
+            <div id="tier3" onclick="triggerTestScratchCard(3)" class="streak-tier-badge" style="flex:1;padding:6px;border-radius:6px;opacity:0.5;background:var(--card-bg);color:var(--ink);cursor:pointer;" title="Click to test Level 3 Guardian Scratch Card">
               <i data-lucide="shield-check" style="width:14px;height:14px;display:block;margin:0 auto 2px;"></i>
               <strong>Lvl 3</strong><br><span style="font-size:0.7rem;color:var(--muted);">Guardian</span>
             </div>
-            <div id="tier4" class="streak-tier-badge" style="flex:1;padding:6px;border-radius:6px;opacity:0.5;background:var(--card-bg);color:var(--ink);">
+            <div id="tier4" onclick="triggerTestScratchCard(4)" class="streak-tier-badge" style="flex:1;padding:6px;border-radius:6px;opacity:0.5;background:var(--card-bg);color:var(--ink);cursor:pointer;" title="Click to test Level 4 Sentinel Scratch Card">
               <i data-lucide="award" style="width:14px;height:14px;display:block;margin:0 auto 2px;"></i>
               <strong>Lvl 4</strong><br><span style="font-size:0.7rem;color:var(--muted);">Sentinel</span>
             </div>
-            <div id="tier5" class="streak-tier-badge" style="flex:1;padding:6px;border-radius:6px;opacity:0.5;background:var(--card-bg);color:var(--ink);">
+            <div id="tier5" onclick="triggerTestScratchCard(5)" class="streak-tier-badge" style="flex:1;padding:6px;border-radius:6px;opacity:0.5;background:var(--card-bg);color:var(--ink);cursor:pointer;" title="Click to test Level 5 Champion Scratch Card">
               <i data-lucide="crown" style="width:14px;height:14px;display:block;margin:0 auto 2px;"></i>
               <strong>Lvl 5</strong><br><span style="font-size:0.7rem;color:var(--muted);">Champion</span>
             </div>
@@ -214,9 +219,12 @@
             <div id="myRankCard">
               <!-- Populated by loadLeaderboard() -->
             </div>
+            <div id="leaderboardPodiumBox">
+              <!-- Populated by loadLeaderboard() with Top 3 3D Podium -->
+            </div>
             <div style="margin-top:16px;">
               <button type="button" class="btn btn-secondary btn-sm" style="width:100%;" onclick="toggleTop5Leaderboard()">
-                <span id="leaderboardToggleBtnText">View Top 5 Leaderboard</span>
+                <span id="leaderboardToggleBtnText">View Full Leaderboard</span>
               </button>
               <div id="top5LeaderboardBox" style="display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--line);">
                 <div id="leaderboardList"></div>
@@ -263,9 +271,14 @@
             <div id="reportMsg" class="msg"></div>
             <form id="reportForm">
               <div class="field">
-                <label>What's the problem?</label>
+                <label>Title of Complaint</label>
+                <input type="text" id="rTitle" required placeholder="e.g. Wi-Fi Not Working in Hostel 2" maxlength="120">
+              </div>
+              <div class="field">
+                <label>Detailed Description</label>
                 <textarea id="rDescription" required placeholder="e.g. Wi-Fi router is flickering and down in Hostel 2 since this morning"></textarea>
               </div>
+
               <div class="field">
                 <label>Location</label>
                 <input type="text" id="rLocation" required placeholder="e.g. Hostel 2, Room 304">
@@ -393,42 +406,74 @@
       <!-- 7. PROFILE & SETTINGS PANEL -->
       <div class="panel" id="panel-profile">
         <h1 style="margin:0 0 4px;font-size:1.8rem;">Profile &amp; Settings</h1>
-        <p style="margin:0 0 24px;color:var(--muted);font-size:0.9rem;">Manage your account details and display preferences.</p>
+        <p style="margin:0 0 24px;color:var(--muted);font-size:0.9rem;">Manage your account details, level status, and earned campus achievements.</p>
 
-        <div class="card profile-form">
-          <div id="profileMsg" class="msg"></div>
-          <form id="profileForm">
-            <div class="field">
-              <label>Name</label>
-              <input type="text" id="pName" required>
+        <div class="profile-grid-container">
+          <!-- Left Column: Account Details & Preferences Form -->
+          <div class="card" style="margin-bottom:0;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--line);">
+              <i data-lucide="user-cog" style="color:var(--teal);width:22px;height:22px;"></i>
+              <h3 style="margin:0;font-size:1.1rem;">Account Preferences</h3>
             </div>
-            <div class="field">
-              <label>Email</label>
-              <input type="text" id="pEmail" disabled style="opacity:0.7;">
-            </div>
-            <div class="field">
-              <label>Hostel / Block</label>
-              <input type="text" id="pBlock" placeholder="e.g. Hostel 2, Room 304">
-            </div>
-            <div class="field" style="display:flex;align-items:center;gap:10px;">
-              <input type="checkbox" id="pNotify" style="width:auto;">
-              <label style="margin:0;cursor:pointer;" for="pNotify">Email me when a complaint is resolved</label>
-            </div>
-
-            <!-- Dark Theme Toggle Row -->
-            <div class="field" style="display:flex;align-items:center;justify-content:space-between;margin-top:20px;padding-top:16px;border-top:1px solid var(--line);">
-              <div>
-                <strong style="display:block;font-size:0.9rem;color:var(--ink);">Dark Theme Mode</strong>
-                <span style="font-size:0.78rem;color:var(--muted);">Switch interface to dark color palette</span>
+            <div id="profileMsg" class="msg"></div>
+            <form id="profileForm">
+              <div class="field">
+                <label>Name</label>
+                <input type="text" id="pName" required>
               </div>
-              <label class="switch">
-                <input type="checkbox" id="studentDarkToggle" onchange="toggleStudentDarkMode(this.checked)">
-                <span class="slider"></span>
-              </label>
+              <div class="field">
+                <label>Email</label>
+                <input type="text" id="pEmail" disabled style="opacity:0.7;">
+              </div>
+              <div class="field">
+                <label>Hostel / Block</label>
+                <input type="text" id="pBlock" placeholder="e.g. Hostel 2, Room 304">
+              </div>
+              <div class="field" style="display:flex;align-items:center;gap:10px;">
+                <input type="checkbox" id="pNotify" style="width:auto;">
+                <label style="margin:0;cursor:pointer;" for="pNotify">Email me when a complaint is resolved</label>
+              </div>
+
+              <!-- Dark Theme Toggle Row -->
+              <div class="field" style="display:flex;align-items:center;justify-content:space-between;margin-top:20px;padding-top:16px;border-top:1px solid var(--line);">
+                <div>
+                  <strong style="display:block;font-size:0.9rem;color:var(--ink);">Dark Theme Mode</strong>
+                  <span style="font-size:0.78rem;color:var(--muted);">Switch interface to dark color palette</span>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="studentDarkToggle" onchange="toggleStudentDarkMode(this.checked)">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="margin-top:12px;width:100%;">Save Changes</button>
+            </form>
+          </div>
+
+          <!-- Right Column: Level Progress & Earned Achievements / Badges -->
+          <div class="card" style="margin-bottom:0;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--line);">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <i data-lucide="award" style="color:var(--brass);width:22px;height:22px;"></i>
+                <h3 style="margin:0;font-size:1.1rem;">Level &amp; Achievements</h3>
+              </div>
+              <span id="profileLevelPill" class="badge-pill" style="background:#f59e0b;color:#fff;font-weight:700;padding:4px 10px;border-radius:12px;font-size:0.8rem;">Lvl 1</span>
             </div>
 
-            <button type="submit" class="btn btn-primary" style="margin-top:12px;">Save Changes</button>
-          </form>
+            <!-- Current Level Summary Banner -->
+            <div class="profile-level-banner" id="profileLevelBanner">
+              <!-- Populated by loadProfile() -->
+            </div>
+
+            <!-- Achievements & Badges Grid -->
+            <h4 style="margin:20px 0 12px;font-size:0.95rem;color:var(--ink);display:flex;align-items:center;gap:8px;">
+              <i data-lucide="medal" style="width:18px;height:18px;color:var(--brass);"></i>
+              <span>Earned Badges &amp; Trophies</span>
+            </h4>
+            <div class="achievements-grid" id="profileAchievementsGrid">
+              <!-- Populated by loadProfile() -->
+            </div>
+          </div>
         </div>
       </div>
 
@@ -436,7 +481,100 @@
   </div>
 </div>
 
+<!-- COMPLAINT DETAIL INTERACTIVE MODAL -->
+<div id="complaintDetailModal" class="modal-backdrop" onclick="closeComplaintModal(event)">
+  <div class="modal-card" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <span id="mCategoryBadge"></span>
+        <span id="mStatusTag"></span>
+      </div>
+      <button type="button" class="modal-close-btn" onclick="closeComplaintModal()">&times;</button>
+    </div>
+
+    <h2 id="mTitle" style="margin:16px 0 8px;font-size:1.3rem;line-height:1.3;color:var(--ink);"></h2>
+    
+    <div style="display:flex;gap:16px;color:var(--muted);font-size:0.85rem;margin-bottom:18px;flex-wrap:wrap;padding-bottom:12px;border-bottom:1px solid var(--line);">
+      <div><strong style="color:var(--ink);">Reported By:</strong> <span id="mStudentName"></span></div>
+      <div><strong style="color:var(--ink);">Location:</strong> <span id="mLocation"></span></div>
+      <div><strong style="color:var(--ink);">Department:</strong> <span id="mDepartment"></span></div>
+      <div><strong style="color:var(--ink);">Raised:</strong> <span id="mTimeAgo"></span></div>
+    </div>
+
+    <!-- Animated 3-step progress bar -->
+    <div style="margin-bottom:24px;">
+      <strong style="display:block;font-size:0.8rem;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.05em;">Resolution Progress</strong>
+      <div class="animated-progress-track" id="mProgressTrack"></div>
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <strong style="display:block;font-size:0.8rem;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.05em;">Complaint Details</strong>
+      <div id="mDescription" style="font-size:0.95rem;color:var(--ink);line-height:1.6;background:var(--paper);padding:14px;border-radius:8px;border:1px solid var(--line);white-space:pre-wrap;"></div>
+    </div>
+
+    <!-- Photo evidence container -->
+    <div id="mPhotoContainer" style="display:none;margin-bottom:20px;">
+      <strong style="display:block;font-size:0.8rem;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.05em;">Photo Evidence</strong>
+      <div style="text-align:center;background:var(--paper);padding:10px;border-radius:8px;border:1px solid var(--line);">
+        <img id="mPhotoImg" src="" alt="Evidence Photo" style="max-width:100%;max-height:340px;border-radius:6px;object-fit:contain;">
+      </div>
+    </div>
+
+    <!-- Admin resolution & rating section -->
+    <div id="mResolutionContainer" style="display:none;margin-top:20px;padding-top:16px;border-top:1px dashed var(--line);">
+      <strong style="display:block;font-size:0.8rem;color:var(--teal);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.05em;">Admin Resolution Message</strong>
+      <div id="mResolutionText" class="draft-box" style="margin-bottom:12px;font-size:0.9rem;"></div>
+      <div id="mFeedbackSection"></div>
+    </div>
+
+</div>
+</div>
+
+<!-- LEVEL UNLOCKED SCRATCH CARD MODAL -->
+<div id="scratchCardModal" class="modal-backdrop" onclick="closeScratchCardModal(event)">
+  <div class="scratch-modal-card" onclick="event.stopPropagation()">
+    <div style="text-align:right;">
+      <button type="button" class="modal-close-btn" onclick="closeScratchCardModal()">&times;</button>
+    </div>
+    
+    <div style="text-align:center;margin-bottom:12px;">
+      <div style="font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;color:#f59e0b;font-weight:700;margin-bottom:4px;">🎉 LEVEL REWARD UNLOCKED</div>
+      <h2 style="margin:0 0 4px;font-size:1.4rem;color:var(--ink);" id="scratchCardHeadline">Level 2 • Active Scout Unlocked!</h2>
+      <p style="margin:0;font-size:0.84rem;color:var(--muted);">Drag across the card to scratch off the foil overlay!</p>
+    </div>
+
+    <!-- Scratch Card Interactive Container -->
+    <div class="scratch-card-wrapper">
+      <!-- Revealed Card Content (Underneath Foil) -->
+      <div class="scratch-card-underlayer" id="scratchUnderlayer">
+        <div class="scratch-badge-circle" id="scratchBadgeCircle">
+          <i id="scratchLucideIcon" data-lucide="zap" style="width:36px;height:36px;color:#f59e0b;"></i>
+        </div>
+        <span class="scratch-level-lbl" id="scratchLevelTag">LEVEL 2 UNLOCKED</span>
+        <h3 class="scratch-level-title" id="scratchLevelTitle">Active Scout</h3>
+        <p class="scratch-level-perk" id="scratchLevelPerk">🎁 Unlocked Perk: +10% Leaderboard XP & Faster Priority Routing</p>
+        <button type="button" class="btn btn-primary btn-sm" style="margin-top:8px;" onclick="claimScratchReward()">
+          Claim Scout Badge ✨
+        </button>
+      </div>
+
+      <!-- Scratch Foil Canvas -->
+      <canvas id="scratchCanvas" class="scratch-canvas"></canvas>
+    </div>
+
+    <div style="margin-top:14px;display:flex;align-items:center;justify-content:space-between;gap:8px;">
+      <span style="font-size:0.78rem;color:var(--muted);" id="scratchProgressStatus">Scratch with your mouse or finger...</span>
+      <button type="button" class="btn btn-secondary btn-sm" id="resetScratchBtn" style="display:none;" onclick="resetScratchFoil()">
+        <i data-lucide="rotate-ccw" style="width:14px;height:14px;"></i>
+        <span>Scratch Again</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+
 <script src="js/app.js"></script>
+
 <script>
 // --- GLOBAL INITIALIZATION & ROLE CHECK ---
 requireRole("student");
@@ -584,61 +722,80 @@ async function loadOverview() {
   await loadPredictions();
 }
 
-function getStreakLevelInfo(streak) {
-  if (streak < 3) {
+function getStreakLevelInfo(pts) {
+  const points = Math.max(0, Math.round(parseFloat(pts) || 0));
+
+  if (points < 10) {
+    // Level 1: Rookie (0 - 9 pts), 3 sub-levels (3 pts each)
+    const subLevel = Math.min(3, Math.floor(points / 3) + 1);
     return {
       level: 1,
-      name: "Campus Rookie",
+      subLevel: subLevel,
+      name: `Campus Rookie ${"I".repeat(subLevel)}`,
       badgeColor: "#f59e0b",
-      current: streak,
-      next: 3,
-      percent: Math.min(100, Math.round((streak / 3) * 100)),
-      perk: "Standard Priority",
-      subtitle: `${3 - streak} more active day${3 - streak === 1 ? '' : 's'} to reach Scout (Lvl 2)!`
+      current: points,
+      next: 10,
+      percent: Math.min(100, Math.round((points / 10) * 100)),
+      perk: "Standard Priority Queue",
+      subtitle: `${10 - points} more points to unlock Scout (Lvl 2)! (${subLevel}/3 sub-levels)`
     };
-  } else if (streak < 7) {
+  } else if (points < 40) {
+    // Level 2: Scout (10 - 39 pts), 5 sub-levels (6 pts each)
+    const ptsInScout = points - 10;
+    const subLevel = Math.min(5, Math.floor(ptsInScout / 6) + 1);
     return {
       level: 2,
-      name: "Active Scout",
+      subLevel: subLevel,
+      name: `Active Scout ${"I".repeat(subLevel)}`,
       badgeColor: "#3b82f6",
-      current: streak - 3,
-      next: 4,
-      percent: Math.min(100, Math.round(((streak - 3) / 4) * 100)),
-      perk: "+10% Leaderboard XP",
-      subtitle: `${7 - streak} more active day${7 - streak === 1 ? '' : 's'} to reach Guardian (Lvl 3)!`
+      current: ptsInScout,
+      next: 30,
+      percent: Math.min(100, Math.round((ptsInScout / 30) * 100)),
+      perk: "+10 Confidence Score Bonus & Faster Routing",
+      subtitle: `${40 - points} more points to reach Guardian (Lvl 3)! (Scout ${subLevel}/5 sub-levels)`
     };
-  } else if (streak < 14) {
+  } else if (points < 80) {
+    // Level 3: Guardian (40 - 79 pts), 5 sub-levels (8 pts each)
+    const ptsInGuardian = points - 40;
+    const subLevel = Math.min(5, Math.floor(ptsInGuardian / 8) + 1);
     return {
       level: 3,
-      name: "Facility Guardian",
+      subLevel: subLevel,
+      name: `Facility Guardian ${"I".repeat(subLevel)}`,
       badgeColor: "#10b981",
-      current: streak - 7,
-      next: 7,
-      percent: Math.min(100, Math.round(((streak - 7) / 7) * 100)),
-      perk: "+25% XP & Priority",
-      subtitle: `${14 - streak} more active day${14 - streak === 1 ? '' : 's'} to reach Sentinel (Lvl 4)!`
+      current: ptsInGuardian,
+      next: 40,
+      percent: Math.min(100, Math.round((ptsInGuardian / 40) * 100)),
+      perk: "+15 Confidence Score Bonus & Verified Sentinel",
+      subtitle: `${80 - points} more points to reach Sentinel (Lvl 4)! (Guardian ${subLevel}/5 sub-levels)`
     };
-  } else if (streak < 30) {
+  } else if (points < 130) {
+    // Level 4: Sentinel (80 - 129 pts), 5 sub-levels (10 pts each)
+    const ptsInSentinel = points - 80;
+    const subLevel = Math.min(5, Math.floor(ptsInSentinel / 10) + 1);
     return {
       level: 4,
-      name: "Sentinel Leader",
+      subLevel: subLevel,
+      name: `Sentinel Leader ${"I".repeat(subLevel)}`,
       badgeColor: "#8b5cf6",
-      current: streak - 14,
-      next: 16,
-      percent: Math.min(100, Math.round(((streak - 14) / 16) * 100)),
-      perk: "+50% Priority Weight",
-      subtitle: `${30 - streak} more active day${30 - streak === 1 ? '' : 's'} to reach Champion (Lvl 5)!`
+      current: ptsInSentinel,
+      next: 50,
+      percent: Math.min(100, Math.round((ptsInSentinel / 50) * 100)),
+      perk: "+20 Confidence Score Bonus & Top Feed Spotlight",
+      subtitle: `${130 - points} more points to reach Champion (Lvl 5)! (Sentinel ${subLevel}/5 sub-levels)`
     };
   } else {
+    // Level 5: Champion (130+ pts)
     return {
       level: 5,
-      name: "Campus Champion",
+      subLevel: 5,
+      name: "Campus Champion V",
       badgeColor: "#ec4899",
-      current: streak,
-      next: streak,
+      current: points,
+      next: points,
       percent: 100,
-      perk: "MAX Level Multiplier",
-      subtitle: "Maximum level achieved! Top community status."
+      perk: "MAX Level Multiplier & Direct Admin Channel",
+      subtitle: "Maximum level achieved! Top campus status."
     };
   }
 }
@@ -650,6 +807,7 @@ async function loadStreak() {
     const mineData = await api("/api/complaints/mine");
     
     const streakCount = streakData.streak_count || 0;
+    const confScore = (streakData.confidence_score !== undefined && streakData.confidence_score !== null) ? streakData.confidence_score : 0.0;
     const totalCount = mineData.length || 0;
     const resolvedCount = mineData.filter(c => c.status === "resolved").length || 0;
     const openCount = mineData.filter(c => c.status !== "resolved").length || 0;
@@ -659,8 +817,8 @@ async function loadStreak() {
     animateCountUp("kpiResolved", resolvedCount);
     animateCountUp("kpiOpen", openCount);
 
-    // Compute Streak Level
-    const info = getStreakLevelInfo(streakCount);
+    // Compute Streak Level by Confidence Score Points
+    const info = getStreakLevelInfo(confScore);
 
     // Update Stat Card Badge & Label
     const streakBadge = document.getElementById("streakLevelBadge");
@@ -671,7 +829,7 @@ async function loadStreak() {
       streakBadge.style.color = "#ffffff";
     }
     if (streakTitle) {
-      streakTitle.textContent = `Day Streak • ${info.name}`;
+      streakTitle.textContent = `Progress • ${info.name}`;
     }
 
     // Update Detailed Streak Level Card
@@ -690,9 +848,9 @@ async function loadStreak() {
       pillEl.style.background = info.badgeColor;
     }
     if (subEl) subEl.textContent = info.subtitle;
-    if (daysEl) daysEl.textContent = `${streakCount} Day${streakCount === 1 ? '' : 's'}`;
+    if (daysEl) daysEl.textContent = `${confScore} pts`;
     if (perkEl) perkEl.textContent = info.perk;
-    if (textEl) textEl.textContent = info.level === 5 ? "MAX Level Achieved!" : `${info.current} / ${info.next} days to Level ${info.level + 1}`;
+    if (textEl) textEl.textContent = info.level === 5 ? "MAX Level Achieved!" : `${info.current} / ${info.next} pts to Level ${info.level + 1}`;
     if (pctEl) pctEl.textContent = `${info.percent}%`;
     if (barEl) {
       barEl.style.width = `${info.percent}%`;
@@ -715,23 +873,45 @@ async function loadStreak() {
       }
     }
 
+    // Auto-trigger Scratch Card when leveling up
+    const prevLevel = parseInt(localStorage.getItem("compass_last_seen_level") || "0");
+    if (prevLevel > 0 && info.level > prevLevel) {
+      setTimeout(() => {
+        openLevelUpScratchCard(info);
+      }, 600);
+    }
+    localStorage.setItem("compass_last_seen_level", String(info.level));
+
     if (window.lucide) lucide.createIcons();
   } catch (e) { /* ignore transient errors */ }
 }
 
+
 // -------- 2. LEADERBOARD & YOUR RANK --------
+function getInitials(name) {
+  if (!name) return "ST";
+  const parts = name.trim().split(/\s+/);
+  if (parts.length >= 2) {
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  }
+  return name.slice(0, 2).toUpperCase();
+}
+
 async function loadLeaderboard() {
   const rankCard = document.getElementById("myRankCard");
+  const podiumBox = document.getElementById("leaderboardPodiumBox");
   const list = document.getElementById("leaderboardList");
   if (!rankCard || !list) return;
 
   try {
     const data = await api("/api/leaderboard");
+    const myPoints = Math.round(data.my_confidence_score !== undefined ? data.my_confidence_score : 0);
+
     rankCard.innerHTML = `
       <div class="my-rank-card" style="border-radius:10px;">
         <div>
-          <div style="font-size:.82rem;color:#B7C0D1;">Your Reports Filed</div>
-          <div style="font-family:'Fraunces',serif;font-size:1.8rem;font-weight:700;">${data.my_reports}</div>
+          <div style="font-size:.82rem;color:#B7C0D1;">Your Report Points</div>
+          <div style="font-family:'Fraunces',serif;font-size:1.8rem;font-weight:700;">${myPoints} pts</div>
         </div>
         <div style="text-align:right;">
           <div style="font-size:.82rem;color:#B7C0D1;">Leaderboard Rank</div>
@@ -740,19 +920,80 @@ async function loadLeaderboard() {
       </div>
     `;
 
-    if (!data.leaderboard || !data.leaderboard.length) {
-      list.innerHTML = `<div class="empty">No reports filed yet — be the first!</div>`;
+    const leaderboard = data.leaderboard || [];
+    if (!leaderboard.length) {
+      if (podiumBox) podiumBox.innerHTML = `<div class="empty" style="padding:20px 0;">No active student rankings yet. Submit a report to join the leaderboard!</div>`;
+      list.innerHTML = `<div class="empty">No active student rankings yet.</div>`;
       return;
     }
 
-    list.innerHTML = data.leaderboard.slice(0, 5).map((r, i) => `
-      <div class="leaderboard-row" style="padding:8px 12px;margin-bottom:6px;">
-        <div class="rank" style="font-size:1rem;width:24px;">#${i + 1}</div>
-        <div class="name" style="font-size:0.88rem;">${escapeHtml(r.name)}</div>
-        <div class="badge" style="font-size:0.72rem;">${escapeHtml(r.badge)}</div>
-        <div style="font-weight:600;font-size:0.82rem;color:var(--ink);">${r.reports} pts</div>
-      </div>
-    `).join("");
+    // Render 3D Leaderboard Podium for Top 3 (only real users)
+    if (podiumBox) {
+      const r1 = leaderboard[0];
+      const r2 = leaderboard[1];
+      const r3 = leaderboard[2];
+
+      const renderPodiumSlot = (r, rankNum) => {
+        if (!r) {
+          return `
+            <div class="podium-column rank-${rankNum}" style="opacity:0.35;pointer-events:none;">
+              <div class="podium-user-info" style="margin-top:auto;">
+                <div class="podium-user-name" style="font-size:0.75rem;color:var(--muted);">Spot #${rankNum}</div>
+              </div>
+              <div class="podium-step">${rankNum}</div>
+            </div>
+          `;
+        }
+
+        const pts = Math.round(r.confidence_score !== undefined ? r.confidence_score : 0);
+        const avatarHtml = r.avatar_url 
+          ? `<img src="${r.avatar_url}" class="podium-avatar-img" alt="${escapeHtml(r.name)}" />`
+          : `<div class="podium-avatar-initials">${getInitials(r.name)}</div>`;
+
+        const crownHtml = rankNum === 1 ? `<div class="podium-crown">👑</div>` : ``;
+
+        return `
+          <div class="podium-column rank-${rankNum}">
+            ${crownHtml}
+            <div class="podium-avatar-wrapper">
+              ${avatarHtml}
+              <div class="podium-rank-badge">#${rankNum}</div>
+            </div>
+            <div class="podium-user-info">
+              <div class="podium-user-name" title="${escapeHtml(r.name)}">${escapeHtml(r.name)}</div>
+              <div class="podium-user-value">${pts} pts</div>
+            </div>
+            <div class="podium-step">${rankNum}</div>
+          </div>
+        `;
+      };
+
+      podiumBox.innerHTML = `
+        <div class="leaderboard-podium-container">
+          ${renderPodiumSlot(r2, 2)}
+          ${renderPodiumSlot(r1, 1)}
+          ${renderPodiumSlot(r3, 3)}
+        </div>
+      `;
+    }
+
+    // Render expandable list for full leaderboard
+    list.innerHTML = leaderboard.map((r, i) => {
+      const pts = Math.round(r.confidence_score !== undefined ? r.confidence_score : 0);
+      const avatarHtml = r.avatar_url
+        ? `<img src="${r.avatar_url}" style="width:28px;height:28px;border-radius:50%;object-fit:cover;margin-right:8px;" alt="${escapeHtml(r.name)}" />`
+        : `<div style="width:28px;height:28px;border-radius:50%;background:var(--brass-dark);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;margin-right:8px;">${getInitials(r.name)}</div>`;
+
+      return `
+        <div class="leaderboard-row" style="padding:8px 12px;margin-bottom:6px;">
+          <div class="rank" style="font-size:1rem;width:28px;">#${i + 1}</div>
+          ${avatarHtml}
+          <div class="name" style="font-size:0.88rem;flex:1;">${escapeHtml(r.name)}</div>
+          <div class="badge" style="font-size:0.72rem;margin-right:8px;">${escapeHtml(r.badge || 'Student')}</div>
+          <div style="font-weight:600;font-size:0.85rem;color:var(--ink);">${pts} pts</div>
+        </div>
+      `;
+    }).join("");
   } catch (e) {
     if (rankCard) rankCard.innerHTML = `<div class="empty">Leaderboard data unavailable</div>`;
   }
@@ -764,7 +1005,7 @@ function toggleTop5Leaderboard() {
   if (!box) return;
   const isHidden = box.style.display === "none";
   box.style.display = isHidden ? "block" : "none";
-  if (btnText) btnText.textContent = isHidden ? "Hide Leaderboard" : "View Top 5 Leaderboard";
+  if (btnText) btnText.textContent = isHidden ? "Hide Leaderboard" : "View Full Leaderboard";
 }
 
 // -------- 3. NOTIFICATIONS & RECENT ACTIVITY --------
@@ -837,6 +1078,8 @@ async function loadMyComplaints() {
       complaints = complaints.filter(c => c.status === filter);
     }
 
+    window.myComplaintsList = complaints;
+
     if (!complaints.length) {
       container.innerHTML = `<div class="empty" style="grid-column:1/-1;">No complaints found for this status.</div>`;
       return;
@@ -849,9 +1092,10 @@ async function loadMyComplaints() {
       const isResolved = c.status === "resolved";
 
       const fillWidth = isResolved ? "80%" : (isInProgress ? "40%" : "0%");
+      const displayTitle = c.title || c.description;
 
       return `
-        <div class="complaint-card-v2" id="c-${c.id}">
+        <div class="complaint-card-v2 clickable-card" id="c-${c.id}" onclick="openComplaintDetailModal(${c.id})" title="Click to view full complaint details">
           <div>
             <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;">
               <div style="display:flex;align-items:center;gap:8px;">
@@ -863,7 +1107,9 @@ async function loadMyComplaints() {
               <span class="tag status-${c.status}">${statusLabel(c.status)}</span>
             </div>
 
-            <h3 style="font-size:0.98rem;font-weight:600;margin:0 0 6px;line-height:1.4;color:var(--ink);">${escapeHtml(c.description)}</h3>
+            <h3 style="font-size:1.02rem;font-weight:600;margin:0 0 4px;line-height:1.35;color:var(--ink);">${escapeHtml(displayTitle)}</h3>
+            <p style="font-size:0.84rem;color:var(--muted);margin:0 0 10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.4;">${escapeHtml(c.description)}</p>
+
             <div class="meta" style="margin-bottom:12px;">
               ${escapeHtml(c.location)} &bull; Reported ${timeAgo(c.created_at)}
             </div>
@@ -893,7 +1139,7 @@ async function loadMyComplaints() {
           </div>
 
           ${isResolved ? `
-            <div style="margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);">
+            <div style="margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);" onclick="event.stopPropagation()">
               ${c.draft_message ? `<div class="draft-box" style="margin-bottom:10px;font-size:0.82rem;">${escapeHtml(c.draft_message)}</div>` : ""}
               <div class="feedback-box" style="margin-top:0;padding-top:0;border-top:none;">
                 ${c.feedback_rating ? `<div class="feedback-done">Rated ${c.feedback_rating}/5 &#9733;</div>` : `
@@ -912,6 +1158,7 @@ async function loadMyComplaints() {
     if (container) container.innerHTML = `<div class="empty" style="grid-column:1/-1;">Error loading complaints.</div>`;
   }
 }
+
 
 function renderStars(complaintId, currentRating) {
   let html = `<div class="stars" data-id="${complaintId}">`;
@@ -932,6 +1179,8 @@ async function rateComplaint(complaintId, rating) {
 }
 
 // -------- 5. COMPASS LIVE FEED --------
+window.allComplaintsMap = window.allComplaintsMap || {};
+
 async function loadPulseFeed() {
   const container = document.getElementById("pulseFeed");
   if (!container) return;
@@ -940,30 +1189,39 @@ async function loadPulseFeed() {
   try {
     const feed = await api("/api/community/feed");
     if (!feed.length) {
-      container.innerHTML = `<div class="empty" style="grid-column:1/-1;">No activity reported yet.</div>`;
+      container.innerHTML = `<div class="empty" style="grid-column:1/-1;">No activity reported yet. Be the first to report an issue!</div>`;
       return;
     }
 
-    container.innerHTML = feed.map(f => {
-      const iconHtml = getCategoryIconHtml(f.category || "other");
+    feed.forEach(c => { window.allComplaintsMap[c.id] = c; });
+
+    container.innerHTML = feed.map(c => {
+      const iconHtml = getCategoryIconHtml(c.category || "other");
+      const displayTitle = c.title || c.description;
 
       return `
-        <div class="complaint-card-v2">
+        <div class="complaint-card-v2 clickable-card" id="feed-c-${c.id}" onclick="openComplaintDetailModal(${c.id})" title="Click to view full report details">
           <div>
-            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;">
               <span class="category-badge-pill">
                 ${iconHtml}
-                <span style="text-transform:capitalize;">${escapeHtml(f.category)}</span>
+                <span style="text-transform:capitalize;">${escapeHtml(c.category || "General")}</span>
               </span>
-              <span class="tag status-${f.status}">${statusLabel(f.status)}</span>
+              <span class="tag status-${c.status}">${statusLabel(c.status)}</span>
             </div>
 
-            <div style="font-weight:600;font-size:0.95rem;margin-bottom:4px;color:var(--ink);">
-              ${escapeHtml(f.location)}
+            <h3 style="font-size:1.02rem;font-weight:600;margin:0 0 4px;line-height:1.35;color:var(--ink);">${escapeHtml(displayTitle)}</h3>
+            <p style="font-size:0.84rem;color:var(--muted);margin:0 0 10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.4;">${escapeHtml(c.description)}</p>
+
+            <div class="meta" style="margin-bottom:8px;">
+              ${escapeHtml(c.location)} &bull; Reported ${timeAgo(c.created_at)} ${c.student_name ? `&bull; ${escapeHtml(c.student_name)}` : ""}
             </div>
-            <div style="font-size:0.8rem;color:var(--muted);">
-              Reported ${timeAgo(f.created_at)} ${f.frequency > 1 ? `&bull; ${f.frequency} reports merged` : ""}
-            </div>
+
+            ${c.frequency > 1 ? `
+              <div style="margin-top:4px;font-size:0.75rem;color:var(--brass-dark);background:rgba(245,158,11,0.12);padding:4px 10px;border-radius:12px;display:inline-block;">
+                ${c.frequency} similar student reports merged
+              </div>
+            ` : ""}
           </div>
         </div>
       `;
@@ -1055,7 +1313,14 @@ function showReportMsg(text, type) {
 
 document.getElementById("reportForm").addEventListener("submit", async (e) => {
   e.preventDefault();
+  const submitBtn = e.target.querySelector("button[type='submit']");
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = `<span>Submitting...</span>`;
+  }
   const fd = new FormData();
+  const titleVal = document.getElementById("rTitle") ? document.getElementById("rTitle").value : "";
+  if (titleVal) fd.append("title", titleVal);
   fd.append("description", document.getElementById("rDescription").value);
   fd.append("location", document.getElementById("rLocation").value);
   fd.append("anonymous", document.getElementById("rAnon").checked);
@@ -1064,23 +1329,375 @@ document.getElementById("reportForm").addEventListener("submit", async (e) => {
 
   try {
     const data = await api("/api/complaints", { method: "POST", body: fd, isForm: true });
-    showReportMsg(data.message, "ok");
+    const cat = data.complaint ? (data.complaint.category || 'General').toUpperCase() : '';
+    const successMsg = (data.message || 'Complaint submitted') + (cat ? ` — AI classified as [${cat}]` : '');
+    showReportMsg(successMsg, "ok");
     e.target.reset();
-    setTimeout(() => switchStudentPanel("complaints"), 1200);
+
+    const filterSelect = document.getElementById("filterStatus");
+    if (filterSelect) filterSelect.value = "all";
+
+    await loadMyComplaints();
+    await loadPulseFeed();
+    await loadOverview();
+
+    setTimeout(() => {
+      switchStudentPanel("complaints");
+      showReportMsg("", "");
+    }, 800);
   } catch (err) {
     showReportMsg(err.message, "error");
   }
+
+ finally {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = `<i data-lucide="send" style="width:16px;height:16px;"></i><span>Submit Report</span>`;
+      if (window.lucide) lucide.createIcons();
+    }
+  }
 });
 
-// -------- 8. PROFILE LOADER & SAVE --------
+// -------- 8. COMPLAINT DETAIL MODAL --------
+window.myComplaintsList = [];
+
+function openComplaintDetailModal(complaintId) {
+  let c = (window.myComplaintsList || []).find(item => item.id === complaintId);
+  if (!c && window.allComplaintsMap) {
+    c = window.allComplaintsMap[complaintId];
+  }
+  if (!c) return;
+
+  const modal = document.getElementById("complaintDetailModal");
+  if (!modal) return;
+
+  document.getElementById("mTitle").textContent = c.title || c.description;
+  document.getElementById("mCategoryBadge").className = "category-badge-pill";
+  document.getElementById("mCategoryBadge").innerHTML = `${getCategoryIconHtml(c.category || 'other')} <span>${escapeHtml(c.category || 'General')}</span>`;
+  
+  const statusTag = document.getElementById("mStatusTag");
+  statusTag.className = `tag status-${c.status}`;
+  statusTag.textContent = statusLabel(c.status);
+
+  if (document.getElementById("mStudentName")) {
+    document.getElementById("mStudentName").textContent = c.student_name || (c.anonymous ? "Anonymous" : "Student");
+  }
+  document.getElementById("mLocation").textContent = c.location || "Campus";
+  document.getElementById("mDepartment").textContent = c.department || "Facilities Team";
+  document.getElementById("mTimeAgo").textContent = `${formatDateTime(c.created_at)} (${timeAgo(c.created_at)})`;
+  document.getElementById("mDescription").textContent = c.description;
+
+  const isSubmitted = c.status === "submitted";
+  const isInProgress = c.status === "in_progress";
+  const isResolved = c.status === "resolved";
+  const fillWidth = isResolved ? "80%" : (isInProgress ? "40%" : "0%");
+
+  document.getElementById("mProgressTrack").innerHTML = `
+    <div class="animated-progress-fill" style="width:${fillWidth};"></div>
+    <div class="animated-progress-step ${isSubmitted || isInProgress || isResolved ? 'done' : ''}">
+      <div class="step-dot">1</div>
+      <span>Submitted</span>
+    </div>
+    <div class="animated-progress-step ${isInProgress || isResolved ? 'done' : ''}">
+      <div class="step-dot">2</div>
+      <span>In Progress</span>
+    </div>
+    <div class="animated-progress-step ${isResolved ? 'done' : ''}">
+      <div class="step-dot">3</div>
+      <span>Resolved</span>
+    </div>
+  `;
+
+  const photoBox = document.getElementById("mPhotoContainer");
+  const photoImg = document.getElementById("mPhotoImg");
+  if (c.photo_path) {
+    photoImg.src = c.photo_path.startsWith("http") ? c.photo_path : `${API_BASE}/${c.photo_path}`;
+    photoBox.style.display = "block";
+  } else {
+    photoBox.style.display = "none";
+  }
+
+  const resBox = document.getElementById("mResolutionContainer");
+  const resText = document.getElementById("mResolutionText");
+  const fbSec = document.getElementById("mFeedbackSection");
+
+  if (isResolved || c.draft_message) {
+    resBox.style.display = "block";
+    resText.textContent = c.draft_message || "The issue has been marked resolved by campus administration.";
+    if (isResolved) {
+      if (c.feedback_rating) {
+        fbSec.innerHTML = `<div class="feedback-done">Rated ${c.feedback_rating}/5 &#9733;</div>`;
+      } else {
+        fbSec.innerHTML = `<div style="font-size:.85rem;color:var(--muted);margin-bottom:4px;">Rate resolution quality:</div>${renderStars(c.id, 0)}`;
+      }
+    } else {
+      fbSec.innerHTML = "";
+    }
+  } else {
+    resBox.style.display = "none";
+  }
+
+  modal.classList.add("show");
+  if (window.lucide) lucide.createIcons();
+}
+
+function closeComplaintModal(e) {
+  if (e && e.target !== e.currentTarget) return;
+  const modal = document.getElementById("complaintDetailModal");
+  if (modal) modal.classList.remove("show");
+}
+
+// -------- 9. SCRATCH CARD LEVEL REWARD ENGINE --------
+let scratchActiveInfo = null;
+let scratchCanvasCtx = null;
+let isScratchRevealed = false;
+
+function getLevelDetails(levelNum) {
+  const map = {
+    1: { level: 1, name: "Campus Rookie", icon: "shield", color: "#f59e0b", perk: "Standard Priority Queue" },
+    2: { level: 2, name: "Active Scout", icon: "zap", color: "#3b82f6", perk: "+10 Confidence Score Bonus & Faster Routing" },
+    3: { level: 3, name: "Facility Guardian", icon: "shield-check", color: "#10b981", perk: "+15 Confidence Score Bonus & Verified Sentinel" },
+    4: { level: 4, name: "Sentinel Leader", icon: "award", color: "#8b5cf6", perk: "+20 Confidence Score Bonus & Top Feed Spotlight" },
+    5: { level: 5, name: "Campus Champion", icon: "crown", color: "#ec4899", perk: "MAX Level Multiplier & Direct Admin Channel" }
+  };
+  return map[levelNum] || map[2];
+}
+
+function triggerTestScratchCard(levelNum = 2) {
+  openLevelUpScratchCard(levelNum);
+}
+
+function openLevelUpScratchCard(levelNumOrInfo) {
+  const info = typeof levelNumOrInfo === 'object' ? levelNumOrInfo : getLevelDetails(levelNumOrInfo);
+  scratchActiveInfo = info;
+  
+  const modal = document.getElementById("scratchCardModal");
+  if (!modal) return;
+
+  document.getElementById("scratchCardHeadline").textContent = `Level ${info.level} • ${info.name} Unlocked!`;
+  document.getElementById("scratchLevelTag").textContent = `LEVEL ${info.level} UNLOCKED`;
+  document.getElementById("scratchLevelTitle").textContent = info.name;
+  document.getElementById("scratchLevelPerk").textContent = `🎁 Unlocked Perk: ${info.perk}`;
+  
+  const badgeCircle = document.getElementById("scratchBadgeCircle");
+  if (badgeCircle) badgeCircle.style.borderColor = info.badgeColor || info.color || "#f59e0b";
+
+  const iconEl = document.getElementById("scratchLucideIcon");
+  if (iconEl) {
+    iconEl.setAttribute("data-lucide", info.icon || "zap");
+    iconEl.style.color = info.badgeColor || info.color || "#f59e0b";
+  }
+
+  modal.classList.add("show");
+  if (window.lucide) lucide.createIcons();
+
+  setTimeout(() => {
+    initScratchCanvas();
+  }, 100);
+}
+
+function closeScratchCardModal(e) {
+  if (e && e.target !== e.currentTarget) return;
+  const modal = document.getElementById("scratchCardModal");
+  if (modal) modal.classList.remove("show");
+}
+
+function initScratchCanvas() {
+  const canvas = document.getElementById("scratchCanvas");
+  if (!canvas) return;
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width || 360;
+  canvas.height = rect.height || 260;
+
+  scratchCanvasCtx = canvas.getContext("2d");
+  const ctx = scratchCanvasCtx;
+  ctx.globalCompositeOperation = "source-over";
+  canvas.style.opacity = "1";
+  canvas.style.pointerEvents = "auto";
+  isScratchRevealed = false;
+
+  document.getElementById("resetScratchBtn").style.display = "none";
+  document.getElementById("scratchProgressStatus").textContent = "Scratch with your mouse or finger...";
+
+  // Draw Metallic Foil Gradient
+  const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+  grad.addColorStop(0, "#e2e8f0");
+  grad.addColorStop(0.25, "#cbd5e1");
+  grad.addColorStop(0.5, "#94a3b8");
+  grad.addColorStop(0.75, "#cbd5e1");
+  grad.addColorStop(1, "#64748b");
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Add decorative sparkles
+  ctx.fillStyle = "rgba(255, 255, 255, 0.3)";
+  for (let i = 0; i < 120; i++) {
+    const rx = Math.random() * canvas.width;
+    const ry = Math.random() * canvas.height;
+    ctx.fillRect(rx, ry, 2, 2);
+  }
+
+  // Draw foil text
+  ctx.fillStyle = "#0f172a";
+  ctx.font = "bold 15px sans-serif";
+  ctx.textAlign = "center";
+  ctx.fillText("✨ SCRATCH FOIL TO REVEAL ✨", canvas.width / 2, canvas.height / 2 - 10);
+
+  ctx.font = "12px sans-serif";
+  ctx.fillStyle = "#334155";
+  ctx.fillText("Drag mouse or finger across card", canvas.width / 2, canvas.height / 2 + 15);
+
+  let isScratching = false;
+
+  function scratch(x, y) {
+    ctx.globalCompositeOperation = "destination-out";
+    ctx.beginPath();
+    ctx.arc(x, y, 24, 0, Math.PI * 2);
+    ctx.fill();
+    checkScratchProgress();
+  }
+
+  function getPos(e) {
+    const b = canvas.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    return { x: clientX - b.left, y: clientY - b.top };
+  }
+
+  canvas.onmousedown = (e) => { isScratching = true; const p = getPos(e); scratch(p.x, p.y); };
+  canvas.onmousemove = (e) => { if (isScratching) { const p = getPos(e); scratch(p.x, p.y); } };
+  window.onmouseup = () => { isScratching = false; };
+
+  canvas.ontouchstart = (e) => { isScratching = true; const p = getPos(e); scratch(p.x, p.y); };
+  canvas.ontouchmove = (e) => { if (isScratching) { const p = getPos(e); scratch(p.x, p.y); } };
+  canvas.ontouchend = () => { isScratching = false; };
+}
+
+let scratchCheckThrottle = 0;
+function checkScratchProgress() {
+  if (isScratchRevealed) return;
+  scratchCheckThrottle++;
+  if (scratchCheckThrottle % 6 !== 0) return;
+
+  const canvas = document.getElementById("scratchCanvas");
+  if (!canvas || !scratchCanvasCtx) return;
+  
+  const ctx = scratchCanvasCtx;
+  const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const pixels = imgData.data;
+  let cleared = 0;
+
+  for (let i = 3; i < pixels.length; i += 16) {
+    if (pixels[i] === 0) cleared++;
+  }
+
+  const percent = Math.round((cleared / (pixels.length / 16)) * 100);
+  const statusEl = document.getElementById("scratchProgressStatus");
+  if (statusEl && percent < 30) {
+    statusEl.textContent = `Scratched ${percent}% ... keep going!`;
+  }
+
+  if (percent >= 30) {
+    isScratchRevealed = true;
+    canvas.style.opacity = "0";
+    canvas.style.pointerEvents = "none";
+    if (statusEl) statusEl.textContent = "🎉 LEVEL REWARD REVEALED!";
+    document.getElementById("resetScratchBtn").style.display = "inline-flex";
+    if (window.lucide) lucide.createIcons();
+  }
+}
+
+function resetScratchFoil() {
+  initScratchCanvas();
+}
+
+async function claimScratchReward() {
+  closeScratchCardModal();
+  if (scratchActiveInfo) {
+    const bonusMap = { 2: 10, 3: 15, 4: 20, 5: 25 };
+    const bonus = bonusMap[scratchActiveInfo.level] || 10;
+    try {
+      await api("/api/profile/bonus-confidence", { method: "POST", body: { bonus } });
+      await loadStreak();
+      await loadLeaderboard();
+    } catch (e) { /* ignore transient error */ }
+  }
+}
+
+// -------- 10. PROFILE LOADER & SAVE --------
+
 async function loadProfile() {
   try {
     const data = await api("/api/profile");
+    const streakData = await api("/api/streak");
+    const mineData = await api("/api/complaints/mine") || [];
+
     document.getElementById("pName").value = data.name || "";
     document.getElementById("pEmail").value = data.email || "";
     document.getElementById("pBlock").value = data.block || "";
     document.getElementById("pNotify").checked = data.email_notifications !== false;
-  } catch (e) { /* ignore */ }
+
+    const confScore = (streakData.confidence_score !== undefined && streakData.confidence_score !== null) ? streakData.confidence_score : 0.0;
+    const info = getStreakLevelInfo(confScore);
+
+    // Update Level Pill
+    const levelPill = document.getElementById("profileLevelPill");
+    if (levelPill) {
+      levelPill.textContent = `Lvl ${info.level}`;
+      levelPill.style.background = info.badgeColor;
+    }
+
+    // Update Level Banner
+    const banner = document.getElementById("profileLevelBanner");
+    if (banner) {
+      banner.innerHTML = `
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+          <div style="font-weight:700;font-size:1.02rem;color:var(--ink);">Level ${info.level} &bull; ${escapeHtml(info.name)}</div>
+          <div style="font-weight:700;font-size:1.1rem;color:var(--brass-dark);">${confScore} pts</div>
+        </div>
+        <div style="font-size:0.82rem;color:var(--muted);margin-bottom:10px;">${escapeHtml(info.subtitle)}</div>
+        <div class="progress-bar-track" style="height:8px;border-radius:4px;background:var(--line);overflow:hidden;">
+          <div style="width:${info.percent}%;height:100%;background:linear-gradient(90deg, ${info.badgeColor}, var(--brass));transition:width 0.4s ease;"></div>
+        </div>
+      `;
+    }
+
+    // Determine unlocked achievements based on user metrics
+    const totalReports = mineData.length || 0;
+    const resolvedReports = mineData.filter(c => c.status === "resolved").length || 0;
+    const hasFeedback = mineData.some(c => c.feedback_rating);
+    const hasMerged = mineData.some(c => c.frequency > 1);
+
+    const achievements = [
+      { id: "rookie", title: "Campus Rookie", icon: "shield", desc: "Joined campus reporting network", unlocked: info.level >= 1 },
+      { id: "first_report", title: "First Report", icon: "file-text", desc: "Submitted 1st campus report", unlocked: totalReports >= 1 },
+      { id: "scout", title: "Active Scout", icon: "zap", desc: "Reached Level 2 (10+ pts)", unlocked: info.level >= 2 },
+      { id: "community", title: "Community Ally", icon: "users", desc: "Merged duplicate student report", unlocked: hasMerged },
+      { id: "guardian", title: "Facility Guardian", icon: "shield-check", desc: "Reached Level 3 (40+ pts)", unlocked: info.level >= 3 },
+      { id: "solver", title: "Issue Resolver", icon: "check-circle", desc: "Had a report resolved by admin", unlocked: resolvedReports >= 1 },
+      { id: "feedback", title: "Feedback Star", icon: "star", desc: "Rated resolution quality", unlocked: hasFeedback },
+      { id: "sentinel", title: "Sentinel Leader", icon: "award", desc: "Reached Level 4 (80+ pts)", unlocked: info.level >= 4 },
+      { id: "champion", title: "Campus Champion", icon: "crown", desc: "Reached Level 5 (130+ pts)", unlocked: info.level >= 5 },
+    ];
+
+    const grid = document.getElementById("profileAchievementsGrid");
+    if (grid) {
+      grid.innerHTML = achievements.map(a => `
+        <div class="achievement-card ${a.unlocked ? 'unlocked' : 'locked'}">
+          <div class="achievement-icon-circle">
+            <i data-lucide="${a.icon}" style="width:20px;height:20px;"></i>
+          </div>
+          <div class="achievement-title">${escapeHtml(a.title)}</div>
+          <div class="achievement-desc">${escapeHtml(a.desc)}</div>
+          <span class="achievement-status-tag ${a.unlocked ? 'unlocked-tag' : 'locked-tag'}">
+            ${a.unlocked ? 'Unlocked ✨' : 'Locked 🔒'}
+          </span>
+        </div>
+      `).join("");
+    }
+
+    if (window.lucide) lucide.createIcons();
+  } catch (e) { /* ignore transient error */ }
 }
 
 document.getElementById("profileForm").addEventListener("submit", async (e) => {
@@ -1118,6 +1735,18 @@ function escapeHtml(s) {
 // Initial Overview Load
 loadOverview();
 setTimeout(() => { if (window.lucide) lucide.createIcons(); }, 100);
+
+// Realtime multi-user auto-refresh (polls every 4 seconds)
+setInterval(() => {
+  if (!document.hidden) {
+    loadOverview();
+    if (typeof activeStudentTab !== 'undefined') {
+      if (activeStudentTab === 'community') loadPulseFeed();
+      if (activeStudentTab === 'complaints') loadMyComplaints();
+    }
+  }
+}, 4000);
 </script>
+
 </body>
 </html>

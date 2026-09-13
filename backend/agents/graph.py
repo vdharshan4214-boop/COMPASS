@@ -25,8 +25,11 @@ def classify_node(state: ComplaintState) -> ComplaintState:
     return state
 
 
-def dedup_node(state: ComplaintState, *, open_complaints: list | None = None) -> ComplaintState:
-    complaints = open_complaints or []
+def dedup_node(state: ComplaintState, config: dict | None = None, *, open_complaints: list | None = None) -> ComplaintState:
+    complaints = open_complaints
+    if not complaints and config and isinstance(config, dict) and "configurable" in config:
+        complaints = config["configurable"].get("open_complaints")
+    complaints = complaints or []
     state["dedup_match"] = find_duplicate(
         state["description"],
         state["category"],
@@ -34,6 +37,7 @@ def dedup_node(state: ComplaintState, *, open_complaints: list | None = None) ->
         [(c.get("id"), c.get("description"), c.get("category"), c.get("location")) for c in complaints],
     )
     return state
+
 
 
 def route_node(state: ComplaintState) -> ComplaintState:

@@ -46,8 +46,20 @@ async function api(path, { method = "GET", body = null, isForm = false } = {}) {
   return data;
 }
 
+function parseIsoUtc(iso) {
+  if (!iso) return new Date();
+  let s = String(iso);
+  if (!s.endsWith("Z") && !s.includes("+") && !s.includes("-", 10)) {
+    s += "Z";
+  }
+  return new Date(s);
+}
+
 function timeAgo(iso) {
-  const diffMs = Date.now() - new Date(iso).getTime();
+  if (!iso) return "just now";
+  const dateObj = parseIsoUtc(iso);
+  const diffMs = Date.now() - dateObj.getTime();
+  if (isNaN(diffMs) || diffMs < 0) return "just now";
   const mins = Math.floor(diffMs / 60000);
   if (mins < 1) return "just now";
   if (mins < 60) return `${mins}m ago`;
@@ -57,9 +69,24 @@ function timeAgo(iso) {
   return `${days}d ago`;
 }
 
+function formatDateTime(iso) {
+  if (!iso) return "N/A";
+  const d = parseIsoUtc(iso);
+  if (isNaN(d.getTime())) return String(iso);
+  return d.toLocaleString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  });
+}
+
 function statusLabel(s) {
   return { submitted: "Submitted", in_progress: "In Progress", resolved: "Resolved" }[s] || s;
 }
+
 
 function ensureAdminChatWidget() {
   if (document.getElementById("compassChatWidget")) return;

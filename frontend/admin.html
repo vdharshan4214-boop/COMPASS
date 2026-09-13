@@ -5,6 +5,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Compass Admin — Campus Complaint Management</title>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* DIRECT INLINE MODAL OVERRIDE */
+    .admin-modal-overlay,
+    #complaintDetailModal {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      background: rgba(15, 23, 42, 0.75) !important;
+      backdrop-filter: blur(6px) !important;
+      -webkit-backdrop-filter: blur(6px) !important;
+      z-index: 999999 !important;
+      display: none;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 20px !important;
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
+    }
+
+    .admin-modal-overlay.show,
+    #complaintDetailModal.show {
+      display: flex !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      visibility: visible !important;
+    }
+
+    .admin-modal-container {
+      background: var(--admin-card-bg, #ffffff) !important;
+      color: var(--admin-text-main, #1e293b) !important;
+      width: 100% !important;
+      max-width: 680px !important;
+      max-height: 88vh !important;
+      overflow-y: auto !important;
+      border-radius: 16px !important;
+      padding: 24px 28px !important;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4) !important;
+      border: 1px solid var(--admin-border, #e2e8f0) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 16px !important;
+    }
+  </style>
 </head>
 <body class="admin-body">
 <div class="admin-layout">
@@ -208,16 +255,7 @@
           </div>
         </div>
 
-        <!-- LINE/AREA CHART: Reports Over Time -->
-        <div class="admin-card" style="margin-bottom:28px;">
-          <div class="admin-card-header">
-            <h3 class="admin-card-title">Reports Over Time (Last 7 Days)</h3>
-            <span style="font-size:0.8rem;color:var(--admin-text-muted);">Daily Complaint Volume</span>
-          </div>
-          <div class="area-chart-container" id="areaChartContainer">
-            <!-- Tremor/Recharts 7-Day Line Chart -->
-          </div>
-        </div>
+
 
         <!-- NEEDS ATTENTION & BOTTOM ROW -->
         <div class="admin-card">
@@ -600,24 +638,57 @@ function renderCards(list) {
     return;
   }
 
-  container.innerHTML = list.map(c => {
+function getCategoryIcon(c) {
+  const cat = (c.category || "").toLowerCase();
+  const text = (c.description || "").toLowerCase();
+
+  if (["safety", "security", "ragging", "beating", "assault", "attack", "fire", "emergency", "unsafe"].some(t => cat.includes(t) || text.includes(t))) {
+    return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`;
+  }
+  if (["it", "wifi", "internet", "network", "router", "lan", "connection", "server"].some(t => cat.includes(t) || text.includes(t))) {
+    return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>`;
+  }
+  if (["electrical", "power", "electricity", "fan", "light", "socket", "switch", "short", "spark", "ac"].some(t => cat.includes(t) || text.includes(t))) {
+    return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`;
+  }
+  if (["maintenance", "plumbing", "water", "leak", "pipe", "toilet", "tap", "drain", "bathroom", "washroom"].some(t => cat.includes(t) || text.includes(t))) {
+    return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>`;
+  }
+  if (["hostel", "mess", "cleaning", "laundry", "bed", "furniture", "pest"].some(t => cat.includes(t) || text.includes(t))) {
+    return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg>`;
+  }
+  return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="6" x2="9.01" y2="6"/><line x1="15" y1="6" x2="15.01" y2="6"/><line x1="9" y1="10" x2="9.01" y2="10"/><line x1="15" y1="10" x2="15.01" y2="10"/><line x1="9" y1="14" x2="9.01" y2="14"/><line x1="15" y1="14" x2="15.01" y2="14"/><line x1="9" y1="18" x2="15" y2="18"/></svg>`;
+}
+
+// --- RENDER COMPLAINTS CARD GRID ---
+function renderCards(list) {
+  const container = document.getElementById("allComplaintsGrid");
+  if (!list.length) {
+    container.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--admin-text-muted);">No complaints match the selected filter.</div>`;
+    return;
+  }
+
+  container.innerHTML = list.map((c, idx) => {
     const dept = c.department || inferDepartment(c);
-    const icon = CATEGORY_ICONS[dept] || CATEGORY_ICONS["Facilities Team"];
+    const icon = getCategoryIcon(c);
     const studentConf = c.student_confidence_score || 80.0;
     const photoUrl = c.photo_path ? (c.photo_path.startsWith("http") ? c.photo_path : ("http://localhost:8000/" + c.photo_path.replace(/^\//, ""))) : null;
+    const studentDisplayName = c.anonymous ? "Anonymous Student" : (c.student_name || "Demo Student");
     
     return `
-      <div class="complaint-card clickable-card" id="c-${c.id}" onclick="openComplaintModal(${c.id})">
+      <div class="complaint-card clickable-card" id="c-${c.id}" onclick="openComplaintModal('${c.id}', ${idx})">
         <div>
           <div class="complaint-card-top">
             <div class="category-icon-badge">${icon}</div>
             <div class="complaint-card-body">
-              <h3 class="complaint-card-title">${escapeHtml(c.description)}</h3>
+              <h3 class="complaint-card-title">${escapeHtml(c.title || c.description)}</h3>
+              <p style="font-size:0.84rem;color:var(--admin-text-muted);margin:2px 0 6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${escapeHtml(c.description)}</p>
               <div class="complaint-card-meta">
-                ${escapeHtml(c.location)} &bull; ${escapeHtml(c.student_name || 'Demo Student')}<br>
+                ${escapeHtml(c.location)} &bull; ${escapeHtml(studentDisplayName)}<br>
                 Reported ${timeAgo(c.created_at)} &bull; Open ${c.days_open}d
               </div>
             </div>
+
             ${getPriorityBadge(c.priority_score)}
           </div>
 
@@ -635,9 +706,8 @@ function renderCards(list) {
         </div>
 
         <div class="complaint-actions-row" onclick="event.stopPropagation()">
-          <button class="btn btn-secondary btn-sm" onclick="openComplaintModal(${c.id})">Details</button>
-          ${c.status !== "resolved" ? `<button class="btn btn-primary btn-sm" onclick="resolveComplaint(${c.id})">Approve &amp; resolve</button>` : ""}
-          <button class="btn btn-danger btn-sm" onclick="deleteComplaint(${c.id})">Delete</button>
+          ${c.status !== "resolved" ? `<button type="button" class="btn btn-primary btn-sm" onclick="openComplaintModal('${c.id}', ${idx})">Approve &amp; resolve</button>` : ""}
+          <button type="button" class="btn btn-danger btn-sm" onclick="deleteComplaint('${c.id}')">Delete</button>
         </div>
       </div>
     `;
@@ -647,17 +717,27 @@ function renderCards(list) {
 // --- POPUP MODAL DIALOG FOR COMPLAINT DETAILS ---
 let currentModalComplaintId = null;
 
-function openComplaintModal(id) {
-  const c = allComplaintsData.find(item => item.id === id);
-  if (!c) return;
-  currentModalComplaintId = id;
+function openComplaintModal(id, idx) {
+  const targetId = String(id);
+  let c = allComplaintsData.find(item => String(item.id) === targetId || String(item._id) === targetId);
+  if (!c && idx !== undefined && allComplaintsData[idx]) {
+    c = allComplaintsData[idx];
+  }
+  if (!c && allComplaintsData.length > 0) {
+    c = allComplaintsData[0];
+  }
+  if (!c) {
+    console.warn("Complaint record not found for ID:", id, allComplaintsData);
+    return;
+  }
+  currentModalComplaintId = c.id;
 
-  document.getElementById("modalTitle").textContent = c.description;
-  document.getElementById("modalSubTitle").textContent = `Complaint #${c.id} • ${c.location}`;
+  document.getElementById("modalTitle").textContent = c.description || c.title || "Complaint Details";
+  document.getElementById("modalSubTitle").textContent = `Complaint #${c.id} • ${c.location || 'Campus'}`;
 
   const dept = c.department || inferDepartment(c);
   const studentConf = c.student_confidence_score || 80.0;
-  const reportedTime = new Date(c.created_at).toLocaleString();
+  const reportedTime = c.created_at ? new Date(c.created_at).toLocaleString() : "Recently";
   const photoUrl = c.photo_path ? (c.photo_path.startsWith("http") ? c.photo_path : ("http://localhost:8000/" + c.photo_path.replace(/^\//, ""))) : null;
 
   const bodyHtml = `
@@ -671,16 +751,16 @@ function openComplaintModal(id) {
         <span>${escapeHtml(c.student_email || "student@compass.edu")}</span>
       </div>
       <div class="modal-detail-item">
-        <label>Confidence Score</label>
+        <label>Student Confidence Score</label>
         <span class="confidence-badge" style="font-size:0.85rem;">Confidence: ${studentConf}%</span>
       </div>
       <div class="modal-detail-item">
         <label>Priority Score</label>
-        <span style="color:var(--admin-gold);font-weight:700;">${c.priority_score} / 100</span>
+        <span style="color:var(--admin-gold);font-weight:700;">${c.priority_score || 0} / 100</span>
       </div>
       <div class="modal-detail-item">
         <label>Location</label>
-        <span>${escapeHtml(c.location)}</span>
+        <span>${escapeHtml(c.location || "N/A")}</span>
       </div>
       <div class="modal-detail-item">
         <label>Department / Category</label>
@@ -712,7 +792,6 @@ function openComplaintModal(id) {
       </div>
     </div>
 
-
     <div>
       <strong style="display:block;margin-bottom:6px;font-size:0.9rem;">Resolution Note / Communication</strong>
       ${c.status === "resolved" ? `
@@ -721,7 +800,7 @@ function openComplaintModal(id) {
         </div>
       ` : `
         <textarea class="draft-box" id="modalDraftMessage" rows="3" style="width:100%;border-radius:10px;font-size:0.88rem;" placeholder="Type resolution summary or click Draft Resolution...">${escapeHtml(c.draft_message || "")}</textarea>
-        <button type="button" class="btn btn-secondary btn-sm" style="margin-top:6px;" onclick="generateModalDraft(${c.id})">Generate AI Resolution Draft</button>
+        <button type="button" class="btn btn-secondary btn-sm" style="margin-top:6px;" onclick="generateModalDraft('${c.id}')">Generate AI Resolution Draft</button>
       `}
     </div>
   `;
@@ -729,12 +808,12 @@ function openComplaintModal(id) {
 
   const footerHtml = `
     <div>
-      <button type="button" class="btn btn-danger btn-sm" onclick="modalDeleteComplaint(${c.id})">Delete Complaint</button>
+      <button type="button" class="btn btn-danger btn-sm" onclick="modalDeleteComplaint('${c.id}')">Delete Complaint</button>
     </div>
     <div style="display:flex;gap:8px;">
       ${c.status !== "resolved" ? `
-        <button type="button" class="btn btn-secondary btn-sm" onclick="modalDisapprove(${c.id})">Mark in Progress</button>
-        <button type="button" class="btn btn-primary btn-sm" onclick="modalApproveResolve(${c.id})">Approve &amp; Resolve</button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="modalDisapprove('${c.id}')">Mark in Progress</button>
+        <button type="button" class="btn btn-primary btn-sm" onclick="modalApproveResolve('${c.id}')">Approve &amp; Resolve</button>
       ` : `
         <span style="font-size:0.8rem;color:#10b981;font-weight:600;display:flex;align-items:center;gap:4px;">Resolved</span>
       `}
@@ -743,11 +822,29 @@ function openComplaintModal(id) {
   `;
   document.getElementById("modalFooterActions").innerHTML = footerHtml;
 
-  document.getElementById("complaintDetailModal").classList.add("show");
+  const modal = document.getElementById("complaintDetailModal");
+  if (modal) {
+    modal.style.display = "flex";
+    modal.style.opacity = "1";
+    modal.style.visibility = "visible";
+    modal.style.pointerEvents = "auto";
+    modal.classList.add("show");
+  }
 }
 
 function closeComplaintModal() {
-  document.getElementById("complaintDetailModal").classList.remove("show");
+  const modal = document.getElementById("complaintDetailModal");
+  if (modal) {
+    modal.classList.remove("show");
+    modal.style.display = "none";
+    modal.style.opacity = "0";
+    modal.style.visibility = "hidden";
+    modal.style.pointerEvents = "none";
+  }
+}
+
+function resolveComplaint(id) {
+  openComplaintModal(id);
 }
 
 async function generateModalDraft(id) {
@@ -924,52 +1021,12 @@ async function loadOverview() {
     <div class="legend-item"><span class="legend-dot" style="background:#10b981;"></span> Resolved (${res})</div>
   `;
 
-  // Render 7-Day Line Chart for Reports Over Time
-  const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-  const values = [4, 6, 3, 8, 5, 9, 7];
-  const svgWidth = 600;
-  const svgHeight = 160;
-  const padding = 30;
-  const stepX = (svgWidth - padding * 2) / (days.length - 1);
-  const maxV = Math.max(...values, 10);
 
-  const points = values.map((val, idx) => {
-    const x = padding + idx * stepX;
-    const y = svgHeight - padding - ((val / maxV) * (svgHeight - padding * 2));
-    return { x, y, val, day: days[idx] };
-  });
-
-  const pathD = points.reduce((acc, p, i) => i === 0 ? `M${p.x},${p.y}` : `${acc} L${p.x},${p.y}`, "");
-  const areaD = `${pathD} L${points[points.length - 1].x},${svgHeight - padding} L${points[0].x},${svgHeight - padding} Z`;
-
-  const lineSvg = `
-    <svg viewBox="0 0 ${svgWidth} ${svgHeight}" style="width:100%;height:100%;overflow:visible;">
-      <defs>
-        <linearGradient id="areaGrad7" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.3"/>
-          <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.0"/>
-        </linearGradient>
-      </defs>
-      <line x1="${padding}" y1="${padding}" x2="${svgWidth - padding}" y2="${padding}" stroke="var(--admin-border)" stroke-dasharray="4"/>
-      <line x1="${padding}" y1="${svgHeight / 2}" x2="${svgWidth - padding}" y2="${svgHeight / 2}" stroke="var(--admin-border)" stroke-dasharray="4"/>
-      <line x1="${padding}" y1="${svgHeight - padding}" x2="${svgWidth - padding}" y2="${svgHeight - padding}" stroke="var(--admin-border)"/>
-
-      <path d="${areaD}" fill="url(#areaGrad7)"/>
-      <path d="${pathD}" fill="none" stroke="#3b82f6" stroke-width="3" stroke-linecap="round"/>
-
-      ${points.map(p => `
-        <circle cx="${p.x}" cy="${p.y}" r="4.5" fill="#3b82f6" stroke="#ffffff" stroke-width="2"/>
-        <text x="${p.x}" y="${svgHeight - 8}" text-anchor="middle" font-size="11" font-weight="500" fill="var(--admin-text-muted)">${p.day}</text>
-        <text x="${p.x}" y="${p.y - 8}" text-anchor="middle" font-size="10" font-weight="700" fill="var(--admin-text-main)">${p.val}</text>
-      `).join("")}
-    </svg>
-  `;
-  document.getElementById("areaChartContainer").innerHTML = lineSvg;
 
   // Render Needs Attention List (Top 3 highest priority unresolved complaints)
   const unresolved = allComplaintsData.filter(c => c.status !== "resolved").sort((a, b) => b.priority_score - a.priority_score).slice(0, 3);
   document.getElementById("needsAttentionList").innerHTML = unresolved.length ? unresolved.map(c => `
-    <div class="attention-item" onclick="openComplaintModal(${c.id})">
+    <div class="attention-item" onclick="openComplaintModal('${c.id}')">
       <div class="attention-info">
         ${getPriorityBadge(c.priority_score)}
         <div>
@@ -1039,6 +1096,14 @@ function handleAvatarUpload(input) {
 // Initial Load
 loadQueue();
 loadOverview();
+
+// Realtime multi-user auto-refresh (polls every 4 seconds)
+setInterval(() => {
+  if (!document.hidden) {
+    loadQueue();
+    loadOverview();
+  }
+}, 4000);
 </script>
 
 </body>

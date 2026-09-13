@@ -176,7 +176,7 @@ class _FallbackClient:
 
 def _build_client():
     try:
-        client = MongoClient(MONGODB_URI, serverSelectionTimeoutMS=500)
+        client = MongoClient(MONGODB_URI, serverSelectionTimeoutMS=1500, connectTimeoutMS=1500)
         client.admin.command("ping")
         return client
     except Exception:
@@ -215,7 +215,7 @@ def next_id(collection_name: str) -> int:
 
 
 def seed_demo_data():
-    """Populate the local demo database with a few real complaint examples when empty."""
+    """Populate the local demo database with default admin & student accounts when empty."""
     users = db["users"]
     if users.find_one({"email": "admin@compass.local"}) is None:
         admin_id = next_id("users")
@@ -243,69 +243,4 @@ def seed_demo_data():
             "confidence_score": 82.5,
             "last_active_date": None,
         })
-
-    complaints = db["complaints"]
-    if complaints.find_one({}) is not None:
-        return
-
-    csv_path = os.path.join(BASE_DIR, "ml", "datasets", "complaints_real_dataset_1000_plus.csv")
-    rows = []
-    if os.path.exists(csv_path):
-        with open(csv_path, "r", encoding="utf-8", newline="") as csv_file:
-            reader = csv.DictReader(csv_file)
-            for row in reader:
-                description = (row.get("text") or "").strip()
-                category = (row.get("category") or "other").strip().lower()
-                if description:
-                    rows.append({"description": description, "category": category})
-
-    selected = rows[:8]
-    if not selected:
-        selected = [
-            {"description": "Internet connection is unstable in Block A", "category": "wifi"},
-            {"description": "Light is not working in Boys Hostel", "category": "electrical"},
-            {"description": "No water supply in Hostel 2 hostel block", "category": "plumbing"},
-            {"description": "Laundry service delay at Block B", "category": "hostel"},
-            {"description": "Notice board is outdated at Block A", "category": "other"},
-        ]
-
-    now = datetime.datetime.utcnow()
-    for index, row in enumerate(selected, start=1):
-        complaint_id = next_id("complaints")
-        location = "Block A" if "Block A" in row["description"] else ("Block B" if "Block B" in row["description"] else "Hostel 2" if "Hostel 2" in row["description"] else "Boys Hostel")
-        status = ["submitted", "in_progress", "resolved"][index % 3]
-        photo_map = {
-            "wifi": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&auto=format&fit=crop&q=80",
-            "electrical": "https://images.unsplash.com/photo-1544724793-c6a3328f6baa?w=600&auto=format&fit=crop&q=80",
-            "plumbing": "https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=600&auto=format&fit=crop&q=80",
-            "hostel": "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=600&auto=format&fit=crop&q=80",
-        }
-        complaint = {
-            "_id": complaint_id,
-            "id": complaint_id,
-            "student_id": 2,
-            "anonymous": False,
-            "description": row["description"],
-            "location": location,
-            "photo_path": photo_map.get(row["category"]) if index % 2 == 1 else None,
-            "category": row["category"],
-            "department": {
-                "wifi": "IT Team",
-                "electrical": "Electrical Team",
-                "plumbing": "Maintenance Team",
-                "hostel": "Hostel Team",
-                "safety": "Safety Team",
-            }.get(row["category"], "Facilities Team"),
-            "urgency": 0.6 + (index * 0.08),
-            "frequency": 1,
-            "days_open": 2 + index,
-            "status": status,
-            "draft_message": None,
-            "admin_approved": status == "resolved",
-            "created_at": now - datetime.timedelta(days=index * 2),
-            "updated_at": now,
-            "resolved_at": (now - datetime.timedelta(days=1)) if status == "resolved" else None,
-            "priority_score": 40 + index * 8,
-        }
-        complaints.insert_one(complaint)
 

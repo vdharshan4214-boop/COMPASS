@@ -100,20 +100,5 @@ def predict_upcoming_issues(complaints: list[dict], location: str | None = None,
                     "reason": "; ".join(reasons),
                 })
 
-    if not scored:
-        for category, months in SEASONAL_PRIORS.items():
-            for month, mult in months.items():
-                if month in target_months:
-                    risk_score = round(mult, 2)
-                    scored.append({
-                        "category": category,
-                        "location": location or "Campus-wide",
-                        "predicted_month": MONTH_NAMES[month],
-                        "risk_score": risk_score,
-                        "confidence_low": round(max(0.0, risk_score - 0.5), 2),
-                        "confidence_high": round(risk_score + 0.5, 2),
-                        "reason": f"{category} issues historically rise in {MONTH_NAMES[month]} across campuses",
-                    })
-
     scored.sort(key=lambda x: x["risk_score"], reverse=True)
     return scored[:top_n]

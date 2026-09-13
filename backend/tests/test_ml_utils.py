@@ -26,3 +26,12 @@ def test_find_duplicate_uses_similarity():
     ]
     dup = find_duplicate("wifi connection is down again in Block A", "wifi", "Block A", open_complaints)
     assert dup == 1
+
+
+def test_ragging_and_safety_classification():
+    from ml_utils import infer_department
+    text = "there are 5 boys who are beating up a single boy in the boys washroom in hostel2"
+    assert classify_category(text) == "safety"
+    assert compute_urgency(text) == 1.0
+    assert infer_department("safety", text) == "Safety Team"
+

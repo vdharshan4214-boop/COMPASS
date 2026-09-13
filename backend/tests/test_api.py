@@ -4,6 +4,8 @@ from main import app, get_db
 from auth import hash_password
 
 client = TestClient(app)
+app.state.limiter.enabled = False
+
 
 
 def reset_db():
@@ -82,3 +84,30 @@ def test_predictions_and_admin_summary():
     summary = client.get("/api/admin/summary", headers={"Authorization": f"Bearer {admin_token}"})
     assert summary.status_code == 200
     assert "total_complaints" in summary.json()
+
+
+def test_duplicate_co_submitter_in_my_complaints():
+    reset_db()
+    reg1 = client.post("/api/auth/register", json={"name": "Student One", "email": "student1@example.com", "password": "password123", "role": "student"}).json()
+    reg2 = client.post("/api/auth/register", json={"name": "Student Two", "email": "student2@example.com", "password": "password123", "role": "student"}).json()
+
+    headers1 = {"Authorization": f"Bearer {reg1['token']}"}
+    headers2 = {"Authorization": f"Bearer {reg2['token']}"}
+
+    # Student 1 submits first complaint
+    c1 = client.post("/api/complaints", data={"description": "Water supply stopped completely in Hostel 2 block B", "location": "Hostel 2"}, headers=headers1)
+    assert c1.status_code == 200
+
+    # Student 2 submits duplicate complaint
+    c2 = client.post("/api/complaints", data={"description": "Water supply stopped completely in Hostel 2 block B", "location": "Hostel 2"}, headers=headers2)
+    assert c2.status_code == 200
+    assert "merged_into" in c2.json()
+
+    # Check Student 2 my_complaints
+    mine2 = client.get("/api/complaints/mine", headers=headers2)
+    assert mine2.status_code == 200
+    complaints2 = mine2.json()
+    assert len(complaints2) == 1
+    assert complaints2[0]["id"] == c1.json()["complaint"]["id"]
+    assert complaints2[0]["frequency"] == 2
+
