@@ -4,6 +4,7 @@ import datetime
 from typing import Optional
 
 from fastapi import FastAPI, Depends, HTTPException, Header, UploadFile, File, Form, Request
+from fastapi.responses import FileResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -41,6 +42,20 @@ os.makedirs(UPLOAD_DIR, exist_ok=True)
 FRONTEND_DIR = os.path.join(os.path.dirname(BASE_DIR), "frontend")
 
 app = FastAPI(title="Compass API")
+
+@app.get("/", response_class=HTMLResponse)
+def read_root():
+    index_path = os.path.join(FRONTEND_DIR, "index.html")
+    if os.path.exists(index_path):
+        return FileResponse(index_path)
+    return "<h1>Compass API is running</h1>"
+
+@app.get("/{page_name}.html", response_class=HTMLResponse)
+def serve_html_pages(page_name: str):
+    page_path = os.path.join(FRONTEND_DIR, f"{page_name}.html")
+    if os.path.exists(page_path):
+        return FileResponse(page_path)
+    raise HTTPException(404, "Page not found")
 limiter = Limiter(key_func=lambda request: request.headers.get("Authorization") or get_remote_address(request))
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
